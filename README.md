@@ -1,13 +1,15 @@
-# vdom-rxjs-ssr
+# rally-rxjs
 
-A server-side rendering example. virtual-dom & rxjs. This is a [bouzuya/virtual-dom-ssr][] fork.
+An unofficial client for [RALLY](https://rallyapp.jp).
+
+This is a [bouzuya/vdom-rxjs-ssr][] fork.
 
 ## Usage
 
 ```
 $ npm run build
 $ npm start
-$ open http://localhost:3000/users/1
+$ open http://localhost:3000/
 ```
 
 ## License
@@ -21,4 +23,4 @@ $ open http://localhost:3000/users/1
 [user]: https://github.com/bouzuya
 [email]: mailto:m@bouzuya.net
 [url]: http://bouzuya.net
-[bouzuya/virtual-dom-ssr]: https://github.com/bouzuya/virtual-dom-ssr
+[bouzuya/vdom-rxjs-ssr]: https://github.com/bouzuya/vdom-rxjs-ssr

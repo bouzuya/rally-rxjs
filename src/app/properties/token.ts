@@ -9,8 +9,8 @@ import reset$ from './token/reset';
 
 export default function property(
   state: Token,
-  action$: Observable<Action>,
-  reaction: (action: Action) => void
+  action$: Observable<Action<any>>,
+  reaction: (action: Action<any>) => void
 ): Observable<Token> {
   return Observable
     .of(state)

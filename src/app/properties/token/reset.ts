@@ -7,8 +7,8 @@ import { Updater } from '../../models/updater';
 import { Token } from '../../models/token';
 
 export default function updater$(
-  action$: Observable<Action>,
-  reaction: (action: Action) => void
+  action$: Observable<Action<any>>,
+  reaction: (action: Action<any>) => void
 ): Observable<Updater<Token>> {
   return action$
     .filter(({ type }) => type === 'request-sign-in')

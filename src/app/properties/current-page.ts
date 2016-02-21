@@ -8,7 +8,7 @@ import reset$ from './current-page/reset';
 
 export default function property(
   state: string,
-  action$: Observable<Action>
+  action$: Observable<Action<any>>
 ): Observable<string> {
   return Observable
     .of(state)

@@ -5,14 +5,15 @@ import { Observable } from 'rxjs';
 import { Action } from '../../models/action';
 import { Updater } from '../../models/updater';
 
+import { is } from '../../actions/request-stamp-rally-index';
 import { StampRally } from '../../models/stamp-rally';
 
 export default function updater$(
-  action$: Observable<Action>,
-  reaction: (action: Action) => void
+  action$: Observable<Action<any>>,
+  reaction: (action: Action<any>) => void
 ): Observable<Updater<StampRally[]>> {
   return action$
-    .filter(({ type }) => type === 'request-stamp-rally-index')
+    .filter(is)
     .mergeMap(({ params: { token, userId } }) => {
       const urlObj = url.parse(
         'https://api.rallyapp.jp/users/' + userId + '/stamp_rallies'
@@ -31,7 +32,5 @@ export default function updater$(
       ));
     })
     .mergeMap((response: any) => response.json())
-    .map(({ stampRallies }: any) => () => {
-      return stampRallies;
-    });
+    .map(({ stampRallies }: any) => () => stampRallies);
 }

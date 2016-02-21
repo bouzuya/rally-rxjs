@@ -13,6 +13,12 @@ import stampRallies$ from './properties/stamp-rallies';
 import token$ from './properties/token';
 import { view } from './view';
 
+import changeEmailAction from './actions/change-email';
+import changePasswordAction from './actions/change-password';
+import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
+import signInAction from './actions/sign-in';
+import { is as isSuccessSignInAction } from './actions/success-sign-in';
+
 const app = (
   { state, dom, history }: { state: State, dom: DOM, history: HistoryRouter }
 ): Observable<State> => {
@@ -20,23 +26,23 @@ const app = (
     .changes();
   const signInAction$ = dom
     .on('button', 'click')
-    .map(() => ({ type: 'sign-in', params: {} }));
+    .map(() => signInAction());
   const changeEmailAction$ = dom
     .on('input.email', 'change')
     .map(({ target }) => {
       const value = (<any> target).value;
-      return { type: 'change-email', params: { value } };
+      return changeEmailAction(value);
     });
   const changePasswordAction$ = dom
     .on('input.password', 'change')
     .map(({ target }) => {
       const value = (<any> target).value;
-      return { type: 'change-password', params: { value } };
+      return changePasswordAction(value);
     });
   const goToStampRallyListAction$ = route$
     .filter(({ name }) => name === 'stamp_rallies#index')
-    .map(() => ({ type: 'go-to-stamp-rally-list', params: {} }));
-  const actionSubject = new Subject<Action>();
+    .map(() => goToStampRallyListAction());
+  const actionSubject = new Subject<Action<any>>();
   const mergedAction$ = Observable
     .merge(
       changeEmailAction$,
@@ -44,13 +50,13 @@ const app = (
       goToStampRallyListAction$,
       signInAction$
     )
-    .subscribe((action: Action) => actionSubject.next(action));
-  const action$: Observable<Action> = actionSubject.asObservable();
-  const reaction = (action: Action): void => {
+    .subscribe((action: Action<any>) => actionSubject.next(action));
+  const action$: Observable<Action<any>> = actionSubject.asObservable();
+  const reaction = (action: Action<any>): void => {
     setTimeout(() => actionSubject.next(action));
   };
   action$
-    .filter(({ type }) => type === 'success-sign-in')
+    .filter(isSuccessSignInAction)
     .subscribe(() => history.go('/stamp_rallies'));
   const state$ = Observable
     .combineLatest(

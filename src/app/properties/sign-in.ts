@@ -11,8 +11,8 @@ import signIn$ from './sign-in/sign-in';
 
 export default function property(
   state: SignIn,
-  action$: Observable<Action>,
-  reaction: (action: Action) => void
+  action$: Observable<Action<any>>,
+  reaction: (action: Action<any>) => void
 ): Observable<SignIn> {
   return Observable
     .of(state)

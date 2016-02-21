@@ -3,16 +3,18 @@ import { Observable } from 'rxjs';
 import { Action } from '../../models/action';
 import { Updater } from '../../models/updater';
 
+import { create } from '../../actions/request-sign-in';
+import { is } from '../../actions/sign-in';
 import { SignIn } from '../../models/sign-in';
 
 export default function updater$(
-  action$: Observable<Action>,
-  reaction: (action: Action) => void
+  action$: Observable<Action<any>>,
+  reaction: (action: Action<any>) => void
 ): Observable<Updater<SignIn>> {
   return action$
-    .filter(({ type }) => type === 'sign-in')
+    .filter(is)
     .map(() => (signIn: SignIn): SignIn => {
-      reaction({ type: 'request-sign-in', params: signIn });
+      reaction(create(signIn));
       return signIn;
     });
 }

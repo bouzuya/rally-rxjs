@@ -1,8 +1,12 @@
-import { User } from '../models/user';
+import { SignIn } from '../models/sign-in';
+import { StampRally } from '../models/stamp-rally';
+import { Token } from '../models/token';
 
-class State {
-  users: User[];
-  user: User;
+type State = {
+  currentPage: string;
+  signIn: SignIn;
+  stampRallies: StampRally[];
+  token: Token;
 };
 
 export { State };

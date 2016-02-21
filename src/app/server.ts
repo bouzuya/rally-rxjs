@@ -1,16 +1,16 @@
 import { Initializer, InitializerParameters } from '../framework/initializer';
 import { Server } from '../framework/server';
-import { VTree, h } from '../framework/view';
+import { VTree } from '../framework/view';
 
 import { routes } from './configs/routes';
-import listUserInitializer from './initializers/list-user';
-import showUserInitializer from './initializers/show-user';
+import signInIndexInitializer from './initializers/sign-in-index';
+import stampRalliesIndexInitializer from './initializers/stamp-rallies-index';
 import { State } from './models/state';
 import { view } from './view';
 
 const initializers: { [name: string]: Initializer<State> } = {
-  'user#index': listUserInitializer,
-  'user#show': showUserInitializer
+  'sign_in#index': signInIndexInitializer,
+  'stamp_rallies#index': stampRalliesIndexInitializer
 };
 
 const render = (state: State): VTree => {

@@ -11,7 +11,7 @@ import currentPage$ from './properties/current-page';
 import signIn$ from './properties/sign-in';
 import stampRallies$ from './properties/stamp-rallies';
 import token$ from './properties/token';
-import { view } from './view';
+import render from './views/app';
 
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
@@ -73,10 +73,6 @@ const app = (
         return { currentPage, signIn, token, stampRallies };
       });
   return state$;
-};
-
-const render = (state: State): VTree => {
-  return view(state, false);
 };
 
 export default function main() {

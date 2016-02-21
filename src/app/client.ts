@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Client } from '../framework/client';
 import { DOM } from '../framework/dom';
 import { VTree } from '../framework/view';
@@ -7,59 +7,59 @@ import { HistoryRouter } from '../framework/history-router';
 import { routes } from './configs/routes';
 import { Action } from './models/action';
 import { State } from './models/state';
-import { User } from './models/user';
-import user$ from './properties/user';
-import users$ from './properties/users';
+import currentPage$ from './properties/current-page';
+import signIn$ from './properties/sign-in';
+import stampRallies$ from './properties/stamp-rallies';
+import token$ from './properties/token';
 import { view } from './view';
 
 const app = (
   { state, dom, history }: { state: State, dom: DOM, history: HistoryRouter }
 ): Observable<State> => {
-  const clickAnchor$ = dom
-    .on('a', 'click')
-    .subscribe((event: Event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const path = (<any> event.target).getAttribute('href');
-      history.go(path);
-    });
   const route$ = history
     .changes();
-  const clickedUserId$ = dom
+  const signInAction$ = dom
     .on('button', 'click')
-    .map((event) => (<any> event.target).dataset.userId);
-
-  const changeNameAction$ = Observable
-    .interval(1000)
-    .map(() => ({ type: 'change-name', params: {} }));
-  const goToUserIndexAction$ = route$
-    .filter(({ name }) => name === 'user#index')
-    .map(() => ({ type: 'go-to-user-index', params: {} }));
-  const goToUserShowAction$ = route$
-    .filter(({ name }) => name === 'user#show')
-    .map(({ params: { id } }) => {
-      const userId = parseInt(id, 10);
-      return { type: 'go-to-user-show', params: { id: userId } };
+    .map(() => ({ type: 'sign-in', params: {} }));
+  const changeEmailAction$ = dom
+    .on('input.email', 'change')
+    .map(({ target }) => {
+      const value = (<any> target).value;
+      return { type: 'change-email', params: { value } };
     });
-  const incrementLikeCountAction$ = clickedUserId$
-    .map(id => parseInt(id, 10))
-    .map(id => ({ type: 'increment-like-count', params: { id } }));
-  const pathChangeAction$ = route$
-    .map(route => ({ type: 'path-change', params: { route } }));
-  const action$: Observable<Action> = Observable
+  const changePasswordAction$ = dom
+    .on('input.password', 'change')
+    .map(({ target }) => {
+      const value = (<any> target).value;
+      return { type: 'change-password', params: { value } };
+    });
+  const goToStampRallyListAction$ = route$
+    .filter(({ name }) => name === 'stamp_rallies#index')
+    .map(() => ({ type: 'go-to-stamp-rally-list', params: {} }));
+  const actionSubject = new Subject<Action>();
+  const mergedAction$ = Observable
     .merge(
-      changeNameAction$,
-      goToUserIndexAction$,
-      goToUserShowAction$,
-      incrementLikeCountAction$,
-      pathChangeAction$
-    );
+      changeEmailAction$,
+      changePasswordAction$,
+      goToStampRallyListAction$,
+      signInAction$
+    )
+    .subscribe((action: Action) => actionSubject.next(action));
+  const action$: Observable<Action> = actionSubject.asObservable();
+  const reaction = (action: Action): void => {
+    setTimeout(() => actionSubject.next(action));
+  };
+  action$
+    .filter(({ type }) => type === 'success-sign-in')
+    .subscribe(() => history.go('/stamp_rallies'));
   const state$ = Observable
     .combineLatest(
-      users$(state.users, action$),
-      user$(state.user, action$),
-      (users, user) => {
-        return { users, user };
+      currentPage$(state.currentPage, action$),
+      signIn$(state.signIn, action$, reaction),
+      token$(state.token, action$, reaction),
+      stampRallies$(state.stampRallies, action$, reaction),
+      (currentPage, signIn, token, stampRallies): State => {
+        return { currentPage, signIn, token, stampRallies };
       });
   return state$;
 };

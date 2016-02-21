@@ -1,8 +1,8 @@
 import { Route } from '../../framework/router';
 
 const routes: Route[] = [
-  { path: '/users', name: 'user#index' },
-  { path: '/users/:id', name: 'user#show' }
+  { path: '/sign_in', name: 'sign_in#index' },
+  { path: '/stamp_rallies', name: 'stamp_rallies#index' }
 ];
 
 export { routes };

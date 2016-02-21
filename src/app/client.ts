@@ -20,11 +20,7 @@ import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 
-const app = (
-  { state, dom, history }: { state: State, dom: DOM, history: HistoryRouter }
-): Observable<State> => {
-  const route$ = history
-    .changes();
+const domAction$ = (dom: DOM): Observable<Action<any>> => {
   const changeEmailAction$ = dom
     .on('input.email', 'change')
     .map(({ target }) => {
@@ -37,29 +33,46 @@ const app = (
       const value = (<any> target).value;
       return changePasswordAction(value);
     });
+  const signInAction$ = dom
+    .on('button', 'click')
+    .map(() => signInAction());
+  return Observable
+    .merge(
+      changeEmailAction$,
+      changePasswordAction$,
+      signInAction$
+    );
+};
+
+const historyAction$ = (history: HistoryRouter): Observable<Action<any>> => {
+  const route$ = history.changes();
   const goToStampRallyListAction$ = route$
     .filter(({ name }) => name === 'stamp_rallies#index')
     .map(() => goToStampRallyListAction());
   const goToSignInAction$ = route$
     .filter(({ name }) => name === 'sign_in#index')
     .map(() => goToSignInAction());
-  const signInAction$ = dom
-    .on('button', 'click')
-    .map(() => signInAction());
+  return Observable
+    .merge(
+      goToSignInAction$,
+      goToStampRallyListAction$
+    );
+};
+
+const app = (
+  { state, dom, history }: { state: State, dom: DOM, history: HistoryRouter }
+): Observable<State> => {
   const actionSubject = new Subject<Action<any>>();
   const mergedAction$ = Observable
     .merge(
-      changeEmailAction$,
-      changePasswordAction$,
-      goToSignInAction$,
-      goToStampRallyListAction$,
-      signInAction$
+      domAction$(dom),
+      historyAction$(history)
     )
     .subscribe((action: Action<any>) => actionSubject.next(action));
-  const action$: Observable<Action<any>> = actionSubject.asObservable();
   const reaction = (action: Action<any>): void => {
     setTimeout(() => actionSubject.next(action));
   };
+  const action$: Observable<Action<any>> = actionSubject.asObservable();
   action$
     .filter(isSuccessSignInAction)
     .subscribe(() => history.go('/stamp_rallies'));

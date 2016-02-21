@@ -11,6 +11,7 @@
     "express": "github:bouzuya/my-dts/express/express.d.ts#8332d5a24d81822920309e0c4bcfafeb418feb11",
     "htmlescape": "github:bouzuya/my-dts/htmlescape/htmlescape.d.ts#5ef1b4a584610f34bf176b9c5fac584105667c6b",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81",
+    "node-fetch": "github:bouzuya/my-dts/node-fetch/node-fetch.d.ts#a3b451226dbc7926d40b923d8d630c23efbf8d54",
     "path-to-regexp": "github:bouzuya/my-dts/path-to-regexp/path-to-regexp.d.ts#9da7cde06da5e948df14e6bac6562f24406326b9",
     "vdom-parser": "github:bouzuya/my-dts/vdom-parser/vdom-parser.d.ts#66d43ffe2e932b29c414d3f82097f6c111cc9ada",
     "vdom-to-html": "github:bouzuya/my-dts/vdom-to-html/vdom-to-html.d.ts#6a33bb24ac5fdc820c2580d5d9891a39b746e11d",

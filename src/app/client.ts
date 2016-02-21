@@ -15,6 +15,7 @@ import { view } from './view';
 
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
+import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
@@ -24,9 +25,6 @@ const app = (
 ): Observable<State> => {
   const route$ = history
     .changes();
-  const signInAction$ = dom
-    .on('button', 'click')
-    .map(() => signInAction());
   const changeEmailAction$ = dom
     .on('input.email', 'change')
     .map(({ target }) => {
@@ -42,11 +40,18 @@ const app = (
   const goToStampRallyListAction$ = route$
     .filter(({ name }) => name === 'stamp_rallies#index')
     .map(() => goToStampRallyListAction());
+  const goToSignInAction$ = route$
+    .filter(({ name }) => name === 'sign_in#index')
+    .map(() => goToSignInAction());
+  const signInAction$ = dom
+    .on('button', 'click')
+    .map(() => signInAction());
   const actionSubject = new Subject<Action<any>>();
   const mergedAction$ = Observable
     .merge(
       changeEmailAction$,
       changePasswordAction$,
+      goToSignInAction$,
       goToStampRallyListAction$,
       signInAction$
     )

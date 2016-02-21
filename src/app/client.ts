@@ -20,6 +20,7 @@ import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 
+// TODO: move to views/
 const domAction$ = (dom: DOM): Observable<Action<any>> => {
   const changeEmailAction$ = dom
     .on('input.email', 'change')
@@ -59,9 +60,12 @@ const historyAction$ = (history: HistoryRouter): Observable<Action<any>> => {
     );
 };
 
-const app = (
-  { state, dom, history }: { state: State, dom: DOM, history: HistoryRouter }
-): Observable<State> => {
+const makeActionSubject = (
+  { dom, history }: { dom: DOM, history: HistoryRouter }
+): {
+  observable: Observable<Action<any>>;
+  next: (action: Action<any>) => void;
+} => {
   const actionSubject = new Subject<Action<any>>();
   const mergedAction$ = Observable
     .merge(
@@ -69,19 +73,27 @@ const app = (
       historyAction$(history)
     )
     .subscribe((action: Action<any>) => actionSubject.next(action));
-  const reaction = (action: Action<any>): void => {
+  const observable = actionSubject.asObservable();
+  const next = (action: Action<any>): void => {
     setTimeout(() => actionSubject.next(action));
   };
-  const action$: Observable<Action<any>> = actionSubject.asObservable();
+  return { observable, next };
+};
+
+const app = (
+  options: { state: State, dom: DOM, history: HistoryRouter }
+): Observable<State> => {
+  const { state } = options;
+  const { observable: action$, next } = makeActionSubject(options);
   action$
     .filter(isSuccessSignInAction)
     .subscribe(() => history.go('/stamp_rallies'));
   const state$ = Observable
     .combineLatest(
       currentPage$(state.currentPage, action$),
-      signIn$(state.signIn, action$, reaction),
-      token$(state.token, action$, reaction),
-      stampRallies$(state.stampRallies, action$, reaction),
+      signIn$(state.signIn, action$, next),
+      token$(state.token, action$, next),
+      stampRallies$(state.stampRallies, action$, next),
       (currentPage, signIn, token, stampRallies): State => {
         return { currentPage, signIn, token, stampRallies };
       });

@@ -19,6 +19,7 @@ import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
+import { is as isGoToAction, create as goTo } from './actions/go-to';
 
 // TODO: move to views/
 const domAction$ = (dom: DOM): Observable<Action<any>> => {
@@ -84,11 +85,11 @@ const makeActionSubject = (
 const app = (
   options: { state: State, dom: DOM, history: HistoryRouter }
 ): Observable<State> => {
-  const { state } = options;
+  const { state, history } = options;
   const { observable: action$, next } = makeActionSubject(options);
-  action$
+  const goTo$ = action$
     .filter(isSuccessSignInAction)
-    .subscribe(() => history.go('/stamp_rallies'));
+    .map(() => goTo('/stamp_rallies'));
   const state$ = Observable
     .combineLatest(
       currentPage$(state.currentPage, action$),
@@ -98,6 +99,8 @@ const app = (
       (currentPage, signIn, token, stampRallies): State => {
         return { currentPage, signIn, token, stampRallies };
       });
+  goTo$
+    .subscribe(({ params: path }) => history.go(path));
   return state$;
 };
 

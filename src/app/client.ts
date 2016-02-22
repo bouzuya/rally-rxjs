@@ -17,6 +17,7 @@ import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
 import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
+import goToStampRallyShowAction from './actions/go-to-stamp-rally-show';
 import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
@@ -48,16 +49,20 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
 
 const historyAction$ = (history: HistoryRouter): Observable<Action<any>> => {
   const route$ = history.changes();
-  const goToStampRallyListAction$ = route$
-    .filter(({ name }) => name === 'stamp_rallies#index')
-    .map(() => goToStampRallyListAction());
   const goToSignInAction$ = route$
     .filter(({ name }) => name === 'sign_in#index')
     .map(() => goToSignInAction());
+  const goToStampRallyListAction$ = route$
+    .filter(({ name }) => name === 'stamp_rallies#index')
+    .map(() => goToStampRallyListAction());
+  const goToStampRallyShowAction$ = route$
+    .filter(({ name }) => name === 'stamp_rallies#show')
+    .map(({ params }) => goToStampRallyShowAction(params['id']));
   return Observable
     .merge(
       goToSignInAction$,
-      goToStampRallyListAction$
+      goToStampRallyListAction$,
+      goToStampRallyShowAction$
     );
 };
 

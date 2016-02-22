@@ -6,6 +6,7 @@ type State = {
   currentPage: string;
   signIn: SignIn;
   stampRallies: StampRally[];
+  stampRally: StampRally;
   token: Token;
 };
 

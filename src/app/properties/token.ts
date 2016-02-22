@@ -4,7 +4,7 @@ import { Action } from '../models/action';
 import { Updater } from '../models/updater';
 
 import { Token } from '../models/token';
-import fetchStampRallyList$ from './token/fetch-stamp-rally-list';
+import fetch$ from './token/fetch';
 import reset$ from './token/reset';
 
 export default function property(
@@ -15,7 +15,7 @@ export default function property(
   return Observable
     .of(state)
     .merge(
-      fetchStampRallyList$(action$, reaction),
+      fetch$(action$, reaction),
       reset$(action$, reaction)
     )
     .scan((state: Token, updater: Updater<Token>) => {

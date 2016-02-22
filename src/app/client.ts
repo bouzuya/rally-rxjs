@@ -10,6 +10,7 @@ import { State } from './models/state';
 import currentPage$ from './properties/current-page';
 import signIn$ from './properties/sign-in';
 import stampRallies$ from './properties/stamp-rallies';
+import stampRally$ from './properties/stamp-rally';
 import token$ from './properties/token';
 import render from './views/app';
 
@@ -101,8 +102,9 @@ const app = (
       signIn$(state.signIn, action$, next),
       token$(state.token, action$, next),
       stampRallies$(state.stampRallies, action$, next),
-      (currentPage, signIn, token, stampRallies): State => {
-        return { currentPage, signIn, token, stampRallies };
+      stampRally$(state.stampRally, action$, next),
+      (currentPage, signIn, token, stampRallies, stampRally): State => {
+        return { currentPage, signIn, token, stampRallies, stampRally };
       });
   goTo$
     .subscribe(({ params: path }) => history.go(path));

@@ -4,6 +4,7 @@ import { State } from '../models/state';
 
 import renderSignInPage from '../views/sign-in-page';
 import renderStampRallyListPage from '../views/stamp-rally-list-page';
+import renderStampRallyShowPage from '../views/stamp-rally-show-page';
 import renderNotFoundPage from '../views/not-found-page';
 
 const renderPage = (state: State): VTree => {
@@ -12,6 +13,8 @@ const renderPage = (state: State): VTree => {
       return renderSignInPage(state);
     case 'stamp-rally-list':
       return renderStampRallyListPage(state);
+    case 'stamp-rally-show':
+      return renderStampRallyShowPage(state);
     default:
       return renderNotFoundPage();
   }

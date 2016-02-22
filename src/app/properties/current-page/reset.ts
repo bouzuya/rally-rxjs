@@ -9,6 +9,9 @@ import {
 import {
   is as isGoToStampRallyList
 } from '../../actions/go-to-stamp-rally-list';
+import {
+  is as isGoToStampRallyShow
+} from '../../actions/go-to-stamp-rally-show';
 
 export default function updater$(
   action$: Observable<Action<any>>
@@ -16,7 +19,8 @@ export default function updater$(
   return Observable
     .merge(
       action$.filter(isGoToSignIn).map(() => 'sign-in'),
-      action$.filter(isGoToStampRallyList).map(() => 'stamp-rally-list')
+      action$.filter(isGoToStampRallyList).map(() => 'stamp-rally-list'),
+      action$.filter(isGoToStampRallyShow).map(() => 'stamp-rally-show')
     )
     .map((path: string) => () => path);
 }

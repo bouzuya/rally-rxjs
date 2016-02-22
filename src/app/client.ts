@@ -60,6 +60,7 @@ const historyAction$ = (history: HistoryRouter): Observable<Action<any>> => {
     );
 };
 
+// TODO: remove `next`
 const makeActionSubject = (
   { dom, history }: { dom: DOM, history: HistoryRouter }
 ): {

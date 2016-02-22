@@ -5,7 +5,10 @@ import { State } from '../models/state';
 export default function render(state: State): VTree {
   return h('div.stamp-rally-list-page', [
     h('ul', state.stampRallies.map(stampRally => {
-      return h('li', [stampRally.name]);
+      const href = '/stamp_rallies/' + stampRally.name;
+      return h('li', [
+        h('a', { href }, [stampRally.name])
+      ]);
     }))
   ]);
 }

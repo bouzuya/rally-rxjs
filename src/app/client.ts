@@ -25,6 +25,14 @@ import { is as isGoToAction, create as goTo } from './actions/go-to';
 
 // TODO: move to views/
 const domAction$ = (dom: DOM): Observable<Action<any>> => {
+  const clickAnchorAction$ = dom
+    .on('a', 'click')
+    .map((event: Event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const path: string = (<any> event.target).getAttribute('href');
+      return goTo(path);
+    });
   const changeEmailAction$ = dom
     .on('input.email', 'change')
     .map(({ target }) => {
@@ -42,6 +50,7 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
     .map(() => signInAction());
   return Observable
     .merge(
+      clickAnchorAction$,
       changeEmailAction$,
       changePasswordAction$,
       signInAction$
@@ -93,9 +102,14 @@ const app = (
 ): Observable<State> => {
   const { state, history } = options;
   const { observable: action$, next } = makeActionSubject(options);
-  const goTo$ = action$
-    .filter(isSuccessSignInAction)
-    .map(() => goTo('/stamp_rallies'));
+  const goTo$: Observable<Action<string>> = Observable
+    .merge(
+      action$
+        .filter(isSuccessSignInAction)
+        .map(() => goTo('/stamp_rallies')),
+      action$
+        .filter(isGoToAction)
+    );
   const state$ = Observable
     .combineLatest(
       currentPage$(state.currentPage, action$),

@@ -8,6 +8,7 @@ export default function initializer(): Promise<State> {
       password: null
     },
     stampRallies: [],
+    stampRally: null,
     token: {
       token: null,
       userId: null

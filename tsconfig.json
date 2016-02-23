@@ -12,6 +12,7 @@
   "files": [
     "./src/app/client.ts",
     "./src/app/server.ts",
+    "./test/add-test.ts",
     "./typings/main.d.ts"
   ]
 }

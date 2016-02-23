@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { Observable } from 'rxjs';
 
 import { Action } from '../../models/action';
@@ -6,7 +5,7 @@ import { Updater } from '../../models/updater';
 
 import { Token } from '../../models/token';
 import {
-  create as createStampRallyList
+  create as createStampRallyIndex
 } from '../../actions/request-stamp-rally-index';
 import {
   is as isStampRallyList
@@ -17,6 +16,9 @@ import {
 import {
   is as isStampRallyShow
 } from '../../actions/go-to-stamp-rally-show';
+import {
+  create as createSpotIndex
+} from '../../actions/request-spot-index';
 
 export default function updater$(
   action$: Observable<Action<any>>,
@@ -26,11 +28,16 @@ export default function updater$(
     .merge(
       action$
         .filter(isStampRallyList)
-        .map(() => createStampRallyList),
+        .map(() => createStampRallyIndex),
       action$
         .filter(isStampRallyShow)
         .map(({ params: id }) => ({ token }: Token) => {
           return createStampRallyShow(token, id);
+        }),
+      action$
+        .filter(isStampRallyShow)
+        .map(({ params: id }) => ({ token }: Token) => {
+          return createSpotIndex(token, id);
         })
     );
   return create$

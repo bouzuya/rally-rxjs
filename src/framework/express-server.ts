@@ -1,8 +1,11 @@
 import express from 'express';
 import { HTML } from './types';
 
-type Request = { path: string };
-type Response = { send: (html: string) => void };
+type Request = { path: string; };
+type Response = {
+  redirect: (status: string, path: string) => void;
+  send: (html: string) => void;
+};
 
 export default function main(
   server: { request: (path: string) => Promise<HTML> }
@@ -19,7 +22,12 @@ export default function main(
       .then(html => {
         res.send(html);
       }, error => {
-        res.send(error.message);
+        if (error.message === 'redirect') {
+          const { status, path }: any = error;
+          res.redirect(status, path);
+        } else {
+          res.send(error.message);
+        }
       });
   });
   app.listen(3000);

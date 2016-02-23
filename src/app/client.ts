@@ -121,7 +121,8 @@ const app = (
       stampRally$(state.stampRally, action$, next),
       (currentPage, signIn, token, spots, stampRallies, stampRally): State => {
         return { currentPage, signIn, token, spots, stampRallies, stampRally };
-      });
+      })
+    .do(console.log.bind(console));
   goTo$
     .subscribe(({ params: path }) => history.go(path));
   return state$;

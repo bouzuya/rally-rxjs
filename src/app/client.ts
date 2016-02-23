@@ -17,6 +17,7 @@ import render from './views/app';
 
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
+import changeSpotFormNameAction from './actions/change-spot-form-name';
 import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import goToStampRallyShowAction from './actions/go-to-stamp-rally-show';
@@ -26,6 +27,16 @@ import { is as isGoToAction, create as goTo } from './actions/go-to';
 
 // TODO: move to views/
 const domAction$ = (dom: DOM): Observable<Action<any>> => {
+  const changeAction$ = (
+    selector: string, create: (value: string) => Action<{ value: string }>
+  ) => {
+    return dom
+      .on(selector, 'change')
+      .map(({ target }) => {
+        const value = (<any> target).value;
+        return create(value);
+      });
+  };
   const clickAnchorAction$ = dom
     .on('a', 'click')
     .map((event: Event) => {
@@ -34,18 +45,15 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
       const path: string = (<any> event.target).getAttribute('href');
       return goTo(path);
     });
-  const changeEmailAction$ = dom
-    .on('input.email', 'change')
-    .map(({ target }) => {
-      const value = (<any> target).value;
-      return changeEmailAction(value);
-    });
-  const changePasswordAction$ = dom
-    .on('input.password', 'change')
-    .map(({ target }) => {
-      const value = (<any> target).value;
-      return changePasswordAction(value);
-    });
+  const changeEmailAction$ = changeAction$(
+    'input.email', changeEmailAction
+  );
+  const changePasswordAction$ = changeAction$(
+    'input.password', changePasswordAction
+  );
+  const changeSpotFormNameAction$ = changeAction$(
+    'form.spot input.name', changeSpotFormNameAction
+  );
   const signInAction$ = dom
     .on('button', 'click')
     .map(() => signInAction());
@@ -54,6 +62,7 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
       clickAnchorAction$,
       changeEmailAction$,
       changePasswordAction$,
+      changeSpotFormNameAction$,
       signInAction$
     );
 };

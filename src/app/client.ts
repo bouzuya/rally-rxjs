@@ -120,7 +120,15 @@ const app = (
       stampRallies$(state.stampRallies, action$, next),
       stampRally$(state.stampRally, action$, next),
       (currentPage, signIn, token, spots, stampRallies, stampRally): State => {
-        return { currentPage, signIn, token, spots, stampRallies, stampRally };
+        return {
+          currentPage,
+          signIn,
+          token,
+          spots,
+          spotForm: null,
+          stampRallies,
+          stampRally
+        };
       })
     .do(console.log.bind(console));
   goTo$

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Action } from '../../models/action';
 import { Updater } from '../../models/updater';
 
-import { create } from '../../actions/request-sign-in';
+import { create } from '../../actions/request-token-create';
 import { is } from '../../actions/sign-in';
 import { SignIn } from '../../models/sign-in';
 

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Action } from '../../models/action';
 import { Updater } from '../../models/updater';
 
-import { is } from '../../actions/request-sign-in';
+import { is } from '../../actions/response-token-create';
 import { create } from '../../actions/success-sign-in';
 import { Token } from '../../models/token';
 
@@ -14,24 +14,8 @@ export default function updater$(
 ): Observable<Updater<Token>> {
   return action$
     .filter(is)
-    .mergeMap(({ params: { email, password } }) => {
-      return Observable.fromPromise(fetch(
-        'https://api.rallyapp.jp/tokens',
-        {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email, password
-          })
-        }
-      ));
-    })
-    .mergeMap((response: any) => response.json())
-    .map((json: any) => (): Token => {
+    .map(({ params: token }) => (): Token => {
       reaction(create());
-      return { token: json.token, userId: json.userId };
+      return token;
     });
 }

@@ -14,7 +14,7 @@ export default function users$(
   return Observable
     .of(state)
     .merge(
-      reset$(action$, reaction)
+      reset$(action$)
     )
     .scan((users: StampRally[], updater: Updater<StampRally[]>) => {
       return updater(users);

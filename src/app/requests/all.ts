@@ -29,41 +29,23 @@ export default function request(
   reaction: (action: Action<any>) => void
 ): void {
   const request$ = action$.filter(is);
-
-  request$
-    .filter(({ params: { path } }) => path === 'spot-index')
-    .mergeMap<Spot[]>(({ params: { params } }) => {
-      return Observable.fromPromise(spotIndex(params));
-    })
-    .subscribe(response => {
-      return reaction(createSpotIndex(response));
-    });
-
-  request$
-    .filter(({ params: { path } }) => path === 'stamp-rally-index')
-    .mergeMap<StampRally[]>(({ params: { params } }) => {
-      return Observable.fromPromise(stampRallyIndex(params));
-    })
-    .subscribe(response => {
-      return reaction(createStampRallyIndex(response));
-    });
-
-  request$
-    .filter(({ params: { path } }) => path === 'stamp-rally-show')
-    .mergeMap<StampRally>(({ params: { params } }) => {
-      return Observable.fromPromise(stampRallyShow(params));
-    })
-    .subscribe(response => {
-      return reaction(createStampRallyShow(response));
-    });
-
-  request$
-    .filter(({ params: { path } }) => path === 'token-create')
-    .mergeMap<Token>(({ params: { params } }) => {
-      return Observable.fromPromise(tokenCreate(params));
-    })
-    .subscribe(response => {
-      return reaction(createTokenCreate(response));
-    });
+  const subscribe = (
+    path: string,
+    request: (params: any) => Promise<any>,
+    response: (res: any) => Action<any>
+  ): void => {
+    request$
+      .filter(({ params: { path: p } }) => p === path)
+      .mergeMap(({ params: { params: p } }) => {
+        return Observable.fromPromise(request(p));
+      })
+      .subscribe(r => {
+        return reaction(response(r));
+      });
+  };
+  subscribe('spot-index', spotIndex, createSpotIndex);
+  subscribe('stamp-rally-index', stampRallyIndex, createStampRallyIndex);
+  subscribe('stamp-rally-show', stampRallyShow, createStampRallyShow);
+  subscribe('token-create', tokenCreate, createTokenCreate);
 }
 

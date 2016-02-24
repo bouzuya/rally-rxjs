@@ -2,13 +2,13 @@ import { Action } from '../models/action';
 
 import { Token } from '../models/token';
 
-const type = 'request-spot-index';
+const type = 'request';
 const is = (action: Action<any>) => action.type === type;
-const create = (token: string, stampRallyId: string): Action<{
-  token: string;
-  stampRallyId: string;
+const create = (path: string, params: any): Action<{
+  path: string;
+  params: any;
 }> => {
-  return { type, params: { token, stampRallyId } };
+  return { type, params: { path, params } };
 };
 
 export { create, is, type };

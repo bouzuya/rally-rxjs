@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Action } from '../../models/action';
 import { Updater } from '../../models/updater';
 
-import { create } from '../../actions/request-token-create';
+import { create } from '../../actions/request';
 import { is } from '../../actions/sign-in';
 import { SignIn } from '../../models/sign-in';
 
@@ -14,7 +14,7 @@ export default function updater$(
   return action$
     .filter(is)
     .map(() => (signIn: SignIn): SignIn => {
-      reaction(create(signIn));
+      reaction(create('token-create', signIn));
       return signIn;
     });
 }

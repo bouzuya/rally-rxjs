@@ -20,6 +20,6 @@ export default function render(state: State): VTree {
         value: state.signIn.password
       }, [])
     ]),
-    h('button', ['sign in'])
+    h('button.sign-in', ['sign in'])
   ]);
 }

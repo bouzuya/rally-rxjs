@@ -56,7 +56,7 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
     'form.spot input.name', changeSpotFormNameAction
   );
   const signInAction$ = dom
-    .on('button', 'click')
+    .on('button.sign-in', 'click')
     .map(() => signInAction());
   return Observable
     .merge(

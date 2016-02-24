@@ -27,6 +27,8 @@ import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
 
+import request from './requests/all';
+
 // TODO: move to views/
 const domAction$ = (dom: DOM): Observable<Action<any>> => {
   const changeAction$ = (
@@ -125,6 +127,7 @@ const app = (
       action$
         .filter(isGoToAction)
     );
+  request(action$, next);
   const state$ = Observable
     .combineLatest(
       currentPage$(state.currentPage, action$),

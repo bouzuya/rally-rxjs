@@ -14,6 +14,12 @@ import {
 import { is as isStampRallyIndex } from '../actions/request-stamp-rally-index';
 import stampRallyIndex from '../requests/stamp-rally-index';
 
+import {
+  create as createStampRallyShow
+} from '../actions/response-stamp-rally-show';
+import { is as isStampRallyShow } from '../actions/request-stamp-rally-show';
+import stampRallyShow from '../requests/stamp-rally-show';
+
 export default function request(
   action$: Observable<Action<any>>,
   reaction: (action: Action<any>) => void
@@ -34,6 +40,15 @@ export default function request(
     })
     .subscribe(response => {
       return reaction(createStampRallyIndex(response));
+    });
+
+  action$
+    .filter(isStampRallyShow)
+    .mergeMap<StampRally>(({ params }) => {
+      return Observable.fromPromise(stampRallyShow(params));
+    })
+    .subscribe(response => {
+      return reaction(createStampRallyShow(response));
     });
 }
 

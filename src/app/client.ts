@@ -10,6 +10,7 @@ import { State } from './models/state';
 import currentPage$ from './properties/current-page';
 import signIn$ from './properties/sign-in';
 import spots$ from './properties/spots';
+import spotForm$ from './properties/spot-form';
 import stampRallies$ from './properties/stamp-rallies';
 import stampRally$ from './properties/stamp-rally';
 import token$ from './properties/token';
@@ -126,15 +127,24 @@ const app = (
       signIn$(state.signIn, action$, next),
       token$(state.token, action$, next),
       spots$(state.spots, action$, next),
+      spotForm$(state.spotForm, action$, next),
       stampRallies$(state.stampRallies, action$, next),
       stampRally$(state.stampRally, action$, next),
-      (currentPage, signIn, token, spots, stampRallies, stampRally): State => {
+      (
+        currentPage,
+        signIn,
+        token,
+        spots,
+        spotForm,
+        stampRallies,
+        stampRally
+      ): State => {
         return {
           currentPage,
           signIn,
           token,
           spots,
-          spotForm: null,
+          spotForm,
           stampRallies,
           stampRally
         };

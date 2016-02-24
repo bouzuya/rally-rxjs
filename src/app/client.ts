@@ -16,6 +16,7 @@ import stampRally$ from './properties/stamp-rally';
 import token$ from './properties/token';
 import render from './views/app';
 
+import addSpotAction from './actions/add-spot';
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
 import changeSpotFormNameAction from './actions/change-spot-form-name';
@@ -38,6 +39,9 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
         return create(value);
       });
   };
+  const addSpotAction$ = dom
+    .on('form.spot button.add-spot', 'click')
+    .map(() => addSpotAction());
   const clickAnchorAction$ = dom
     .on('a', 'click')
     .map((event: Event) => {

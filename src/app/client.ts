@@ -27,6 +27,7 @@ import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import goToStampRallyShowAction from './actions/go-to-stamp-rally-show';
 import { create as createRequest } from './actions/request';
+import { is as isResponseSpotCreate } from './actions/response-spot-create';
 import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
@@ -177,6 +178,15 @@ const app = (
       };
     })
     .subscribe(params => next(createRequest('spot-create', params)));
+  action$
+    .filter(isResponseSpotCreate)
+    .withLatestFrom(state$, (_, state) => {
+      return {
+        token: state.token.token,
+        stampRallyId: state.stampRally.name
+      };
+    })
+    .subscribe(params => next(createRequest('spot-index', params)));
   goTo$
     .subscribe(({ params: path }) => history.go(path));
   return state$;

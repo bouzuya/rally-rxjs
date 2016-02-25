@@ -129,14 +129,6 @@ const app = (
 ): Observable<State> => {
   const { state, history } = options;
   const { observable: action$, next } = makeActionSubject(options);
-  const goTo$: Observable<Action<string>> = Observable
-    .merge(
-      action$
-        .filter(isSuccessSignInAction)
-        .map(() => goTo('/stamp_rallies')),
-      action$
-        .filter(isGoToAction)
-    );
   request(action$, next);
   const state$ = Observable
     .combineLatest(
@@ -191,8 +183,15 @@ const app = (
         .map(params => createRequest('spot-index', params))
     )
     .subscribe(next);
-  goTo$
-    .subscribe(({ params: path }) => history.go(path));
+  Observable
+    .merge(
+      action$
+        .filter(isSuccessSignInAction)
+        .map(() => goTo('/stamp_rallies')),
+      action$
+        .filter(isGoToAction)
+    )
+    .subscribe(({ params: path }: Action<string>) => history.go(path));
   return state$;
 };
 

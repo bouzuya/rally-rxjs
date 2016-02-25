@@ -7,14 +7,6 @@ import { HistoryRouter } from '../framework/history-router';
 import { routes } from './configs/routes';
 import { Action } from './models/action';
 import { State } from './models/state';
-import currentPage$ from './properties/current-page';
-import signIn$ from './properties/sign-in';
-import spots$ from './properties/spots';
-import spotForm$ from './properties/spot-form';
-import stampRallies$ from './properties/stamp-rallies';
-import stampRally$ from './properties/stamp-rally';
-import stampRallyForm$ from './properties/stamp-rally-form';
-import token$ from './properties/token';
 import render from './views/app';
 
 import {
@@ -40,6 +32,7 @@ import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
 
+import makeState from './properties/all';
 import request from './requests/all';
 
 // TODO: move to views/
@@ -150,39 +143,8 @@ const app = (
   const { state, history } = options;
   const { observable: action$, next } = makeActionSubject(options);
   request(action$, next);
-  const state$ = Observable
-    .combineLatest(
-      currentPage$(state.currentPage, action$),
-      signIn$(state.signIn, action$, next),
-      token$(state.token, action$, next),
-      spots$(state.spots, action$, next),
-      spotForm$(state.spotForm, action$, next),
-      stampRallies$(state.stampRallies, action$, next),
-      stampRally$(state.stampRally, action$, next),
-      stampRallyForm$(state.stampRallyForm, action$, next),
-      (
-        currentPage,
-        signIn,
-        token,
-        spots,
-        spotForm,
-        stampRallies,
-        stampRally,
-        stampRallyForm
-      ): State => {
-        return {
-          currentPage,
-          signIn,
-          token,
-          spots,
-          spotForm,
-          stampRallies,
-          stampRally,
-          stampRallyForm
-        };
-      })
-    .do(console.log.bind(console))
-    .share();
+  const state$ = makeState(state, action$, next)
+    .do(console.log.bind(console));
   Observable
     .merge(
       action$

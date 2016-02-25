@@ -5,8 +5,11 @@ import { Spot } from '../models/spot';
 import { StampRally } from '../models/stamp-rally';
 import { Token } from '../models/token';
 
-import { create as createSpotIndex } from '../actions/response-spot-index';
+import { create as createSpotCreate } from '../actions/response-spot-create';
 import { is } from '../actions/request';
+import spotCreate from '../requests/spot-create';
+
+import { create as createSpotIndex } from '../actions/response-spot-index';
 import spotIndex from '../requests/spot-index';
 
 import {
@@ -43,6 +46,7 @@ export default function request(
         return reaction(response(r));
       });
   };
+  subscribe('spot-create', spotCreate, createSpotCreate);
   subscribe('spot-index', spotIndex, createSpotIndex);
   subscribe('stamp-rally-index', stampRallyIndex, createStampRallyIndex);
   subscribe('stamp-rally-show', stampRallyShow, createStampRallyShow);

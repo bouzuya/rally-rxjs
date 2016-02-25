@@ -16,13 +16,17 @@ import stampRally$ from './properties/stamp-rally';
 import token$ from './properties/token';
 import render from './views/app';
 
-import addSpotAction from './actions/add-spot';
+import {
+  is as isAddSpotAction,
+  create as addSpotAction
+} from './actions/add-spot';
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
 import changeSpotFormNameAction from './actions/change-spot-form-name';
 import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import goToStampRallyShowAction from './actions/go-to-stamp-rally-show';
+import { create as createRequest } from './actions/request';
 import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
@@ -43,7 +47,11 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
   };
   const addSpotAction$ = dom
     .on('form.spot button.add-spot', 'click')
-    .map(() => addSpotAction());
+    .map((event: Event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      return addSpotAction();
+    });
   const clickAnchorAction$ = dom
     .on('a', 'click')
     .map((event: Event) => {
@@ -66,6 +74,7 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
     .map(() => signInAction());
   return Observable
     .merge(
+      addSpotAction$,
       clickAnchorAction$,
       changeEmailAction$,
       changePasswordAction$,
@@ -156,7 +165,18 @@ const app = (
           stampRally
         };
       })
-    .do(console.log.bind(console));
+    .do(console.log.bind(console))
+    .share();
+  action$
+    .filter(isAddSpotAction)
+    .withLatestFrom(state$, (_, state) => {
+      return {
+        token: state.token.token,
+        stampRallyId: state.stampRally.name,
+        name: state.spotForm.name
+      };
+    })
+    .subscribe(params => next(createRequest('spot-create', params)));
   goTo$
     .subscribe(({ params: path }) => history.go(path));
   return state$;

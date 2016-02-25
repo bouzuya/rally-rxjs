@@ -13,6 +13,9 @@ export default function initializer(): Promise<State> {
     },
     stampRallies: [],
     stampRally: null,
+    stampRallyForm: {
+      name: null
+    },
     token: {
       token: null,
       userId: null

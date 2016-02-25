@@ -155,7 +155,8 @@ const app = (
           spots,
           spotForm,
           stampRallies,
-          stampRally
+          stampRally,
+          stampRallyForm: null
         };
       })
     .do(console.log.bind(console))

@@ -13,6 +13,7 @@ import spots$ from './properties/spots';
 import spotForm$ from './properties/spot-form';
 import stampRallies$ from './properties/stamp-rallies';
 import stampRally$ from './properties/stamp-rally';
+import stampRallyForm$ from './properties/stamp-rally-form';
 import token$ from './properties/token';
 import render from './views/app';
 
@@ -20,9 +21,16 @@ import {
   is as isAddSpotAction,
   create as addSpotAction
 } from './actions/add-spot';
+import {
+  is as isAddStampRallyAction,
+  create as addStampRallyAction
+} from './actions/add-stamp-rally';
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
 import changeSpotFormNameAction from './actions/change-spot-form-name';
+import
+  changeStampRallyFormNameAction
+from './actions/change-stamp-rally-form-name';
 import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import goToStampRallyShowAction from './actions/go-to-stamp-rally-show';
@@ -53,6 +61,13 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
       event.stopPropagation();
       return addSpotAction();
     });
+  const addStampRallyAction$ = dom
+    .on('form.stamp-rally button.add-stamp-rally', 'click')
+    .map((event: Event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      return addStampRallyAction();
+    });
   const clickAnchorAction$ = dom
     .on('a', 'click')
     .map((event: Event) => {
@@ -70,16 +85,21 @@ const domAction$ = (dom: DOM): Observable<Action<any>> => {
   const changeSpotFormNameAction$ = changeAction$(
     'form.spot input.name', changeSpotFormNameAction
   );
+  const changeStampRallyFormNameAction$ = changeAction$(
+    'form.stamp-rally input.name', changeStampRallyFormNameAction
+  );
   const signInAction$ = dom
     .on('button.sign-in', 'click')
     .map(() => signInAction());
   return Observable
     .merge(
       addSpotAction$,
+      addStampRallyAction$,
       clickAnchorAction$,
       changeEmailAction$,
       changePasswordAction$,
       changeSpotFormNameAction$,
+      changeStampRallyFormNameAction$,
       signInAction$
     );
 };
@@ -139,6 +159,7 @@ const app = (
       spotForm$(state.spotForm, action$, next),
       stampRallies$(state.stampRallies, action$, next),
       stampRally$(state.stampRally, action$, next),
+      stampRallyForm$(state.stampRallyForm, action$, next),
       (
         currentPage,
         signIn,
@@ -146,7 +167,8 @@ const app = (
         spots,
         spotForm,
         stampRallies,
-        stampRally
+        stampRally,
+        stampRallyForm
       ): State => {
         return {
           currentPage,
@@ -156,7 +178,7 @@ const app = (
           spotForm,
           stampRallies,
           stampRally,
-          stampRallyForm: null
+          stampRallyForm
         };
       })
     .do(console.log.bind(console))
@@ -173,6 +195,15 @@ const app = (
           };
         })
         .map(params => createRequest('spot-create', params)),
+      action$
+        .filter(isAddStampRallyAction)
+        .withLatestFrom(state$, (_, state) => {
+          return {
+            token: state.token.token,
+            name: state.stampRallyForm.name
+          };
+        })
+        .map(params => createRequest('stamp-rally-create', params)),
       action$
         .filter(isResponseSpotCreate)
         .withLatestFrom(state$, (_, state) => {

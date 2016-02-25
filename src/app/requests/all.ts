@@ -13,6 +13,11 @@ import { create as createSpotIndex } from '../actions/response-spot-index';
 import spotIndex from '../requests/spot-index';
 
 import {
+  create as createStampRallyCreate
+} from '../actions/response-stamp-rally-create';
+import stampRallyCreate from '../requests/stamp-rally-create';
+
+import {
   create as createStampRallyIndex
 } from '../actions/response-stamp-rally-index';
 import stampRallyIndex from '../requests/stamp-rally-index';
@@ -48,6 +53,7 @@ export default function request(
   };
   subscribe('spot-create', spotCreate, createSpotCreate);
   subscribe('spot-index', spotIndex, createSpotIndex);
+  subscribe('stamp-rally-create', stampRallyCreate, createStampRallyCreate);
   subscribe('stamp-rally-index', stampRallyIndex, createStampRallyIndex);
   subscribe('stamp-rally-show', stampRallyShow, createStampRallyShow);
   subscribe('token-create', tokenCreate, createTokenCreate);

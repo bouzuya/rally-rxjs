@@ -168,25 +168,29 @@ const app = (
       })
     .do(console.log.bind(console))
     .share();
-  action$
-    .filter(isAddSpotAction)
-    .withLatestFrom(state$, (_, state) => {
-      return {
-        token: state.token.token,
-        stampRallyId: state.stampRally.name,
-        name: state.spotForm.name
-      };
-    })
-    .subscribe(params => next(createRequest('spot-create', params)));
-  action$
-    .filter(isResponseSpotCreate)
-    .withLatestFrom(state$, (_, state) => {
-      return {
-        token: state.token.token,
-        stampRallyId: state.stampRally.name
-      };
-    })
-    .subscribe(params => next(createRequest('spot-index', params)));
+  Observable
+    .merge(
+      action$
+        .filter(isAddSpotAction)
+        .withLatestFrom(state$, (_, state) => {
+          return {
+            token: state.token.token,
+            stampRallyId: state.stampRally.name,
+            name: state.spotForm.name
+          };
+        })
+        .map(params => createRequest('spot-create', params)),
+      action$
+        .filter(isResponseSpotCreate)
+        .withLatestFrom(state$, (_, state) => {
+          return {
+            token: state.token.token,
+            stampRallyId: state.stampRally.name
+          };
+        })
+        .map(params => createRequest('spot-index', params))
+    )
+    .subscribe(next);
   goTo$
     .subscribe(({ params: path }) => history.go(path));
   return state$;

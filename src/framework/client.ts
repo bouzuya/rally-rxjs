@@ -4,19 +4,17 @@ import { VTree } from './view';
 import { Route, Router } from './router';
 import { HistoryRouter } from './history-router';
 
-type App<T> = (x: any) => Observable<T>;
-
 class Client<State> {
   private rootSelector: string;
   private render: (state: State) => VTree;
-  private app: App<State>;
+  private app: (x: any) => Observable<{ type: string; params: State; }>;
   private router: Router;
   private domAction: (dom: DOM) => Observable<{ type: string; }>;
 
   constructor(
     rootSelector: string,
     render: (state: State) => VTree,
-    app: App<State>,
+    app: (x: any) => Observable<{ type: string; params: State; }>,
     routes: Route[],
     domAction: (dom: DOM) => Observable<{ type: string; }>
   ) {
@@ -32,10 +30,10 @@ class Client<State> {
     const domAction$ = this.domAction(dom);
     const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
-    const state$ = this.app({ state, domAction$, history });
+    const render$ = this.app({ state, domAction$, history });
     history.start();
-    state$
-      .map(this.render)
+    render$
+      .map(({ params: state }) => this.render(state))
       .subscribe(vtree => dom.renderToDOM(vtree));
   }
 }

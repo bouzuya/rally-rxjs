@@ -19,6 +19,7 @@ from './actions/change-stamp-rally-form-name';
 import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import goToStampRallyShowAction from './actions/go-to-stamp-rally-show';
+import createRenderAction from './actions/render';
 import { create as createRequest } from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';
 import signInAction from './actions/sign-in';
@@ -80,7 +81,7 @@ const app = (
     domAction$: Observable<Action<any>>,
     history: HistoryRouter
   }
-): Observable<State> => {
+): Observable<Action<State>> => {
   const { state, history } = options;
   const { observable: action$, next } = makeActionSubject(options);
   request(action$, next);
@@ -127,7 +128,7 @@ const app = (
         .filter(isGoToAction)
     )
     .subscribe(({ params: path }: Action<string>) => history.go(path));
-  return state$;
+  return state$.map(createRenderAction);
 };
 
 export default function main() {

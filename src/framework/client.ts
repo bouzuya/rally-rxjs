@@ -42,29 +42,27 @@ class Client<State> {
     const dom = new DOM(this.rootSelector);
     const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
-    const actionSubject = new Subject<Action<any>>();
-    Observable
-      .merge(
-        this.domAction(dom),
-        this.historyAction(history)
-      )
-      .subscribe(actionSubject.next.bind(actionSubject));
-    const action$ = actionSubject.asObservable();
+    const subject = new Subject<Action<any>>();
+    const action$ = subject.asObservable().do(({ type }) => console.log(type));
     const app$ = this.app(action$, { state });
     history.start();
     app$
       .filter(isGoTo)
-      .subscribe(({ params: path }: Action<string>) => {
-        return history.go(path)
+      .subscribe(({ params: path }: Action<string>): void => {
+        history.go(path)
       });
     app$
       .filter(isRender)
       .map(({ params: state }) => this.render(state))
       .subscribe(vtree => dom.renderToDOM(vtree));
-    app$
-      .filter(action => !isGoTo(action) && !isRender(action))
+    Observable
+      .merge(
+        app$.filter(action => action && !isGoTo(action) && !isRender(action)),
+        this.domAction(dom),
+        this.historyAction(history)
+      )
       .subscribe((action: Action<any>): void => {
-        setTimeout(() => actionSubject.next(action));
+        setTimeout(() => subject.next(action));
       });
   }
 }

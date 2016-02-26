@@ -8,8 +8,7 @@ import changeName$ from './stamp-rally-form/change-name';
 
 export default function property(
   state: StampRallyForm,
-  action$: Observable<Action<any>>,
-  reaction: (action: Action<any>) => void
+  action$: Observable<Action<any>>
 ): Observable<StampRallyForm> {
   return Observable
     .of(state)

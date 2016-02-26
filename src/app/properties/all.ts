@@ -14,8 +14,7 @@ import token$ from '../properties/token';
 
 export default function state(
   state: State,
-  action$: Observable<Action<any>>,
-  next: (action: Action<any>) => void
+  action$: Observable<Action<any>>
 ): Observable<State> {
   return Observable
     .combineLatest(
@@ -26,7 +25,7 @@ export default function state(
       spotForm$(state.spotForm, action$),
       stampRallies$(state.stampRallies, action$),
       stampRally$(state.stampRally, action$),
-      stampRallyForm$(state.stampRallyForm, action$, next),
+      stampRallyForm$(state.stampRallyForm, action$),
       (
         currentPage,
         signIn,

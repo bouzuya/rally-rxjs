@@ -52,7 +52,7 @@ const app = (
   const { state } = options;
   const { observable: action$, next } = makeActionSubject(source$);
   request(action$, next);
-  const state$ = makeState(state, action$, next)
+  const state$ = makeState(state, action$)
     .do(console.log.bind(console));
   Observable
     .merge(

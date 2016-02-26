@@ -29,24 +29,12 @@ import domAction$ from './dom-action';
 import historyAction$ from './history-action';
 
 // TODO: remove `next`
-const makeActionSubject = (
-  {
-    domAction$, historyAction$
-  }: {
-    domAction$: Observable<Action<any>>;
-    historyAction$: Observable<Action<any>>;
-  }
-): {
+const makeActionSubject = (action$: Observable<Action<any>>): {
   observable: Observable<Action<any>>;
   next: (action: Action<any>) => void;
 } => {
   const actionSubject = new Subject<Action<any>>();
-  const mergedAction$ = Observable
-    .merge(
-      domAction$,
-      historyAction$
-    )
-    .subscribe((action: Action<any>) => actionSubject.next(action));
+  action$.subscribe((action: Action<any>) => actionSubject.next(action));
   const observable = actionSubject.asObservable();
   const next = (action: Action<any>): void => {
     setTimeout(() => actionSubject.next(action));
@@ -55,17 +43,13 @@ const makeActionSubject = (
 };
 
 const app = (
+  source$: Observable<Action<any>>,
   options: {
-    state: State,
-    domAction$: Observable<Action<any>>,
-    historyAction$: Observable<Action<any>>
+    state: State
   }
 ): Observable<Action<any>> => {
-  const { state, domAction$, historyAction$ } = options;
-  const { observable: action$, next } = makeActionSubject({
-    domAction$,
-    historyAction$
-  });
+  const { state } = options;
+  const { observable: action$, next } = makeActionSubject(source$);
   request(action$, next);
   const state$ = makeState(state, action$, next)
     .do(console.log.bind(console));

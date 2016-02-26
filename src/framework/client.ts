@@ -9,7 +9,10 @@ import { is as isRender } from '../app/actions/render';
 class Client<State> {
   private rootSelector: string;
   private render: (state: State) => VTree;
-  private app: (x: any) => Observable<{ type: string; params: any; }>;
+  private app: (
+    action$: Observable<{ type: string; params: any; }>,
+    options: any
+  ) => Observable<{ type: string; params: any; }>;
   private router: Router;
   private domAction: (dom: DOM) => Observable<{ type: string; }>;
   private historyAction: (history: HistoryRouter) =>
@@ -18,7 +21,10 @@ class Client<State> {
   constructor(
     rootSelector: string,
     render: (state: State) => VTree,
-    app: (x: any) => Observable<{ type: string; params: any; }>,
+    app: (
+      action$: Observable<{ type: string; params: any; }>,
+      options: any
+    ) => Observable<{ type: string; params: any; }>,
     routes: Route[],
     domAction: (dom: DOM) => Observable<{ type: string; }>,
     historyAction: (history: HistoryRouter) => Observable<{ type: string; }>
@@ -33,11 +39,14 @@ class Client<State> {
 
   run(): void {
     const dom = new DOM(this.rootSelector);
-    const domAction$ = this.domAction(dom);
     const history = new HistoryRouter(this.router);
-    const historyAction$ = this.historyAction(history);
     const state: State = (<any> window).INITIAL_STATE;
-    const app$ = this.app({ state, domAction$, historyAction$ });
+    const action$ = Observable
+      .merge(
+        this.domAction(dom),
+        this.historyAction(history)
+      );
+    const app$ = this.app(action$, { state });
     history.start();
     app$
       .filter(isGoTo)

@@ -1,7 +1,5 @@
 import { Observable, Subject } from 'rxjs';
 import { Client } from '../framework/client';
-import { VTree } from '../framework/view';
-import { HistoryRouter } from '../framework/history-router';
 
 import { routes } from './configs/routes';
 import { Action } from './models/action';
@@ -10,16 +8,9 @@ import render from './views/app';
 
 import { is as isAddSpotAction } from './actions/add-spot';
 import { is as isAddStampRallyAction } from './actions/add-stamp-rally';
-import changeEmailAction from './actions/change-email';
-import changePasswordAction from './actions/change-password';
-import changeSpotFormNameAction from './actions/change-spot-form-name';
-import
-  changeStampRallyFormNameAction
-from './actions/change-stamp-rally-form-name';
 import createRenderAction from './actions/render';
-import { create as createRequest } from './actions/request';
+import createRequest from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';
-import signInAction from './actions/sign-in';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
 

@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
-
-import { Action } from '../models/action';
+import { Action } from '../../framework/action';
 
 import { is } from '../actions/request';
 import requestSpotCreate from '../requests/spot-create';

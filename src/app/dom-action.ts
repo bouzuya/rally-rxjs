@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
+import { Action } from '../framework/action';
 import { DOM } from '../framework/dom';
-
-import { Action } from './models/action';
 
 import addSpotAction from './actions/add-spot';
 import addStampRallyAction from './actions/add-stamp-rally';

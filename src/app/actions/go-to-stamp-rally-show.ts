@@ -1,4 +1,4 @@
-import { Action } from '../models/action';
+import { Action } from '../../framework/action';
 
 const type = 'go-to-stamp-rally-show';
 const is = (action: Action<any>) => action.type === type;

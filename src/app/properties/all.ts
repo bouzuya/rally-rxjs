@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
+import { Action } from '../../framework/action';
 
-import { Action } from '../models/action';
 import { State } from '../models/state';
 
 import currentPage$ from '../properties/current-page';

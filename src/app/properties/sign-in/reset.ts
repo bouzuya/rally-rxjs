@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
+import { Action } from '../../../framework/action';
 
-import { Action } from '../../models/action';
 import { Updater } from '../../models/updater';
 
 import { is as isGoToSignIn } from '../../actions/go-to-sign-in';

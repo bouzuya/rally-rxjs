@@ -1,4 +1,5 @@
-import { Action } from '../models/action';
+import { Action } from '../../framework/action';
+
 import { State } from '../models/state';
 
 const type = 'render';

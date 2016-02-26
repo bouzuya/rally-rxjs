@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
+import { Action } from '../framework/action';
 import { HistoryRouter } from '../framework/history-router';
 
-import { Action } from './models/action';
 import goToSignInAction from './actions/go-to-sign-in';
 import goToStampRallyListAction from './actions/go-to-stamp-rally-list';
 import goToStampRallyShowAction from './actions/go-to-stamp-rally-show';

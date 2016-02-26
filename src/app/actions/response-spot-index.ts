@@ -1,4 +1,4 @@
-import { Action } from '../models/action';
+import { Action } from '../../framework/action';
 
 import { Spot } from '../models/spot';
 

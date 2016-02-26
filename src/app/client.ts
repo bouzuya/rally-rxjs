@@ -1,8 +1,8 @@
 import { Observable, Subject } from 'rxjs';
+import { Action } from '../framework/action';
 import { Client } from '../framework/client';
 
 import { routes } from './configs/routes';
-import { Action } from './models/action';
 import { State } from './models/state';
 import { Token } from './models/token';
 import render from './views/app';

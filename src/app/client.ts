@@ -4,6 +4,7 @@ import { Client } from '../framework/client';
 import { routes } from './configs/routes';
 import { Action } from './models/action';
 import { State } from './models/state';
+import { Token } from './models/token';
 import render from './views/app';
 
 import { is as isAddSpotAction } from './actions/add-spot';
@@ -13,7 +14,11 @@ import createRequest from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
-import { is as isSignInAction } from './actions/sign-in';
+import { is as isGoToSignInAction } from './actions/sign-in';
+import { is as isGoToStampRallyList } from './actions/go-to-stamp-rally-list';
+import { is as isGoToStampRallyShow } from './actions/go-to-stamp-rally-show';
+import { is as isResponseTokenCreate } from './actions/response-token-create';
+import createSuccessSignIn from './actions/success-sign-in';
 
 import makeState from './properties/all';
 import request from './requests/all';
@@ -48,6 +53,30 @@ const app = (
   Observable
     .merge(
       action$
+        .filter(isResponseTokenCreate)
+        .map(() => createSuccessSignIn()),
+      Observable
+        .merge(
+          action$
+            .filter(isGoToStampRallyList)
+            .map(() => ({ token, userId }: Token) => {
+              return createRequest('stamp-rally-index', { token, userId });
+            }),
+          action$
+            .filter(isGoToStampRallyShow)
+            .map(({ params: stampRallyId }) => ({ token }: Token) => {
+              return createRequest('stamp-rally-show', { token, stampRallyId });
+            }),
+          action$
+            .filter(isGoToStampRallyShow)
+            .map(({ params: stampRallyId }) => ({ token }: Token) => {
+              return createRequest('spot-index', { token, stampRallyId });
+            })
+        )
+        .withLatestFrom(state$, (create: any, state: any) => {
+          return create(state.token);
+        }),
+      action$
         .filter(isAddSpotAction)
         .withLatestFrom(state$, (_, state) => {
           return {
@@ -76,7 +105,7 @@ const app = (
         })
         .map(params => createRequest('spot-index', params)),
       action$
-        .filter(isSignInAction)
+        .filter(isGoToSignInAction)
         .withLatestFrom(state$, (_, state) => {
           return {
             email: state.signIn.email,

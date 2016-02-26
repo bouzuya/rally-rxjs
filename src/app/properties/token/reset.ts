@@ -9,13 +9,11 @@ import { create } from '../../actions/success-sign-in';
 import { Token } from '../../models/token';
 
 export default function updater$(
-  action$: Observable<Action<any>>,
-  reaction: (action: Action<any>) => void
+  action$: Observable<Action<any>>
 ): Observable<Updater<Token>> {
   return action$
     .filter(is)
     .map(({ params: token }) => (): Token => {
-      reaction(create());
       return token;
     });
 }

@@ -21,7 +21,7 @@ export default function state(
     .combineLatest(
       currentPage$(state.currentPage, action$),
       signIn$(state.signIn, action$),
-      token$(state.token, action$, next),
+      token$(state.token, action$),
       spots$(state.spots, action$, next),
       spotForm$(state.spotForm, action$, next),
       stampRallies$(state.stampRallies, action$, next),

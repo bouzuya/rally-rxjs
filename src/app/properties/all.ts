@@ -13,8 +13,8 @@ import stampRallyForm$ from '../properties/stamp-rally-form';
 import token$ from '../properties/token';
 
 export default function state(
-  state: State,
-  action$: Observable<Action<any>>
+  action$: Observable<Action<any>>,
+  state: State
 ): Observable<State> {
   return Observable
     .combineLatest(

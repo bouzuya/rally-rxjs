@@ -38,7 +38,7 @@ const app = (
   }
 ): Observable<Action<any>> => {
   const { state } = options;
-  const state$ = makeState(state, action$)
+  const state$ = makeState(action$, state)
     .do(console.log.bind(console));
   return Observable
     .merge(

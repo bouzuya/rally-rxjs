@@ -57,6 +57,9 @@ class Client<State> {
       .filter(isRender)
       .map(({ params: state }) => this.render(state))
       .subscribe(vtree => dom.renderToDOM(vtree));
+    app$
+      .filter(action => !isGoTo(action) && !isRender(action))
+      .subscribe(next);
   }
 }
 

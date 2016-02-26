@@ -54,8 +54,17 @@ const app = (
   request(action$, next);
   const state$ = makeState(state, action$)
     .do(console.log.bind(console));
-  Observable
+  return Observable
     .merge(
+      // RenderAction
+      state$.map(createRenderAction),
+      // GoToAction
+      action$
+        .filter(isSuccessSignInAction)
+        .map(() => goTo('/stamp_rallies')),
+      action$
+        .filter(isGoToAction),
+      // *Action
       action$
         .filter(isResponseStampRallyShow)
         .map(createSuccessStampRallyShow),
@@ -120,19 +129,6 @@ const app = (
           };
         })
         .map(params => createRequest('token-create', params))
-    )
-    .subscribe(next);
-  return Observable
-    .merge(
-      state$.map(createRenderAction),
-      Observable
-        .merge(
-          action$
-            .filter(isSuccessSignInAction)
-            .map(() => goTo('/stamp_rallies')),
-          action$
-            .filter(isGoToAction)
-        )
     );
 };
 

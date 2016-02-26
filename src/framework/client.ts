@@ -42,16 +42,13 @@ class Client<State> {
     const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
     const actionSubject = new Subject<{ type: string; params: any; }>();
-    const source$ = Observable
+    Observable
       .merge(
         this.domAction(dom),
         this.historyAction(history)
       )
       .subscribe(actionSubject.next.bind(actionSubject));
     const action$ = actionSubject.asObservable();
-    const next = (action: any): void => {
-      setTimeout(() => actionSubject.next(action));
-    };
     const app$ = this.app(action$, { state });
     history.start();
     app$
@@ -65,7 +62,9 @@ class Client<State> {
       .subscribe(vtree => dom.renderToDOM(vtree));
     app$
       .filter(action => !isGoTo(action) && !isRender(action))
-      .subscribe(next);
+      .subscribe((action: any): void => {
+        setTimeout(() => actionSubject.next(action));
+      });
   }
 }
 

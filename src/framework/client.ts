@@ -1,4 +1,5 @@
 import { Observable, Subject } from 'rxjs';
+import { Action } from './action';
 import { DOM } from './dom';
 import { VTree } from './view';
 import { Route, Router } from './router';
@@ -10,24 +11,24 @@ class Client<State> {
   private rootSelector: string;
   private render: (state: State) => VTree;
   private app: (
-    action$: Observable<{ type: string; params: any; }>,
+    action$: Observable<Action<any>>,
     options: any
-  ) => Observable<{ type: string; params: any; }>;
+  ) => Observable<Action<any>>;
   private router: Router;
-  private domAction: (dom: DOM) => Observable<{ type: string; }>;
+  private domAction: (dom: DOM) => Observable<Action<string>>;
   private historyAction: (history: HistoryRouter) =>
-    Observable<{ type: string; }>;
+    Observable<Action<any>>;
 
   constructor(
     rootSelector: string,
     render: (state: State) => VTree,
     app: (
-      action$: Observable<{ type: string; params: any; }>,
+      action$: Observable<Action<any>>,
       options: any
-    ) => Observable<{ type: string; params: any; }>,
+    ) => Observable<Action<any>>,
     routes: Route[],
-    domAction: (dom: DOM) => Observable<{ type: string; }>,
-    historyAction: (history: HistoryRouter) => Observable<{ type: string; }>
+    domAction: (dom: DOM) => Observable<Action<any>>,
+    historyAction: (history: HistoryRouter) => Observable<Action<any>>
   ) {
     this.rootSelector = rootSelector;
     this.render = render;
@@ -41,7 +42,7 @@ class Client<State> {
     const dom = new DOM(this.rootSelector);
     const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
-    const actionSubject = new Subject<{ type: string; params: any; }>();
+    const actionSubject = new Subject<Action<any>>();
     Observable
       .merge(
         this.domAction(dom),
@@ -53,7 +54,7 @@ class Client<State> {
     history.start();
     app$
       .filter(isGoTo)
-      .subscribe(({ params: path }: { params: string; }) => {
+      .subscribe(({ params: path }: Action<string>) => {
         return history.go(path)
       });
     app$
@@ -62,7 +63,7 @@ class Client<State> {
       .subscribe(vtree => dom.renderToDOM(vtree));
     app$
       .filter(action => !isGoTo(action) && !isRender(action))
-      .subscribe((action: any): void => {
+      .subscribe((action: Action<any>): void => {
         setTimeout(() => actionSubject.next(action));
       });
   }

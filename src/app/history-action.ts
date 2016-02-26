@@ -24,5 +24,6 @@ export default function historyAction(
       goToSignInAction$,
       goToStampRallyListAction$,
       goToStampRallyShowAction$
-    );
+    )
+    .share();
 }

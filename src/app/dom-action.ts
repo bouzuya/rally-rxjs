@@ -72,5 +72,6 @@ export default function domAction(dom: DOM): Observable<Action<any>> {
       changeSpotFormNameAction$,
       changeStampRallyFormNameAction$,
       signInAction$
-    );
+    )
+    .share();
 };

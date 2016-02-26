@@ -43,7 +43,12 @@ class Client<State> {
     const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
     const subject = new Subject<Action<any>>();
-    const action$ = subject.asObservable().do(({ type }) => console.log(type));
+    const action$ = subject
+      .asObservable()
+      .do(({ type }) => {
+        console.log('action type: ' + type); // logger for action
+      })
+      .share();
     const app$ = this.app(action$, { state });
     history.start();
     app$

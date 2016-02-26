@@ -38,8 +38,7 @@ const app = (
   }
 ): Observable<Action<any>> => {
   const { state } = options;
-  const state$ = makeState(action$, state)
-    .do(console.log.bind(console));
+  const state$ = makeState(action$, state);
   return Observable
     .merge(
       // RenderAction
@@ -117,7 +116,8 @@ const app = (
           };
         })
         .map(params => createRequest('token-create', params))
-    );
+    )
+    .share();
 };
 
 export default function main() {

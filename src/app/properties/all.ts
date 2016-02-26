@@ -48,5 +48,6 @@ export default function state(
         };
       }
     )
+    .do(console.log.bind(console)) // logger for state
     .share();
 }

@@ -5,7 +5,6 @@ import { Route, Router } from './router';
 import { HistoryRouter } from './history-router';
 import { is as isGoTo } from '../app/actions/go-to';
 import { is as isRender } from '../app/actions/render';
-import request from '../app/requests/all';
 
 class Client<State> {
   private rootSelector: string;
@@ -53,7 +52,6 @@ class Client<State> {
     const next = (action: any): void => {
       setTimeout(() => actionSubject.next(action));
     };
-    request(action$, next);
     const app$ = this.app(action$, { state });
     history.start();
     app$

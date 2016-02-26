@@ -24,6 +24,7 @@ import {
 } from './actions/response-stamp-rally-show';
 import createSuccessStampRallyShow from './actions/success-stamp-rally-show';
 
+import makeRequest from './requests/all';
 import makeState from './properties/all';
 import domAction$ from './dom-action';
 import historyAction$ from './history-action';
@@ -47,6 +48,8 @@ const app = (
         .map(() => goTo('/stamp_rallies')),
       action$
         .filter(isGoToAction),
+      // RequestAction
+      makeRequest(action$),
       // *Action
       action$
         .filter(isResponseStampRallyShow)

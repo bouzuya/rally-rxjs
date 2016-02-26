@@ -1,61 +1,47 @@
 import { Observable } from 'rxjs';
 
 import { Action } from '../models/action';
-import { Spot } from '../models/spot';
-import { StampRally } from '../models/stamp-rally';
-import { Token } from '../models/token';
 
-import { create as createSpotCreate } from '../actions/response-spot-create';
 import { is } from '../actions/request';
-import spotCreate from '../requests/spot-create';
+import requestSpotCreate from '../requests/spot-create';
+import requestSpotIndex from '../requests/spot-index';
+import requestStampRallyCreate from '../requests/stamp-rally-create';
+import requestStampRallyIndex from '../requests/stamp-rally-index';
+import requestStampRallyShow from '../requests/stamp-rally-show';
+import requestTokenCreate from '../requests/token-create';
+import responseSpotCreate from '../actions/response-spot-create';
+import responseSpotIndex from '../actions/response-spot-index';
+import responseStampRallyCreate from '../actions/response-stamp-rally-create';
+import responseStampRallyIndex from '../actions/response-stamp-rally-index';
+import responseStampRallyShow from '../actions/response-stamp-rally-show';
+import responseTokenCreate from '../actions/response-token-create';
 
-import { create as createSpotIndex } from '../actions/response-spot-index';
-import spotIndex from '../requests/spot-index';
+const request = (
+  request$: Observable<Action<any>>,
+  path: string,
+  request: (params: any) => Promise<any>,
+  response: (res: any) => Action<any>
+): Observable<Action<any>> => {
+  return request$
+    .filter(({ params: { path: p } }) => p === path)
+    .mergeMap(({ params: { params: p } }) => {
+      return Observable.fromPromise(request(p));
+    })
+    .map(r => response(r));
+};
 
-import {
-  create as createStampRallyCreate
-} from '../actions/response-stamp-rally-create';
-import stampRallyCreate from '../requests/stamp-rally-create';
-
-import {
-  create as createStampRallyIndex
-} from '../actions/response-stamp-rally-index';
-import stampRallyIndex from '../requests/stamp-rally-index';
-
-import {
-  create as createStampRallyShow
-} from '../actions/response-stamp-rally-show';
-import stampRallyShow from '../requests/stamp-rally-show';
-
-import {
-  create as createTokenCreate
-} from '../actions/response-token-create';
-import tokenCreate from '../requests/token-create';
-
-export default function request(
-  action$: Observable<Action<any>>,
-  reaction: (action: Action<any>) => void
-): void {
+export default function all(
+  action$: Observable<Action<any>>
+): Observable<Action<any>> {
   const request$ = action$.filter(is);
-  const subscribe = (
-    path: string,
-    request: (params: any) => Promise<any>,
-    response: (res: any) => Action<any>
-  ): void => {
-    request$
-      .filter(({ params: { path: p } }) => p === path)
-      .mergeMap(({ params: { params: p } }) => {
-        return Observable.fromPromise(request(p));
-      })
-      .subscribe(r => {
-        return reaction(response(r));
-      });
-  };
-  subscribe('spot-create', spotCreate, createSpotCreate);
-  subscribe('spot-index', spotIndex, createSpotIndex);
-  subscribe('stamp-rally-create', stampRallyCreate, createStampRallyCreate);
-  subscribe('stamp-rally-index', stampRallyIndex, createStampRallyIndex);
-  subscribe('stamp-rally-show', stampRallyShow, createStampRallyShow);
-  subscribe('token-create', tokenCreate, createTokenCreate);
+  const requests = [
+    ['spot-create', requestSpotCreate, responseSpotCreate],
+    ['spot-index', requestSpotIndex, responseSpotIndex],
+    ['stamp-rally-create', requestStampRallyCreate, responseStampRallyCreate],
+    ['stamp-rally-index', requestStampRallyIndex, responseStampRallyIndex],
+    ['stamp-rally-show', requestStampRallyShow, responseStampRallyShow],
+    ['token-create', requestTokenCreate, responseTokenCreate]
+  ].map(args => request.apply(null, (<any[]>[request$]).concat(args)));
+  return Observable.merge.apply(Observable, requests);
 }
 

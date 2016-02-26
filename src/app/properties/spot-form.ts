@@ -8,8 +8,7 @@ import changeName$ from './spot-form/change-name';
 
 export default function property(
   state: SpotForm,
-  action$: Observable<Action<any>>,
-  reaction: (action: Action<any>) => void
+  action$: Observable<Action<any>>
 ): Observable<SpotForm> {
   return Observable
     .of(state)

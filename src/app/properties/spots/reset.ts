@@ -7,8 +7,7 @@ import { is } from '../../actions/response-spot-index';
 import { Spot } from '../../models/spot';
 
 export default function updater$(
-  action$: Observable<Action<any>>,
-  reaction: (action: Action<any>) => void
+  action$: Observable<Action<any>>
 ): Observable<Updater<Spot[]>> {
   return action$
     .filter(is)

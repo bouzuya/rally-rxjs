@@ -22,7 +22,7 @@ export default function state(
       currentPage$(state.currentPage, action$),
       signIn$(state.signIn, action$),
       token$(state.token, action$),
-      spots$(state.spots, action$, next),
+      spots$(state.spots, action$),
       spotForm$(state.spotForm, action$, next),
       stampRallies$(state.stampRallies, action$, next),
       stampRally$(state.stampRally, action$, next),

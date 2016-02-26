@@ -20,7 +20,7 @@ export default function state(
   return Observable
     .combineLatest(
       currentPage$(state.currentPage, action$),
-      signIn$(state.signIn, action$, next),
+      signIn$(state.signIn, action$),
       token$(state.token, action$, next),
       spots$(state.spots, action$, next),
       spotForm$(state.spotForm, action$, next),

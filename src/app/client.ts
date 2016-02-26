@@ -13,6 +13,7 @@ import createRequest from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';
 import { is as isSuccessSignInAction } from './actions/success-sign-in';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
+import { is as isSignInAction } from './actions/sign-in';
 
 import makeState from './properties/all';
 import request from './requests/all';
@@ -73,7 +74,16 @@ const app = (
             stampRallyId: state.stampRally.name
           };
         })
-        .map(params => createRequest('spot-index', params))
+        .map(params => createRequest('spot-index', params)),
+      action$
+        .filter(isSignInAction)
+        .withLatestFrom(state$, (_, state) => {
+          return {
+            email: state.signIn.email,
+            password: state.signIn.password,
+          };
+        })
+        .map(params => createRequest('token-create', params))
     )
     .subscribe(next);
   return Observable

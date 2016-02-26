@@ -9,19 +9,21 @@ import render from './views/app';
 
 import { is as isAddSpotAction } from './actions/add-spot';
 import { is as isAddStampRallyAction } from './actions/add-stamp-rally';
+import { is as isGoToAction, create as goTo } from './actions/go-to';
+import { is as isGoToStampRallyList } from './actions/go-to-stamp-rally-list';
+import { is as isGoToStampRallyShow } from './actions/go-to-stamp-rally-show';
 import createRenderAction from './actions/render';
 import createRequest from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';
-import { is as isSuccessSignInAction } from './actions/success-sign-in';
-import { is as isGoToAction, create as goTo } from './actions/go-to';
-import { is as isGoToSignInAction } from './actions/sign-in';
-import { is as isGoToStampRallyList } from './actions/go-to-stamp-rally-list';
-import { is as isGoToStampRallyShow } from './actions/go-to-stamp-rally-show';
-import { is as isResponseTokenCreate } from './actions/response-token-create';
-import createSuccessSignIn from './actions/success-sign-in';
 import {
   is as isResponseStampRallyShow
 } from './actions/response-stamp-rally-show';
+import { is as isResponseTokenCreate } from './actions/response-token-create';
+import { is as isGoToSignInAction } from './actions/sign-in';
+import {
+  create as createSuccessSignIn,
+  is as isSuccessSignInAction
+} from './actions/success-sign-in';
 import createSuccessStampRallyShow from './actions/success-stamp-rally-show';
 
 import makeRequest from './requests/all';
@@ -56,7 +58,7 @@ const app = (
         .map(createSuccessStampRallyShow),
       action$
         .filter(isResponseTokenCreate)
-        .map(() => createSuccessSignIn()),
+        .map(createSuccessSignIn),
       Observable
         .merge(
           action$

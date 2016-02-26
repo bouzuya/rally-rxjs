@@ -19,6 +19,10 @@ import { is as isGoToStampRallyList } from './actions/go-to-stamp-rally-list';
 import { is as isGoToStampRallyShow } from './actions/go-to-stamp-rally-show';
 import { is as isResponseTokenCreate } from './actions/response-token-create';
 import createSuccessSignIn from './actions/success-sign-in';
+import {
+  is as isResponseStampRallyShow
+} from './actions/response-stamp-rally-show';
+import createSuccessStampRallyShow from './actions/success-stamp-rally-show';
 
 import makeState from './properties/all';
 import request from './requests/all';
@@ -52,6 +56,9 @@ const app = (
     .do(console.log.bind(console));
   Observable
     .merge(
+      action$
+        .filter(isResponseStampRallyShow)
+        .map(createSuccessStampRallyShow),
       action$
         .filter(isResponseTokenCreate)
         .map(() => createSuccessSignIn()),

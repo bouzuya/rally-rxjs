@@ -25,7 +25,7 @@ export default function state(
       spots$(state.spots, action$),
       spotForm$(state.spotForm, action$),
       stampRallies$(state.stampRallies, action$),
-      stampRally$(state.stampRally, action$, next),
+      stampRally$(state.stampRally, action$),
       stampRallyForm$(state.stampRallyForm, action$, next),
       (
         currentPage,

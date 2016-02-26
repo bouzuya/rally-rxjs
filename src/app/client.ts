@@ -25,33 +25,16 @@ import {
 import createSuccessStampRallyShow from './actions/success-stamp-rally-show';
 
 import makeState from './properties/all';
-import request from './requests/all';
 import domAction$ from './dom-action';
 import historyAction$ from './history-action';
 
-// TODO: remove `next`
-const makeActionSubject = (action$: Observable<Action<any>>): {
-  observable: Observable<Action<any>>;
-  next: (action: Action<any>) => void;
-} => {
-  const actionSubject = new Subject<Action<any>>();
-  action$.subscribe((action: Action<any>) => actionSubject.next(action));
-  const observable = actionSubject.asObservable();
-  const next = (action: Action<any>): void => {
-    setTimeout(() => actionSubject.next(action));
-  };
-  return { observable, next };
-};
-
 const app = (
-  source$: Observable<Action<any>>,
+  action$: Observable<Action<any>>,
   options: {
     state: State
   }
 ): Observable<Action<any>> => {
   const { state } = options;
-  const { observable: action$, next } = makeActionSubject(source$);
-  request(action$, next);
   const state$ = makeState(state, action$)
     .do(console.log.bind(console));
   return Observable

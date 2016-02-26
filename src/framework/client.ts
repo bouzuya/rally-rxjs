@@ -1,10 +1,11 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { DOM } from './dom';
 import { VTree } from './view';
 import { Route, Router } from './router';
 import { HistoryRouter } from './history-router';
 import { is as isGoTo } from '../app/actions/go-to';
 import { is as isRender } from '../app/actions/render';
+import request from '../app/requests/all';
 
 class Client<State> {
   private rootSelector: string;
@@ -41,11 +42,18 @@ class Client<State> {
     const dom = new DOM(this.rootSelector);
     const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
-    const action$ = Observable
+    const actionSubject = new Subject<{ type: string; params: any; }>();
+    const source$ = Observable
       .merge(
         this.domAction(dom),
         this.historyAction(history)
-      );
+      )
+      .subscribe(actionSubject.next.bind(actionSubject));
+    const action$ = actionSubject.asObservable();
+    const next = (action: any): void => {
+      setTimeout(() => actionSubject.next(action));
+    };
+    request(action$, next);
     const app$ = this.app(action$, { state });
     history.start();
     app$

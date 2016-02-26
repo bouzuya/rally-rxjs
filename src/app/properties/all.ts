@@ -24,7 +24,7 @@ export default function state(
       token$(state.token, action$),
       spots$(state.spots, action$),
       spotForm$(state.spotForm, action$),
-      stampRallies$(state.stampRallies, action$, next),
+      stampRallies$(state.stampRallies, action$),
       stampRally$(state.stampRally, action$, next),
       stampRallyForm$(state.stampRallyForm, action$, next),
       (

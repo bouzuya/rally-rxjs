@@ -8,8 +8,7 @@ import reset$ from './stamp-rallies/reset';
 
 export default function users$(
   state: StampRally[],
-  action$: Observable<Action<any>>,
-  reaction: (action: Action<any>) => void
+  action$: Observable<Action<any>>
 ): Observable<StampRally[]> {
   return Observable
     .of(state)

@@ -9,14 +9,8 @@ import { Action } from './models/action';
 import { State } from './models/state';
 import render from './views/app';
 
-import {
-  is as isAddSpotAction,
-  create as addSpotAction
-} from './actions/add-spot';
-import {
-  is as isAddStampRallyAction,
-  create as addStampRallyAction
-} from './actions/add-stamp-rally';
+import { is as isAddSpotAction } from './actions/add-spot';
+import { is as isAddStampRallyAction } from './actions/add-stamp-rally';
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';
 import changeSpotFormNameAction from './actions/change-spot-form-name';
@@ -34,68 +28,7 @@ import { is as isGoToAction, create as goTo } from './actions/go-to';
 
 import makeState from './properties/all';
 import request from './requests/all';
-
-// TODO: move to views/
-const domAction$ = (dom: DOM): Observable<Action<any>> => {
-  const changeAction$ = (
-    selector: string, create: (value: string) => Action<{ value: string }>
-  ) => {
-    return dom
-      .on(selector, 'change')
-      .map(({ target }) => {
-        const value = (<any> target).value;
-        return create(value);
-      });
-  };
-  const addSpotAction$ = dom
-    .on('form.spot button.add-spot', 'click')
-    .map((event: Event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      return addSpotAction();
-    });
-  const addStampRallyAction$ = dom
-    .on('form.stamp-rally button.add-stamp-rally', 'click')
-    .map((event: Event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      return addStampRallyAction();
-    });
-  const clickAnchorAction$ = dom
-    .on('a', 'click')
-    .map((event: Event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const path: string = (<any> event.target).getAttribute('href');
-      return goTo(path);
-    });
-  const changeEmailAction$ = changeAction$(
-    'input.email', changeEmailAction
-  );
-  const changePasswordAction$ = changeAction$(
-    'input.password', changePasswordAction
-  );
-  const changeSpotFormNameAction$ = changeAction$(
-    'form.spot input.name', changeSpotFormNameAction
-  );
-  const changeStampRallyFormNameAction$ = changeAction$(
-    'form.stamp-rally input.name', changeStampRallyFormNameAction
-  );
-  const signInAction$ = dom
-    .on('button.sign-in', 'click')
-    .map(() => signInAction());
-  return Observable
-    .merge(
-      addSpotAction$,
-      addStampRallyAction$,
-      clickAnchorAction$,
-      changeEmailAction$,
-      changePasswordAction$,
-      changeSpotFormNameAction$,
-      changeStampRallyFormNameAction$,
-      signInAction$
-    );
-};
+import domAction$ from './dom-action';
 
 const historyAction$ = (history: HistoryRouter): Observable<Action<any>> => {
   const route$ = history.changes();

@@ -1,6 +1,5 @@
 import { Observable, Subject } from 'rxjs';
 import { Client } from '../framework/client';
-import { DOM } from '../framework/dom';
 import { VTree } from '../framework/view';
 import { HistoryRouter } from '../framework/history-router';
 
@@ -51,7 +50,12 @@ const historyAction$ = (history: HistoryRouter): Observable<Action<any>> => {
 
 // TODO: remove `next`
 const makeActionSubject = (
-  { dom, history }: { dom: DOM, history: HistoryRouter }
+  {
+    domAction$, history
+  }: {
+    domAction$: Observable<Action<any>>;
+    history: HistoryRouter;
+  }
 ): {
   observable: Observable<Action<any>>;
   next: (action: Action<any>) => void;
@@ -59,7 +63,7 @@ const makeActionSubject = (
   const actionSubject = new Subject<Action<any>>();
   const mergedAction$ = Observable
     .merge(
-      domAction$(dom),
+      domAction$,
       historyAction$(history)
     )
     .subscribe((action: Action<any>) => actionSubject.next(action));
@@ -71,7 +75,11 @@ const makeActionSubject = (
 };
 
 const app = (
-  options: { state: State, dom: DOM, history: HistoryRouter }
+  options: {
+    state: State,
+    domAction$: Observable<Action<any>>,
+    history: HistoryRouter
+  }
 ): Observable<State> => {
   const { state, history } = options;
   const { observable: action$, next } = makeActionSubject(options);
@@ -123,6 +131,6 @@ const app = (
 };
 
 export default function main() {
-  const client = new Client('div#app', render, app, routes);
+  const client = new Client('div#app', render, app, routes, domAction$);
   client.run();
 }

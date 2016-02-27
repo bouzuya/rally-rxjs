@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Action } from '../framework/action';
 import { DOM } from '../framework/dom';
 
-import addSpotAction from './actions/add-spot';
+import { create as addSpotAction } from './actions/add-spot';
 import addStampRallyAction from './actions/add-stamp-rally';
 import changeEmailAction from './actions/change-email';
 import changePasswordAction from './actions/change-password';

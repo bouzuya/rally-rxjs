@@ -8,7 +8,7 @@ import { State } from './models/state';
 import { Token } from './models/token';
 import render from './views/app';
 
-import { is as isAddSpotAction } from './actions/add-spot';
+import { from as addSpot$ } from './actions/add-spot';
 import { is as isAddStampRallyAction } from './actions/add-stamp-rally';
 import goTo from './actions/go-to';
 import createRenderAction from './actions/render';
@@ -69,8 +69,7 @@ const app = (
         .withLatestFrom(state$, (create: any, state: any) => {
           return create(state.token);
         }),
-      action$
-        .filter(isAddSpotAction)
+      addSpot$(action$)
         .withLatestFrom(state$, (_, state) => {
           return {
             token: state.token.token,

@@ -9,7 +9,7 @@ import { create as changePasswordAction } from './actions/change-password';
 import { create as changeSpotFormNameAction } from './actions/change-spot-form-name';
 import { create as changeStampRallyFormNameAction }
 from './actions/change-stamp-rally-form-name';
-import goTo from './actions/go-to';
+import { create as goTo } from './actions/go-to';
 import signInAction from './actions/sign-in';
 
 // TODO: move to views/

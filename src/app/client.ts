@@ -10,7 +10,7 @@ import render from './views/app';
 
 import { from as addSpot$ } from './actions/add-spot';
 import { from as addStampRally$ } from './actions/add-stamp-rally';
-import goTo from './actions/go-to';
+import { create as goTo } from './actions/go-to';
 import createRenderAction from './actions/render';
 import createRequest from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';

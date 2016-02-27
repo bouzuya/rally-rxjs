@@ -4,7 +4,7 @@ import { DOM } from './dom';
 import { VTree } from './view';
 import { Route, Router } from './router';
 import { HistoryRouter } from './history-router';
-import { is as isGoTo } from '../app/actions/go-to';
+import { from as goTo$, is as isGoTo } from '../app/actions/go-to';
 import { is as isRender } from '../app/actions/render';
 
 class Client<State> {
@@ -47,11 +47,7 @@ class Client<State> {
       .share();
     const app$ = this.app(action$, { state });
     history.start();
-    app$
-      .filter(isGoTo)
-      .subscribe(({ params: path }: Action<string>): void => {
-        history.go(path)
-      });
+    goTo$(app$).subscribe(path => history.go(path));
     app$
       .filter(isRender)
       .map(({ params: state }) => this.render(state))

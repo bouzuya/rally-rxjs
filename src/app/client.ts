@@ -15,7 +15,7 @@ import { create as createRenderAction } from './actions/render';
 import { create as createRequest } from './actions/request';
 import { from as responseSpotCreate$ } from './actions/response-spot-create';
 import {
-  is as isResponseStampRallyShow
+  from as responseStampRallyShow$
 } from './actions/response-stamp-rally-show';
 import { is as isResponseTokenCreate } from './actions/response-token-create';
 import { is as isGoToSignInAction } from './actions/sign-in';
@@ -106,8 +106,7 @@ const app = (
       // RequestAction to ResponseAction
       makeResponse(action$),
       // * to *
-      action$
-        .filter(isResponseStampRallyShow)
+      responseStampRallyShow$(action$)
         .map(createSuccessStampRallyShow),
       action$
         .filter(isResponseTokenCreate)

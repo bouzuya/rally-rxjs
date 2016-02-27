@@ -16,7 +16,9 @@ import {
 import {
   create as responseStampRallyIndex
 } from '../actions/response-stamp-rally-index';
-import responseStampRallyShow from '../actions/response-stamp-rally-show';
+import {
+  create as responseStampRallyShow
+} from '../actions/response-stamp-rally-show';
 import responseTokenCreate from '../actions/response-token-create';
 
 const request = (

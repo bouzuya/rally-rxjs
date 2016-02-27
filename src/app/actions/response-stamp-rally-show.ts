@@ -1,12 +1,18 @@
-import { Action } from '../../framework/action';
+import { A, O } from '../../framework/o-a';
 
 import { StampRally } from '../models/stamp-rally';
 
+type P = StampRally;
 const type = 'response-stamp-rally-show';
-const is = (action: Action<any>): boolean => action.type === type;
-const create = (response: StampRally): Action<StampRally> => {
+
+const create = (response: StampRally): A<P> => {
   return { type, params: response };
 };
 
-export { create, is, type };
-export default create;
+const from = (action$: O<A<any>>): O<P> => {
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
+};
+
+export { create, from };

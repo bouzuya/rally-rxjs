@@ -1,15 +1,19 @@
-import { Action } from '../../framework/action';
+import { A, O } from '../../framework/o-a';
 
-import { Token } from '../models/token';
-
-const type = 'request';
-const is = (action: Action<any>) => action.type === type;
-const create = (path: string, params: any): Action<{
+type P = {
   path: string;
   params: any;
-}> => {
+};
+const type = 'request';
+
+const create = (path: string, params: any): A<P> => {
   return { type, params: { path, params } };
 };
 
-export { create, is, type };
-export default create;
+const from = (action$: O<A<any>>): O<P> => {
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
+};
+
+export { create, from };

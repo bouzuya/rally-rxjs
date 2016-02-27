@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Action } from '../../framework/action';
 
-import { is } from '../actions/request';
+import { from as request$ } from '../actions/request';
 import requestSpotCreate from '../requests/spot-create';
 import requestSpotIndex from '../requests/spot-index';
 import requestStampRallyCreate from '../requests/stamp-rally-create';
@@ -33,15 +33,16 @@ const request = (
 export default function all(
   action$: Observable<Action<any>>
 ): Observable<Action<any>> {
-  const request$ = action$.filter(is);
-  const requests = [
+  const request$s = [
     ['spot-create', requestSpotCreate, responseSpotCreate],
     ['spot-index', requestSpotIndex, responseSpotIndex],
     ['stamp-rally-create', requestStampRallyCreate, responseStampRallyCreate],
     ['stamp-rally-index', requestStampRallyIndex, responseStampRallyIndex],
     ['stamp-rally-show', requestStampRallyShow, responseStampRallyShow],
     ['token-create', requestTokenCreate, responseTokenCreate]
-  ].map(args => request.apply(null, (<any[]>[request$]).concat(args)));
-  return Observable.merge.apply(Observable, requests);
+  ].map(args =>
+    request.apply(null, (<any[]>[request$(action$)]).concat(args))
+  );
+  return Observable.merge.apply(Observable, request$s);
 }
 

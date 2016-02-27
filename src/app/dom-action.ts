@@ -42,7 +42,12 @@ export default function domAction(dom: DOM): O<A<any>> {
     .map((event: Event) => {
       event.preventDefault();
       event.stopPropagation();
-      const path: string = (<any> event.target).getAttribute('href');
+      let node = <any> event.target;
+      while (node && node.tagName !== 'A') {
+        node = node.parentNode;
+      }
+      if (!node) return;
+      const path: string = node.getAttribute('href');
       return goTo(path);
     });
   const changeEmailAction$ = changeAction$(

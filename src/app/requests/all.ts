@@ -13,7 +13,9 @@ import { create as responseSpotIndex } from '../actions/response-spot-index';
 import {
   create as responseStampRallyCreate
 } from '../actions/response-stamp-rally-create';
-import responseStampRallyIndex from '../actions/response-stamp-rally-index';
+import {
+  create as responseStampRallyIndex
+} from '../actions/response-stamp-rally-index';
 import responseStampRallyShow from '../actions/response-stamp-rally-show';
 import responseTokenCreate from '../actions/response-token-create';
 

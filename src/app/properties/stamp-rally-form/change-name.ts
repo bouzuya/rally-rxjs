@@ -3,9 +3,7 @@ import { Action } from '../../../framework/action';
 
 import { Updater } from '../../models/updater';
 
-import {
-  is as isChangeName
-} from '../../actions/change-stamp-rally-form-name';
+import { from as changeName$ } from '../../actions/change-stamp-rally-form-name';
 import {
   is as isResponseStampRallyCreate
 } from '../../actions/response-stamp-rally-create';
@@ -16,9 +14,8 @@ export default function updater$(
 ): Observable<Updater<StampRallyForm>> {
   return Observable
     .merge(
-      action$
-        .filter(isChangeName)
-        .map(({ params: { value } }) => value),
+      changeName$(action$)
+        .map(({ value }) => value),
       action$
         .filter(isResponseStampRallyCreate)
         .map(() => null)

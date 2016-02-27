@@ -2,8 +2,15 @@ import pathToRegexp from 'path-to-regexp';
 import { Path } from './types';
 import { InitializerName, InitializerParameters } from './initializer';
 
-type Route = { path: Path, name: InitializerName };
-type RouteResult = { name: InitializerName, params: InitializerParameters };
+type Route = {
+  path: Path;
+  type: InitializerName;
+};
+
+type RouteAction = {
+  type: InitializerName;
+  params: InitializerParameters;
+};
 
 class Router {
   private config: Route[];
@@ -12,23 +19,23 @@ class Router {
     this.config = routes;
   }
 
-  routes(path: Path): RouteResult {
+  routes(path: Path): RouteAction {
     const requestPath = path;
     for (var i = 0; i < this.config.length; i++) {
       const route = this.config[i];
-      const { path, name } = route;
-      const keys: any[] = [];
+      const { path, type } = route;
+      const keys: { name: string; }[] = [];
       const match = pathToRegexp(path, keys).exec(requestPath);
       if (match) {
         const params: InitializerParameters = {};
         for (var j = 1; j < match.length; j++) {
           params[keys[j - 1].name] = match[j];
         }
-        return { name, params };
+        return { type, params };
       }
     }
     return null;
   }
 }
 
-export { Router, Route, RouteResult };
+export { Router, Route, RouteAction };

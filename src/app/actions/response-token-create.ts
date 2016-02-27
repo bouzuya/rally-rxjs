@@ -1,12 +1,18 @@
-import { Action } from '../../framework/action';
+import { A, O } from '../../framework/o-a';
 
 import { Token } from '../models/token';
 
+type P = Token;
 const type = 'response-token-create';
-const is = (action: Action<any>): boolean => action.type === type;
-const create = (response: Token): Action<Token> => {
+
+const create = (response: Token): A<P> => {
   return { type, params: response };
 };
 
-export { create, is, type };
-export default create;
+const from = (action$: O<A<any>>): O<P> => {
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
+};
+
+export { create, from };

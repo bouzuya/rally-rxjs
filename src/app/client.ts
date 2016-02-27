@@ -17,7 +17,7 @@ import { from as responseSpotCreate$ } from './actions/response-spot-create';
 import {
   from as responseStampRallyShow$
 } from './actions/response-stamp-rally-show';
-import { is as isResponseTokenCreate } from './actions/response-token-create';
+import { from as responseTokenCreate$ } from './actions/response-token-create';
 import { is as isGoToSignInAction } from './actions/sign-in';
 import {
   create as createSuccessSignIn,
@@ -108,8 +108,7 @@ const app = (
       // * to *
       responseStampRallyShow$(action$)
         .map(createSuccessStampRallyShow),
-      action$
-        .filter(isResponseTokenCreate)
+      responseTokenCreate$(action$)
         .map(createSuccessSignIn)
     )
     .share();

@@ -19,7 +19,9 @@ import {
 import {
   create as responseStampRallyShow
 } from '../actions/response-stamp-rally-show';
-import responseTokenCreate from '../actions/response-token-create';
+import {
+  create as responseTokenCreate
+} from '../actions/response-token-create';
 
 const request = (
   request$: Observable<Action<any>>,

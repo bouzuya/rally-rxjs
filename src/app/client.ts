@@ -18,7 +18,7 @@ import {
   from as responseStampRallyShow$
 } from './actions/response-stamp-rally-show';
 import { from as responseTokenCreate$ } from './actions/response-token-create';
-import { is as isGoToSignInAction } from './actions/sign-in';
+import { from as goToSignIn$ } from './actions/sign-in';
 import {
   create as createSuccessSignIn,
   is as isSuccessSignInAction
@@ -94,8 +94,7 @@ const app = (
           };
         })
         .map(params => createRequest('spot-index', params)),
-      action$
-        .filter(isGoToSignInAction)
+      goToSignIn$(action$)
         .withLatestFrom(state$, (_, state) => {
           return {
             email: state.signIn.email,

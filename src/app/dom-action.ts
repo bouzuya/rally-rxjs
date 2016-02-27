@@ -10,7 +10,7 @@ import { create as changeSpotFormNameAction } from './actions/change-spot-form-n
 import { create as changeStampRallyFormNameAction }
 from './actions/change-stamp-rally-form-name';
 import { create as goTo } from './actions/go-to';
-import signInAction from './actions/sign-in';
+import { create as signInAction } from './actions/sign-in';
 
 // TODO: move to views/
 export default function domAction(dom: DOM): Observable<Action<any>> {

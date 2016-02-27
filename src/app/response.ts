@@ -1,27 +1,27 @@
 import { Observable } from 'rxjs';
-import { Action } from '../../framework/action';
+import { Action } from '../framework/action';
 
-import { from as request$ } from '../actions/request';
-import requestSpotCreate from '../requests/spot-create';
-import requestSpotIndex from '../requests/spot-index';
-import requestStampRallyCreate from '../requests/stamp-rally-create';
-import requestStampRallyIndex from '../requests/stamp-rally-index';
-import requestStampRallyShow from '../requests/stamp-rally-show';
-import requestTokenCreate from '../requests/token-create';
-import { create as responseSpotCreate } from '../actions/response-spot-create';
-import { create as responseSpotIndex } from '../actions/response-spot-index';
+import { from as request$ } from './actions/request';
+import requestSpotCreate from './requests/spot-create';
+import requestSpotIndex from './requests/spot-index';
+import requestStampRallyCreate from './requests/stamp-rally-create';
+import requestStampRallyIndex from './requests/stamp-rally-index';
+import requestStampRallyShow from './requests/stamp-rally-show';
+import requestTokenCreate from './requests/token-create';
+import { create as responseSpotCreate } from './actions/response-spot-create';
+import { create as responseSpotIndex } from './actions/response-spot-index';
 import {
   create as responseStampRallyCreate
-} from '../actions/response-stamp-rally-create';
+} from './actions/response-stamp-rally-create';
 import {
   create as responseStampRallyIndex
-} from '../actions/response-stamp-rally-index';
+} from './actions/response-stamp-rally-index';
 import {
   create as responseStampRallyShow
-} from '../actions/response-stamp-rally-show';
+} from './actions/response-stamp-rally-show';
 import {
   create as responseTokenCreate
-} from '../actions/response-token-create';
+} from './actions/response-token-create';
 
 const request = (
   request$: Observable<Action<any>>,

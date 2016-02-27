@@ -7,7 +7,6 @@ import { Updater } from '../../models/updater';
 import {
   from as responseTokenCreate$
 } from '../../actions/response-token-create';
-import { create } from '../../actions/success-sign-in';
 import { Token } from '../../models/token';
 
 export default function updater$(

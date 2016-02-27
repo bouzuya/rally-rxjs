@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Action } from '../framework/action';
 import { Client } from '../framework/client';
-import { filter as routeAction } from '../framework/route-action';
+import { from as route$ } from '../framework/route-action';
 
 import { routes } from './configs/routes';
 import { State } from './models/state';
@@ -48,18 +48,18 @@ const app = (
       // * to RequestAction
       Observable
         .merge(
-          routeAction(action$)
+          route$(action$)
             .filter(({ name }) => name === 'stamp_rallies#index')
             .map(() => ({ token, userId }: Token) => {
               return createRequest('stamp-rally-index', { token, userId });
             }),
-          routeAction(action$)
+          route$(action$)
             .filter(({ name }) => name === 'stamp_rallies#show')
             .map(({ params }) => params['id'])
             .map(stampRallyId => ({ token }: Token) => {
               return createRequest('stamp-rally-show', { token, stampRallyId });
             }),
-          routeAction(action$)
+          route$(action$)
             .filter(({ name }) => name === 'stamp_rallies#show')
             .map(({ params }) => params['id'])
             .map(stampRallyId => ({ token }: Token) => {

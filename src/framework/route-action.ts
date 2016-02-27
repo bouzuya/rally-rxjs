@@ -9,11 +9,12 @@ type P = {
 type RouteAction = Action<P>;
 const type = 'route';
 
-const is = (action: Action<any>) => action.type === type;
-const filter = (
+const from = (
   action$: Observable<Action<any>>
 ): Observable<P> => {
-  return action$.filter(is).map(({ params }) => params);
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
 };
 
-export { filter, type, RouteAction };
+export { from, type, RouteAction };

@@ -5,7 +5,7 @@ import { VTree } from './view';
 import { Route, Router } from './router';
 import { HistoryRouter } from './history-router';
 import { from as goTo$, is as isGoTo } from '../app/actions/go-to';
-import { is as isRender } from '../app/actions/render';
+import { from as render$, is as isRender } from '../app/actions/render';
 
 class Client<State> {
   private rootSelector: string;
@@ -48,9 +48,8 @@ class Client<State> {
     const app$ = this.app(action$, { state });
     history.start();
     goTo$(app$).subscribe(path => history.go(path));
-    app$
-      .filter(isRender)
-      .map(({ params: state }) => this.render(state))
+    render$(app$)
+      .map((state: any) => this.render(state)) // FIXME
       .subscribe(vtree => dom.renderToDOM(vtree));
     Observable
       .merge(

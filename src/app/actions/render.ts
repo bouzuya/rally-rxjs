@@ -1,12 +1,22 @@
-import { Action } from '../../framework/action';
-
+import { A, O } from '../../framework/o-a';
 import { State } from '../models/state';
 
+type P = State;
 const type = 'render';
-const is = (action: Action<any>) => action.type === type;
-const create = (state: State): Action<State> => {
+
+const create = (state: State): A<P> => {
   return { type, params: state };
 };
 
-export { create, is, type };
-export default create;
+const from = (action$: O<A<any>>): O<P> => {
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
+};
+
+// TODO: This function should be removed.
+const is = (action: A<any>): boolean => {
+  return action.type === type;
+};
+
+export { create, from, is };

@@ -13,6 +13,7 @@
     "./src/app/client.ts",
     "./src/app/server.ts",
     "./test/add-test.ts",
+    "./test/app/configs/routes-test.ts",
     "./test/framework/router-test.ts",
     "./typings/main.d.ts"
   ]

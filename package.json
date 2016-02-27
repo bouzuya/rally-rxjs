@@ -52,12 +52,12 @@
     "cp": "cp -r .tmp/es5/src/ lib/",
     "prepublish": "typings install && npm run clean && npm run build",
     "start": "node server.js",
-    "test": "npm run build && mocha --require intelli-espower-loader .tmp/es5/test/",
+    "test": "npm run build && mocha --recursive --require intelli-espower-loader .tmp/es5/test/",
     "watch": "npm run build && parallelshell 'npm run watch-ts' 'npm run watch-es2015' 'npm run watch-cp' 'npm run watch-browserify'",
     "watch-browserify": "watchify -v -o dist/scripts/bundle.js client.js",
     "watch-cp": "watch --ignoreUnreadable --wait 2 'npm run cp' .tmp/es5/src/",
     "watch-es2015": "watch --ignoreUnreadable --wait 2 'npm run build-es2015' .tmp/es2015/src/",
-    "watch-test": "mocha --watch --require intelli-espower-loader .tmp/es5/test/",
+    "watch-test": "mocha --watch --recursive --require intelli-espower-loader .tmp/es5/test/",
     "watch-ts": "tsc --watch"
   }
 }

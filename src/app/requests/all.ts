@@ -10,7 +10,9 @@ import requestStampRallyShow from '../requests/stamp-rally-show';
 import requestTokenCreate from '../requests/token-create';
 import { create as responseSpotCreate } from '../actions/response-spot-create';
 import { create as responseSpotIndex } from '../actions/response-spot-index';
-import responseStampRallyCreate from '../actions/response-stamp-rally-create';
+import {
+  create as responseStampRallyCreate
+} from '../actions/response-stamp-rally-create';
 import responseStampRallyIndex from '../actions/response-stamp-rally-index';
 import responseStampRallyShow from '../actions/response-stamp-rally-show';
 import responseTokenCreate from '../actions/response-token-create';

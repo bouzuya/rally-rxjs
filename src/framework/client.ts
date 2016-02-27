@@ -45,18 +45,18 @@ class Client<State> {
         console.log('action type: ' + type); // logger for action
       })
       .share();
-    const app$ = this.app(action$, { state });
+    const app$: Observable<Action<any>> = Observable.merge(
+      this.app(action$, { state }),
+      this.domAction(dom),
+      history.changes()
+    );
     history.start();
     goTo$(app$).subscribe(path => history.go(path));
     render$(app$)
       .map((state: any) => this.render(state)) // FIXME
       .subscribe(vtree => dom.renderToDOM(vtree));
-    Observable
-      .merge(
-        app$.filter(action => action && !isGoTo(action) && !isRender(action)),
-        this.domAction(dom),
-        history.changes()
-      )
+    app$
+      .filter(action => action && !isGoTo(action) && !isRender(action))
       .subscribe((action: Action<any>): void => {
         setTimeout(() => subject.next(action));
       });

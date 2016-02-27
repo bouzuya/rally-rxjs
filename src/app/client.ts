@@ -21,7 +21,7 @@ import { from as responseTokenCreate$ } from './actions/response-token-create';
 import { from as goToSignIn$ } from './actions/sign-in';
 import {
   create as createSuccessSignIn,
-  is as isSuccessSignInAction
+  from as successSignInAction$
 } from './actions/success-sign-in';
 import createSuccessStampRallyShow from './actions/success-stamp-rally-show';
 
@@ -42,8 +42,7 @@ const app = (
       // State to RenderAction
       state$.map(createRenderAction),
       // * to GoToAction
-      action$
-        .filter(isSuccessSignInAction)
+      successSignInAction$(action$)
         .map(() => goTo('/stamp_rallies')),
       // * to RequestAction
       Observable

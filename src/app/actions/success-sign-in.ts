@@ -1,10 +1,16 @@
-import { Action } from '../../framework/action';
+import { A, O } from '../../framework/o-a';
 
+type P = void;
 const type = 'success-sign-in';
-const is = (action: Action<any>) => action.type === type;
-const create = (): Action<void> => {
+
+const create = (): A<P> => {
   return { type };
 };
 
-export { create, is, type };
-export default create;
+const from = (action$: O<A<any>>): O<P> => {
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
+};
+
+export { create, from };

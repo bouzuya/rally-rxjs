@@ -5,7 +5,7 @@ import { from as route$ } from '../../../framework/route-action';
 import { Updater } from '../../models/updater';
 import { SignIn } from '../../models/sign-in';
 
-import { is as isSuccessSignIn } from '../../actions/success-sign-in';
+import { from as successSignIn$ } from '../../actions/success-sign-in';
 
 export default function updater$(
   action$: Observable<Action<any>>
@@ -14,7 +14,7 @@ export default function updater$(
     .merge(
       route$(action$)
         .filter(({ name }) => name === 'sign_in#index'),
-      action$.filter(isSuccessSignIn)
+      successSignIn$(action$)
     )
     .map(() => (signIn: SignIn): SignIn => {
       return { email: null, password: null };

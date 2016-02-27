@@ -13,7 +13,7 @@ import { from as addStampRally$ } from './actions/add-stamp-rally';
 import { create as goTo } from './actions/go-to';
 import { create as createRenderAction } from './actions/render';
 import { create as createRequest } from './actions/request';
-import { is as isResponseSpotCreate } from './actions/response-spot-create';
+import { from as responseSpotCreate$ } from './actions/response-spot-create';
 import {
   is as isResponseStampRallyShow
 } from './actions/response-stamp-rally-show';
@@ -86,8 +86,7 @@ const app = (
           };
         })
         .map(params => createRequest('stamp-rally-create', params)),
-      action$
-        .filter(isResponseSpotCreate)
+      responseSpotCreate$(action$)
         .withLatestFrom(state$, (_, state) => {
           return {
             token: state.token.token,

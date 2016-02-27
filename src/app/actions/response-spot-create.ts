@@ -1,12 +1,18 @@
-import { Action } from '../../framework/action';
+import { A, O } from '../../framework/o-a';
 
 import { Spot } from '../models/spot';
 
+type P = Spot;
 const type = 'response-spot-create';
-const is = (action: Action<any>): boolean => action.type === type;
-const create = (response: Spot): Action<Spot> => {
+
+const create = (response: Spot): A<P> => {
   return { type, params: response };
 };
 
-export { create, is, type };
-export default create;
+const from = (action$: O<A<any>>): O<P> => {
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
+};
+
+export { create, from };

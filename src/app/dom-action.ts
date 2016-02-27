@@ -6,7 +6,7 @@ import { create as addSpotAction } from './actions/add-spot';
 import { create as addStampRallyAction } from './actions/add-stamp-rally';
 import { create as changeEmailAction } from './actions/change-email';
 import { create as changePasswordAction } from './actions/change-password';
-import changeSpotFormNameAction from './actions/change-spot-form-name';
+import { create as changeSpotFormNameAction } from './actions/change-spot-form-name';
 import
  changeStampRallyFormNameAction
 from './actions/change-stamp-rally-form-name';

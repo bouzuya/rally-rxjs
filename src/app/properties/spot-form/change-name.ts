@@ -3,7 +3,7 @@ import { Action } from '../../../framework/action';
 
 import { Updater } from '../../models/updater';
 
-import { is as isChangeName } from '../../actions/change-spot-form-name';
+import { from as changeName$ } from '../../actions/change-spot-form-name';
 import { is as isResponseSpotCreate } from '../../actions/response-spot-create';
 import { SpotForm } from '../../models/spot-form';
 
@@ -12,9 +12,8 @@ export default function updater$(
 ): Observable<Updater<SpotForm>> {
   return Observable
     .merge(
-      action$
-        .filter(isChangeName)
-        .map(({ params: { value } }) => value),
+      changeName$(action$)
+        .map(({ value }) => value),
       action$
         .filter(isResponseSpotCreate)
         .map(() => null)

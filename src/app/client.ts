@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { Action } from '../framework/action';
 import { Client } from '../framework/client';
-import { is as isRoute } from '../framework/route-action';
+import { filter as routeAction } from '../framework/route-action';
 import { RouteAction } from '../framework/router';
 
 import { routes } from './configs/routes';
@@ -49,23 +49,20 @@ const app = (
       // * to RequestAction
       Observable
         .merge(
-          action$
-            .filter(isRoute)
-            .filter(({ params: { name } }) => name === 'stamp_rallies#index')
+          routeAction(action$)
+            .filter(({ name }) => name === 'stamp_rallies#index')
             .map(() => ({ token, userId }: Token) => {
               return createRequest('stamp-rally-index', { token, userId });
             }),
-          action$
-            .filter(isRoute)
-            .filter(({ params: { name } }) => name === 'stamp_rallies#show')
-            .map(({ params: { params } }) => params['id'])
+          routeAction(action$)
+            .filter(({ name }) => name === 'stamp_rallies#show')
+            .map(({ params }) => params['id'])
             .map(stampRallyId => ({ token }: Token) => {
               return createRequest('stamp-rally-show', { token, stampRallyId });
             }),
-          action$
-            .filter(isRoute)
-            .filter(({ params: { name } }) => name === 'stamp_rallies#show')
-            .map(({ params: { params } }) => params['id'])
+          routeAction(action$)
+            .filter(({ name }) => name === 'stamp_rallies#show')
+            .map(({ params }) => params['id'])
             .map(stampRallyId => ({ token }: Token) => {
               return createRequest('spot-index', { token, stampRallyId });
             })

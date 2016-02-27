@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Action } from '../../../framework/action';
-import { is as isRoute } from '../../../framework/route-action';
+import { filter as routeAction } from '../../../framework/route-action';
 
 import { Updater } from '../../models/updater';
 import { SignIn } from '../../models/sign-in';
@@ -12,9 +12,8 @@ export default function updater$(
 ): Observable<Updater<SignIn>> {
   return Observable
     .merge(
-      action$
-        .filter(isRoute)
-        .filter(({ params: { name } }) => name === 'sign_in'),
+      routeAction(action$)
+        .filter(({ name }) => name === 'sign_in#index'),
       action$.filter(isSuccessSignIn)
     )
     .map(() => (signIn: SignIn): SignIn => {

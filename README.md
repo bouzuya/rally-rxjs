@@ -12,6 +12,25 @@ $ npm start
 $ open http://localhost:3000/
 ```
 
+## Note
+
+```
+      O<A> |
+   +------>|-------+
+   |       |       |
+   |       |       |
+FW |       |       | AP
+   |       |       |
+   |       |       |
+   +-------|<------+
+           | O<A>
+
+O : Observable
+A : Action
+AP : Application
+FW : Framework
+```
+
 ## License
 
 [MIT](LICENSE)

@@ -1,8 +1,7 @@
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Action } from '../framework/action';
 import { Client } from '../framework/client';
 import { filter as routeAction } from '../framework/route-action';
-import { RouteAction } from '../framework/router';
 
 import { routes } from './configs/routes';
 import { State } from './models/state';

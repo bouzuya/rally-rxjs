@@ -24,14 +24,14 @@ import {
 } from './actions/response-token-create';
 
 const request = (
-  request$: Observable<Action<any>>,
+  request$: Observable<any>,
   path: string,
   request: (params: any) => Promise<any>,
   response: (res: any) => Action<any>
 ): Observable<Action<any>> => {
   return request$
-    .filter(({ params: { path: p } }) => p === path)
-    .mergeMap(({ params: { params: p } }) => {
+    .filter(({ path: p }) => p === path)
+    .mergeMap(({ params: p }) => {
       return Observable.fromPromise(request(p));
     })
     .map(r => response(r));

@@ -2,6 +2,7 @@
 .envrc
 .tmp/
 bundle.js
+dist/
 lib/
 node_modules/
 typings/

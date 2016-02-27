@@ -1,10 +1,15 @@
-import { Action } from '../../framework/action';
+import { A, O } from '../../framework/o-a';
 
+type P = void;
 const type = 'add-stamp-rally';
-const is = (action: Action<any>) => action.type === type;
-const create = (): Action<void> => {
+
+const create = (): A<P> => {
   return { type };
 };
+const from = (action$: O<A<any>>): O<P> => {
+  return action$
+    .filter(action => action.type === type)
+    .map(({ params }) => params);
+};
 
-export { create, is, type };
-export default create;
+export { create, from };

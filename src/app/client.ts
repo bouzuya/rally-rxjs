@@ -9,7 +9,7 @@ import { Token } from './models/token';
 import render from './views/app';
 
 import { from as addSpot$ } from './actions/add-spot';
-import { is as isAddStampRallyAction } from './actions/add-stamp-rally';
+import { from as addStampRally$ } from './actions/add-stamp-rally';
 import goTo from './actions/go-to';
 import createRenderAction from './actions/render';
 import createRequest from './actions/request';
@@ -78,8 +78,7 @@ const app = (
           };
         })
         .map(params => createRequest('spot-create', params)),
-      action$
-        .filter(isAddStampRallyAction)
+      addStampRally$(action$)
         .withLatestFrom(state$, (_, state) => {
           return {
             token: state.token.token,

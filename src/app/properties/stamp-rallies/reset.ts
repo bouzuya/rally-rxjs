@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../../../framework/action';
+import { A, O } from '../../../framework/o-a';
 
 import { Updater } from '../../models/updater';
 
@@ -9,8 +8,8 @@ import {
 import { StampRally } from '../../models/stamp-rally';
 
 export default function updater$(
-  action$: Observable<Action<any>>
-): Observable<Updater<StampRally[]>> {
+  action$: O<A<any>>
+): O<Updater<StampRally[]>> {
   return responseStampRallyIndex$(action$)
     .map(stampRallies => (): StampRally[] => stampRallies);
 }

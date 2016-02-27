@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../../framework/action';
+import { A, O, Observable } from '../../framework/o-a';
 
 import { Updater } from '../models/updater';
 
@@ -10,8 +9,8 @@ import reset$ from './sign-in/reset';
 
 export default function property(
   state: SignIn,
-  action$: Observable<Action<any>>
-): Observable<SignIn> {
+  action$: O<A<any>>
+): O<SignIn> {
   return Observable
     .of(state)
     .merge(

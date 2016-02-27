@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../../framework/action';
+import { A, O, Observable } from '../../framework/o-a';
 
 import { State } from '../models/state';
 
@@ -13,9 +12,9 @@ import stampRallyForm$ from '../properties/stamp-rally-form';
 import token$ from '../properties/token';
 
 export default function state(
-  action$: Observable<Action<any>>,
+  action$: O<A<any>>,
   state: State
-): Observable<State> {
+): O<State> {
   return Observable
     .combineLatest(
       currentPage$(state.currentPage, action$),

@@ -1,17 +1,16 @@
-import { Observable } from 'rxjs';
-import { Action } from './action';
+import { A, O } from './o-a';
 import { InitializerName, InitializerParameters } from './initializer';
 
 type P = {
   name: InitializerName;
   params: InitializerParameters;
 };
-type RouteAction = Action<P>;
+type RouteAction = A<P>;
 const type = 'route';
 
 const from = (
-  action$: Observable<Action<any>>
-): Observable<P> => {
+  action$: O<A<any>>
+): O<P> => {
   return action$
     .filter(action => action.type === type)
     .map(({ params }) => params);

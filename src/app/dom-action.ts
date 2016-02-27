@@ -1,4 +1,4 @@
-import { Action, Observable } from '../framework/o-a';
+import { A, O, Observable } from '../framework/o-a';
 import { DOM } from '../framework/dom';
 
 import { create as addSpotAction } from './actions/add-spot';
@@ -12,9 +12,9 @@ import { create as goTo } from './actions/go-to';
 import { create as signInAction } from './actions/sign-in';
 
 // TODO: move to views/
-export default function domAction(dom: DOM): Observable<Action<any>> {
+export default function domAction(dom: DOM): O<A<any>> {
   const changeAction$ = (
-    selector: string, create: (value: string) => Action<{ value: string }>
+    selector: string, create: (value: string) => A<{ value: string }>
   ) => {
     return dom
       .on(selector, 'change')

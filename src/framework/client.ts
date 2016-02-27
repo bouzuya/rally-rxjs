@@ -1,5 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import { Action } from './action';
+import { A, O } from './o-a';
 import { DOM } from './dom';
 import { VTree } from './view';
 import { Route, Router } from './router';
@@ -11,21 +11,21 @@ class Client<State> {
   private rootSelector: string;
   private render: (state: State) => VTree;
   private app: (
-    action$: Observable<Action<any>>,
+    action$: O<A<any>>,
     options: any
-  ) => Observable<Action<any>>;
+  ) => O<A<any>>;
   private router: Router;
-  private domAction: (dom: DOM) => Observable<Action<string>>;
+  private domAction: (dom: DOM) => O<A<string>>;
 
   constructor(
     rootSelector: string,
     render: (state: State) => VTree,
     app: (
-      action$: Observable<Action<any>>,
+      action$: O<A<any>>,
       options: any
-    ) => Observable<Action<any>>,
+    ) => O<A<any>>,
     routes: Route[],
-    domAction: (dom: DOM) => Observable<Action<any>>
+    domAction: (dom: DOM) => O<A<any>>
   ) {
     this.rootSelector = rootSelector;
     this.render = render;
@@ -38,18 +38,19 @@ class Client<State> {
     const dom = new DOM(this.rootSelector);
     const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
-    const subject = new Subject<Action<any>>();
+    const subject = new Subject<A<any>>();
     const action$ = subject
       .asObservable()
       .do(({ type }) => {
         console.log('action type: ' + type); // logger for action
       })
       .share();
-    const app$: Observable<Action<any>> = Observable.merge(
-      this.app(action$, { state }),
-      this.domAction(dom),
-      history.changes()
-    );
+    const app$: O<A<any>> = Observable
+      .merge(
+        this.app(action$, { state }),
+        this.domAction(dom),
+        history.changes()
+      );
     history.start();
     goTo$(app$).subscribe(path => history.go(path));
     render$(app$)
@@ -57,7 +58,7 @@ class Client<State> {
       .subscribe(vtree => dom.renderToDOM(vtree));
     app$
       .filter(action => action && !isGoTo(action) && !isRender(action))
-      .subscribe((action: Action<any>): void => {
+      .subscribe((action: A<any>): void => {
         setTimeout(() => subject.next(action));
       });
   }

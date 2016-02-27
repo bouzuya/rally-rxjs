@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../framework/action';
+import { A, O, Observable } from '../framework/o-a';
 
 import { from as request$ } from './actions/request';
 import requestSpotCreate from './requests/spot-create';
@@ -24,11 +23,11 @@ import {
 } from './actions/response-token-create';
 
 const request = (
-  request$: Observable<any>,
+  request$: O<any>,
   path: string,
   request: (params: any) => Promise<any>,
-  response: (res: any) => Action<any>
-): Observable<Action<any>> => {
+  response: (res: any) => A<any>
+): O<A<any>> => {
   return request$
     .filter(({ path: p }) => p === path)
     .mergeMap(({ params: p }) => {
@@ -39,8 +38,8 @@ const request = (
 
 // RequestAction to ResponseAction
 export default function all(
-  action$: Observable<Action<any>>
-): Observable<Action<any>> {
+  action$: O<A<any>>
+): O<A<any>> {
   const request$s = [
     ['spot-create', requestSpotCreate, responseSpotCreate],
     ['spot-index', requestSpotIndex, responseSpotIndex],

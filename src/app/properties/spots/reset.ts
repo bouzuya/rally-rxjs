@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../../../framework/action';
+import { A, O } from '../../../framework/o-a';
 
 import { Updater } from '../../models/updater';
 
@@ -7,8 +6,8 @@ import { from as responseSpotIndex$ } from '../../actions/response-spot-index';
 import { Spot } from '../../models/spot';
 
 export default function updater$(
-  action$: Observable<Action<any>>
-): Observable<Updater<Spot[]>> {
+  action$: O<A<any>>
+): O<Updater<Spot[]>> {
   return responseSpotIndex$(action$)
     .map(spots => (): Spot[] => spots);
 }

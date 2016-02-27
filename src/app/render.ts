@@ -1,4 +1,4 @@
-import { O, A, Observable } from '../framework/o-a';
+import { O, A } from '../framework/o-a';
 
 import { State } from './models/state';
 

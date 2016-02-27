@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../../../framework/action';
+import { A, O, Observable } from '../../../framework/o-a';
 
 import { Updater } from '../../models/updater';
 
@@ -10,8 +9,8 @@ import {
 import { StampRallyForm } from '../../models/stamp-rally-form';
 
 export default function updater$(
-  action$: Observable<Action<any>>
-): Observable<Updater<StampRallyForm>> {
+  action$: O<A<any>>
+): O<Updater<StampRallyForm>> {
   return Observable
     .merge(
       changeName$(action$)

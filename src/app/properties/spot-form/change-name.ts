@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../../../framework/action';
+import { A, O, Observable } from '../../../framework/o-a';
 
 import { Updater } from '../../models/updater';
 
@@ -10,8 +9,8 @@ import {
 import { SpotForm } from '../../models/spot-form';
 
 export default function updater$(
-  action$: Observable<Action<any>>
-): Observable<Updater<SpotForm>> {
+  action$: O<A<any>>
+): O<Updater<SpotForm>> {
   return Observable
     .merge(
       changeName$(action$)

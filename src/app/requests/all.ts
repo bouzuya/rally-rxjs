@@ -9,7 +9,7 @@ import requestStampRallyIndex from '../requests/stamp-rally-index';
 import requestStampRallyShow from '../requests/stamp-rally-show';
 import requestTokenCreate from '../requests/token-create';
 import { create as responseSpotCreate } from '../actions/response-spot-create';
-import responseSpotIndex from '../actions/response-spot-index';
+import { create as responseSpotIndex } from '../actions/response-spot-index';
 import responseStampRallyCreate from '../actions/response-stamp-rally-create';
 import responseStampRallyIndex from '../actions/response-stamp-rally-index';
 import responseStampRallyShow from '../actions/response-stamp-rally-show';

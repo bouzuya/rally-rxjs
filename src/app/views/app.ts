@@ -9,11 +9,11 @@ import renderNotFoundPage from '../views/not-found-page';
 
 const renderPage = (state: State): VTree => {
   switch (state.currentPage) {
-    case 'sign-in':
+    case 'sign_in':
       return renderSignInPage(state);
-    case 'stamp-rally-list':
+    case 'stamp_rallies#index':
       return renderStampRallyListPage(state);
-    case 'stamp-rally-show':
+    case 'stamp_rallies#show':
       return renderStampRallyShowPage(state);
     default:
       return renderNotFoundPage();

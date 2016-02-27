@@ -1,6 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { Action } from '../framework/action';
 import { Client } from '../framework/client';
+import { is as isRoute } from '../framework/route-action';
 import { RouteAction } from '../framework/router';
 
 import { routes } from './configs/routes';
@@ -10,16 +11,7 @@ import render from './views/app';
 
 import { is as isAddSpotAction } from './actions/add-spot';
 import { is as isAddStampRallyAction } from './actions/add-stamp-rally';
-import { is as isGoToAction, create as goTo } from './actions/go-to';
-import goToSignInAction from './actions/go-to-sign-in';
-import {
-  create as goToStampRallyListAction,
-  is as isGoToStampRallyList
-} from './actions/go-to-stamp-rally-list';
-import {
-  create as goToStampRallyShowAction,
-  is as isGoToStampRallyShow
-} from './actions/go-to-stamp-rally-show';
+import goTo from './actions/go-to';
 import createRenderAction from './actions/render';
 import createRequest from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';
@@ -54,37 +46,27 @@ const app = (
       action$
         .filter(isSuccessSignInAction)
         .map(() => goTo('/stamp_rallies')),
-      // RouteAction to *
-      action$
-        .filter(({ type }) => type === 'route')
-        .filter(({ params: { name } }) => name === 'sign_in#index')
-        .map(() => goToSignInAction()),
-      action$
-        .filter(({ type }) => type === 'route')
-        .filter(({ params: { name } }) => name === 'stamp_rallies#index')
-        .map(() => goToStampRallyListAction()),
-      action$
-        .filter(({ type }) => type === 'route')
-        .filter(({ params: { name } }) => name === 'stamp_rallies#show')
-        .map(({ params }) => goToStampRallyShowAction(params['id'])),
-      action$
-        .filter(isGoToAction),
       // * to RequestAction
       Observable
         .merge(
           action$
-            .filter(isGoToStampRallyList)
+            .filter(isRoute)
+            .filter(({ params: { name } }) => name === 'stamp_rallies#index')
             .map(() => ({ token, userId }: Token) => {
               return createRequest('stamp-rally-index', { token, userId });
             }),
           action$
-            .filter(isGoToStampRallyShow)
-            .map(({ params: stampRallyId }) => ({ token }: Token) => {
+            .filter(isRoute)
+            .filter(({ params: { name } }) => name === 'stamp_rallies#show')
+            .map(({ params: { params } }) => params['id'])
+            .map(stampRallyId => ({ token }: Token) => {
               return createRequest('stamp-rally-show', { token, stampRallyId });
             }),
           action$
-            .filter(isGoToStampRallyShow)
-            .map(({ params: stampRallyId }) => ({ token }: Token) => {
+            .filter(isRoute)
+            .filter(({ params: { name } }) => name === 'stamp_rallies#show')
+            .map(({ params: { params } }) => params['id'])
+            .map(stampRallyId => ({ token }: Token) => {
               return createRequest('spot-index', { token, stampRallyId });
             })
         )

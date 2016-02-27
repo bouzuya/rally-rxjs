@@ -1,5 +1,5 @@
 import renderToHTML from 'vdom-to-html';
-import { Router, Route, RouteResult } from './router';
+import { Router, Route } from './router';
 import { HTML, Path } from './types';
 import { Initializer } from './initializer';
 import run from './express-server';
@@ -27,7 +27,7 @@ class Server<State> {
 
   private init(path: Path): Promise<State> {
     const result = this.router.routes(path);
-    const initializer = this.initializers[result.name];
+    const initializer = this.initializers[result.type];
     return initializer(result.params);
   }
 

@@ -1,6 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { Action } from '../framework/action';
 import { Client } from '../framework/client';
+import { RouteAction } from '../framework/router';
 
 import { routes } from './configs/routes';
 import { State } from './models/state';
@@ -10,8 +11,15 @@ import render from './views/app';
 import { is as isAddSpotAction } from './actions/add-spot';
 import { is as isAddStampRallyAction } from './actions/add-stamp-rally';
 import { is as isGoToAction, create as goTo } from './actions/go-to';
-import { is as isGoToStampRallyList } from './actions/go-to-stamp-rally-list';
-import { is as isGoToStampRallyShow } from './actions/go-to-stamp-rally-show';
+import goToSignInAction from './actions/go-to-sign-in';
+import {
+  create as goToStampRallyListAction,
+  is as isGoToStampRallyList
+} from './actions/go-to-stamp-rally-list';
+import {
+  create as goToStampRallyShowAction,
+  is as isGoToStampRallyShow
+} from './actions/go-to-stamp-rally-show';
 import createRenderAction from './actions/render';
 import createRequest from './actions/request';
 import { is as isResponseSpotCreate } from './actions/response-spot-create';
@@ -26,10 +34,9 @@ import {
 } from './actions/success-sign-in';
 import createSuccessStampRallyShow from './actions/success-stamp-rally-show';
 
-import makeRequest from './requests/all';
+import makeResponse from './requests/all';
 import makeState from './properties/all';
 import domAction$ from './dom-action';
-import historyAction$ from './history-action';
 
 const app = (
   action$: Observable<Action<any>>,
@@ -41,23 +48,25 @@ const app = (
   const state$ = makeState(action$, state);
   return Observable
     .merge(
-      // RenderAction
+      // State to RenderAction
       state$.map(createRenderAction),
-      // GoToAction
+      // * to GoToAction
       action$
         .filter(isSuccessSignInAction)
         .map(() => goTo('/stamp_rallies')),
+      // RouteAction to *
+      action$
+        .filter(({ type }) => type === 'sign_in#index')
+        .map(() => goToSignInAction()),
+      action$
+        .filter(({ type }) => type === 'stamp_rallies#index')
+        .map(() => goToStampRallyListAction()),
+      action$
+        .filter(({ type }) => type === 'stamp_rallies#show')
+        .map(({ params }) => goToStampRallyShowAction(params['id'])),
       action$
         .filter(isGoToAction),
-      // RequestAction
-      makeRequest(action$),
-      // *Action
-      action$
-        .filter(isResponseStampRallyShow)
-        .map(createSuccessStampRallyShow),
-      action$
-        .filter(isResponseTokenCreate)
-        .map(createSuccessSignIn),
+      // * to RequestAction
       Observable
         .merge(
           action$
@@ -115,14 +124,23 @@ const app = (
             password: state.signIn.password,
           };
         })
-        .map(params => createRequest('token-create', params))
+        .map(params => createRequest('token-create', params)),
+      // RequestAction to ResponseAction
+      makeResponse(action$),
+      // * to *
+      action$
+        .filter(isResponseStampRallyShow)
+        .map(createSuccessStampRallyShow),
+      action$
+        .filter(isResponseTokenCreate)
+        .map(createSuccessSignIn)
     )
     .share();
 };
 
 export default function main() {
   const client = new Client(
-    'div#app', render, app, routes, domAction$, historyAction$
+    'div#app', render, app, routes, domAction$
   );
   client.run();
 }

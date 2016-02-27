@@ -29,6 +29,7 @@ const request = (
     .map(r => response(r));
 };
 
+// RequestAction to ResponseAction
 export default function all(
   action$: Observable<Action<any>>
 ): Observable<Action<any>> {

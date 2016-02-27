@@ -16,8 +16,6 @@ class Client<State> {
   ) => Observable<Action<any>>;
   private router: Router;
   private domAction: (dom: DOM) => Observable<Action<string>>;
-  private historyAction: (history: HistoryRouter) =>
-    Observable<Action<any>>;
 
   constructor(
     rootSelector: string,
@@ -27,15 +25,13 @@ class Client<State> {
       options: any
     ) => Observable<Action<any>>,
     routes: Route[],
-    domAction: (dom: DOM) => Observable<Action<any>>,
-    historyAction: (history: HistoryRouter) => Observable<Action<any>>
+    domAction: (dom: DOM) => Observable<Action<any>>
   ) {
     this.rootSelector = rootSelector;
     this.render = render;
     this.app = app;
     this.router = new Router(routes);
     this.domAction = domAction;
-    this.historyAction = historyAction;
   }
 
   run(): void {
@@ -64,7 +60,7 @@ class Client<State> {
       .merge(
         app$.filter(action => action && !isGoTo(action) && !isRender(action)),
         this.domAction(dom),
-        this.historyAction(history)
+        history.changes()
       )
       .subscribe((action: Action<any>): void => {
         setTimeout(() => subject.next(action));

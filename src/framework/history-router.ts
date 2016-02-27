@@ -1,11 +1,11 @@
-import { Router, RouteResult } from './router';
+import { Router, RouteAction } from './router';
 import { Observable, Subject } from 'rxjs';
 
 class HistoryRouter {
   private router: Router;
   private window: any;
   private history: History;
-  private subject: Subject<RouteResult>;
+  private subject: Subject<RouteAction>;
 
   constructor(router: Router) {
     this.window = Function('return this')();
@@ -20,7 +20,7 @@ class HistoryRouter {
     }
   }
 
-  changes(): Observable<RouteResult> {
+  changes(): Observable<RouteAction> {
     return this.subject.asObservable();
   }
 

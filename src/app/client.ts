@@ -23,7 +23,9 @@ import {
   create as createSuccessSignIn,
   from as successSignInAction$
 } from './actions/success-sign-in';
-import createSuccessStampRallyShow from './actions/success-stamp-rally-show';
+import {
+  create as createSuccessStampRallyShow
+} from './actions/success-stamp-rally-show';
 
 import makeResponse from './requests/all';
 import makeState from './properties/all';

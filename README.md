@@ -31,6 +31,39 @@ AP : Application
 FW : Framework
 ```
 
+### rally-rxjs
+
+#### 0.2.0
+
+- AP: 0.1.0
+- FW: 0.2.0
+
+#### 0.1.0
+
+- AP: 0.1.0
+- FW: 0.1.0
+
+### AP
+
+#### 0.1.0
+
+- sign in
+- stamp rally create
+- stamp rally index
+- stamp rally show
+- spot create
+- spot index
+
+### FW
+
+#### 0.2.0
+
+- `type app = (action$ O<A>) => O<A>;`
+
+#### 0.1.0
+
+- [bouzuya/vdom-rxjs-ssr][]
+
 ## License
 
 [MIT](LICENSE)

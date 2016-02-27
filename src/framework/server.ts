@@ -26,9 +26,9 @@ class Server<State> {
   }
 
   private init(path: Path): Promise<State> {
-    const result = this.router.routes(path);
-    const initializer = this.initializers[result.type];
-    return initializer(result.params);
+    const action = this.router.routes(path);
+    const initializer = this.initializers[action.params.name];
+    return initializer(action.params.params);
   }
 
   private request(path: Path): Promise<HTML> {

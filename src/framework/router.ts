@@ -5,7 +5,7 @@ import { RouteAction } from './route-action';
 
 type Route = {
   path: Path;
-  type: InitializerName;
+  name: InitializerName;
 };
 
 class Router {
@@ -19,7 +19,7 @@ class Router {
     const requestPath = path;
     for (var i = 0; i < this.config.length; i++) {
       const route = this.config[i];
-      const { path, type } = route;
+      const { path, name } = route;
       const keys: { name: string; }[] = [];
       const match = pathToRegexp(path, keys).exec(requestPath);
       if (match) {
@@ -27,7 +27,7 @@ class Router {
         for (var j = 1; j < match.length; j++) {
           params[keys[j - 1].name] = match[j];
         }
-        return { type, params };
+        return { type: 'route', params: { name, params } };
       }
     }
     return null;

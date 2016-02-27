@@ -56,13 +56,16 @@ const app = (
         .map(() => goTo('/stamp_rallies')),
       // RouteAction to *
       action$
-        .filter(({ type }) => type === 'sign_in#index')
+        .filter(({ type }) => type === 'route')
+        .filter(({ params: { name } }) => name === 'sign_in#index')
         .map(() => goToSignInAction()),
       action$
-        .filter(({ type }) => type === 'stamp_rallies#index')
+        .filter(({ type }) => type === 'route')
+        .filter(({ params: { name } }) => name === 'stamp_rallies#index')
         .map(() => goToStampRallyListAction()),
       action$
-        .filter(({ type }) => type === 'stamp_rallies#show')
+        .filter(({ type }) => type === 'route')
+        .filter(({ params: { name } }) => name === 'stamp_rallies#show')
         .map(({ params }) => goToStampRallyShowAction(params['id'])),
       action$
         .filter(isGoToAction),

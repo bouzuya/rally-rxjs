@@ -2,7 +2,7 @@ import { State } from '../models/state';
 
 export default function initializer(): Promise<State> {
   return Promise.resolve({
-    currentPage: 'sign-in',
+    currentPage: 'sign_in#index',
     signIn: {
       email: null,
       password: null

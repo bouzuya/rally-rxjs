@@ -1,15 +1,11 @@
 import pathToRegexp from 'path-to-regexp';
 import { Path } from './types';
 import { InitializerName, InitializerParameters } from './initializer';
+import { RouteAction } from './route-action';
 
 type Route = {
   path: Path;
   type: InitializerName;
-};
-
-type RouteAction = {
-  type: InitializerName;
-  params: InitializerParameters;
 };
 
 class Router {

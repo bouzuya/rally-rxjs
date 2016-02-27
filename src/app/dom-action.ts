@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Action } from '../framework/action';
+import { Action, Observable } from '../framework/o-a';
 import { DOM } from '../framework/dom';
 
 import { create as addSpotAction } from './actions/add-spot';

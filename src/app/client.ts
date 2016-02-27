@@ -1,24 +1,18 @@
 import { Observable } from 'rxjs';
 import { Action } from '../framework/action';
 import { Client } from '../framework/client';
-import { from as route$ } from '../framework/route-action';
 
 import { routes } from './configs/routes';
 import { State } from './models/state';
 import { Token } from './models/token';
 import render from './views/app';
 
-import { from as addSpot$ } from './actions/add-spot';
-import { from as addStampRally$ } from './actions/add-stamp-rally';
 import { create as goTo } from './actions/go-to';
 import { create as createRenderAction } from './actions/render';
-import { create as createRequest } from './actions/request';
-import { from as responseSpotCreate$ } from './actions/response-spot-create';
 import {
   from as responseStampRallyShow$
 } from './actions/response-stamp-rally-show';
 import { from as responseTokenCreate$ } from './actions/response-token-create';
-import { from as goToSignIn$ } from './actions/sign-in';
 import {
   create as createSuccessSignIn,
   from as successSignInAction$
@@ -27,6 +21,7 @@ import {
   create as createSuccessStampRallyShow
 } from './actions/success-stamp-rally-show';
 
+import makeRequest from './request';
 import makeResponse from './requests/all';
 import makeState from './properties/all';
 import domAction$ from './dom-action';
@@ -47,62 +42,7 @@ const app = (
       successSignInAction$(action$)
         .map(() => goTo('/stamp_rallies')),
       // * to RequestAction
-      Observable
-        .merge(
-          route$(action$)
-            .filter(({ name }) => name === 'stamp_rallies#index')
-            .map(() => ({ token, userId }: Token) => {
-              return createRequest('stamp-rally-index', { token, userId });
-            }),
-          route$(action$)
-            .filter(({ name }) => name === 'stamp_rallies#show')
-            .map(({ params }) => params['id'])
-            .map(stampRallyId => ({ token }: Token) => {
-              return createRequest('stamp-rally-show', { token, stampRallyId });
-            }),
-          route$(action$)
-            .filter(({ name }) => name === 'stamp_rallies#show')
-            .map(({ params }) => params['id'])
-            .map(stampRallyId => ({ token }: Token) => {
-              return createRequest('spot-index', { token, stampRallyId });
-            })
-        )
-        .withLatestFrom(state$, (create: any, state: any) => {
-          return create(state.token);
-        }),
-      addSpot$(action$)
-        .withLatestFrom(state$, (_, state) => {
-          return {
-            token: state.token.token,
-            stampRallyId: state.stampRally.name,
-            name: state.spotForm.name
-          };
-        })
-        .map(params => createRequest('spot-create', params)),
-      addStampRally$(action$)
-        .withLatestFrom(state$, (_, state) => {
-          return {
-            token: state.token.token,
-            name: state.stampRallyForm.name
-          };
-        })
-        .map(params => createRequest('stamp-rally-create', params)),
-      responseSpotCreate$(action$)
-        .withLatestFrom(state$, (_, state) => {
-          return {
-            token: state.token.token,
-            stampRallyId: state.stampRally.name
-          };
-        })
-        .map(params => createRequest('spot-index', params)),
-      goToSignIn$(action$)
-        .withLatestFrom(state$, (_, state) => {
-          return {
-            email: state.signIn.email,
-            password: state.signIn.password,
-          };
-        })
-        .map(params => createRequest('token-create', params)),
+      makeRequest(action$, state$),
       // RequestAction to ResponseAction
       makeResponse(action$),
       // * to *

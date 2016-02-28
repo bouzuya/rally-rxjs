@@ -47,7 +47,7 @@
     "prebuild": "[ -d dist/scripts ] || mkdir -p dist/scripts",
     "build": "npm run build-ts && npm run build-es2015 && npm run cp && npm run build-browserify && npm run build-less",
     "build-browserify": "browserify -o dist/scripts/bundle.js client.js",
-    "build-es2015": "babel --presets es2015 --out-dir .tmp/es5/ .tmp/es2015/",
+    "build-es2015": "babel --presets es2015 --out-dir .tmp/es5/ .tmp/es2015/ >/dev/null",
     "build-less": "lessc src/app/styles/index.less dist/styles/index.css",
     "build-ts": "tsc",
     "clean": "rm -rf lib/ .tmp/ dist/ bundle.js",

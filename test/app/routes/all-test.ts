@@ -1,8 +1,8 @@
 import assert from 'power-assert';
-import { routes } from '../../../src/app/configs/routes';
+import { routes } from '../../../src/app/routes/all';
 import { Router, Route, RouteAction } from '../../../src/framework/router';
 
-describe('app/config/routes', function() {
+describe('app/routes/all', function() {
   beforeEach(function() {
     this.router = new Router(routes);
   });

@@ -2,7 +2,7 @@ import { Initializer, InitializerParameters } from '../framework/initializer';
 import { Server } from '../framework/server';
 import { VTree } from '../framework/view';
 
-import { routes } from './configs/routes';
+import { routes } from './routes/all';
 import signInIndexInitializer from './initializers/sign-in-index';
 import stampRalliesIndexInitializer from './initializers/stamp-rallies-index';
 import stampRalliesShowInitializer from './initializers/stamp-rallies-show';

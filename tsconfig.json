@@ -14,7 +14,7 @@
     "./src/app/server.ts",
     "./test/add-test.ts",
     "./test/app/actions/add-spot-test.ts",
-    "./test/app/configs/routes-test.ts",
+    "./test/app/routes/all-test.ts",
     "./test/framework/router-test.ts",
     "./typings/main.d.ts"
   ]

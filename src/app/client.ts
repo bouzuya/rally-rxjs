@@ -1,7 +1,7 @@
 import { A, O, Observable } from '../framework/o-a';
 import { Client } from '../framework/client';
 
-import { routes } from './configs/routes';
+import { routes } from './routes/all';
 import { State } from './models/state';
 
 import view from './views/app';

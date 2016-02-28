@@ -1,17 +1,19 @@
-import { A, O, Observable } from '../framework/o-a';
-import { DOM } from '../framework/dom';
+import { A, O, Observable } from '../../framework/o-a';
+import { DOM } from '../../framework/dom';
 
-import { create as addSpotAction } from './actions/add-spot';
-import { create as addStampRallyAction } from './actions/add-stamp-rally';
-import { create as changeEmailAction } from './actions/change-email';
-import { create as changePasswordAction } from './actions/change-password';
-import { create as changeSpotFormNameAction } from './actions/change-spot-form-name';
-import { create as changeStampRallyFormNameAction }
-from './actions/change-stamp-rally-form-name';
-import { create as goTo } from './actions/go-to';
-import { create as signInAction } from './actions/sign-in';
+import { create as addSpotAction } from '../actions/add-spot';
+import { create as addStampRallyAction } from '../actions/add-stamp-rally';
+import { create as changeEmailAction } from '../actions/change-email';
+import { create as changePasswordAction } from '../actions/change-password';
+import {
+  create as changeSpotFormNameAction
+} from '../actions/change-spot-form-name';
+import {
+  create as changeStampRallyFormNameAction
+} from '../actions/change-stamp-rally-form-name';
+import { create as goTo } from '../actions/go-to';
+import { create as signInAction } from '../actions/sign-in';
 
-// TODO: move to views/
 export default function domAction(dom: DOM): O<A<any>> {
   const changeAction$ = (
     selector: string, create: (value: string) => A<{ value: string }>

@@ -41,24 +41,29 @@ class Client<State> {
     const state: State = (<any> window).INITIAL_STATE;
     const subject = new Subject<A<any>>();
     const history = new HistoryRouter(this.router, subject);
-    const action$ = subject
-      .asObservable()
-      .do(({ type }) => {
-        console.log('action type: ' + type); // logger for action
-      })
-      .map(action => {
+    const fs = [
+      (action: A<any>): A<any> => {
         if (!isGoTo(action)) return action;
         const path: string = action.params;
         history.go(path);
         return { type: 'noop' };
-      })
-      .map(action => {
+      },
+      (action: A<any>): A<any> => {
         if (!isRender(action)) return action;
         const state: any = action.params; // FIXME
         const vtree = this.view(state);
         dom.renderToDOM(vtree);
         return { type: 'noop' };
-      })
+      }
+    ];
+    const action$ = fs.reduce(
+        (a$, f) => a$.map(f),
+        subject
+          .asObservable()
+          .do(({ type }) => {
+            console.log('action type: ' + type); // logger for action
+          })
+      )
       .filter(action => action && action.type !== 'noop')
       .share();
     const app$: O<A<any>> = Observable

@@ -38,9 +38,9 @@ class Client<State> {
 
   run(): void {
     const dom = new DOM(this.viewRootSelector);
-    const history = new HistoryRouter(this.router);
     const state: State = (<any> window).INITIAL_STATE;
     const subject = new Subject<A<any>>();
+    const history = new HistoryRouter(this.router, subject);
     const action$ = subject
       .asObservable()
       .do(({ type }) => {
@@ -64,8 +64,7 @@ class Client<State> {
     const app$: O<A<any>> = Observable
       .merge(
         this.app(action$, { state }),
-        this.viewAction(dom),
-        history.changes()
+        this.viewAction(dom)
       );
     history.start();
     app$.subscribe(action => { setTimeout(() => subject.next(action)); });

@@ -1,7 +1,7 @@
 import { h, VTree } from '../../framework/view';
 
 import { StampRallyForm } from '../models/stamp-rally-form';
-import { create as addStampRallyAction } from '../actions/add-stamp-rally';
+import { create as addStampRally } from '../actions/add-stamp-rally';
 import {
   create as changeStampRallyFormName
 } from '../actions/change-stamp-rally-form-name';
@@ -27,7 +27,7 @@ export default function render(state: StampRallyForm, { e }: any): VTree {
       onclick: (event: Event) => {
         event.preventDefault();
         event.stopPropagation();
-        e(addStampRallyAction());
+        e(addStampRally());
       }
     }, ['add stamp-rally'])
   ]);

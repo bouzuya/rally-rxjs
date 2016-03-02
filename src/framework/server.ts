@@ -1,6 +1,5 @@
 import renderToHTML from 'vdom-to-html';
 import { Router, Route } from './router';
-import { HTML, Path } from './types';
 import { Initializer } from './initializer';
 import run from './express-server';
 import { VTree } from './view';
@@ -25,13 +24,13 @@ class Server<State> {
     run(<any> this);
   }
 
-  private init(path: Path): Promise<State> {
+  private init(path: string): Promise<State> {
     const action = this.router.routes(path);
     const initializer = this.initializers[action.params.name];
     return initializer(action.params.params);
   }
 
-  private request(path: Path): Promise<HTML> {
+  private request(path: string): Promise<string> {
     return this.init(path)
       .then(state => this.render(state, { e: (): void => null }))
       .then(vtree => renderToHTML(vtree));

@@ -1,10 +1,9 @@
 import pathToRegexp from 'path-to-regexp';
-import { Path } from './types';
 import { InitializerName, InitializerParameters } from './initializer';
 import { RouteAction } from './route-action';
 
 type Route = {
-  path: Path;
+  path: string;
   name: InitializerName;
 };
 
@@ -15,7 +14,7 @@ class Router {
     this.config = routes;
   }
 
-  routes(path: Path): RouteAction {
+  routes(path: string): RouteAction {
     const requestPath = path;
     for (var i = 0; i < this.config.length; i++) {
       const route = this.config[i];

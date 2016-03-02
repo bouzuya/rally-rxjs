@@ -1,5 +1,4 @@
 import express from 'express';
-import { HTML } from './types';
 
 type Request = { path: string; };
 type Response = {
@@ -8,7 +7,7 @@ type Response = {
 };
 
 export default function main(
-  server: { request: (path: string) => Promise<HTML> }
+  server: { request: (path: string) => Promise<string> }
 ) {
   const app = express();
   app.use((req: any, res: any, next: any) => {

@@ -1,4 +1,4 @@
-import { A } from './o-a';
+import { A } from '../o-a';
 
 export default function init() {
   const after = (context: any): any => context;

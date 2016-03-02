@@ -1,9 +1,9 @@
 import { A, O, Observable } from '../framework/o-a';
 import { Client } from '../framework/client';
 
-import dom from '../framework/dom-executor';
-import history from '../framework/history-executor';
-import state from '../framework/state-executor';
+import dom from '../framework/executors/dom-executor';
+import history from '../framework/executors/history-executor';
+import state from '../framework/executors/state-executor';
 
 import { routes } from './routes/all';
 import { State } from './models/state';

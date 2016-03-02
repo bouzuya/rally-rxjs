@@ -1,5 +1,6 @@
 import { A } from './o-a';
-import { Router, RouteAction } from './router';
+import { RouteAction } from './route-action';
+import { Router } from './router';
 import { Observable, Subject } from 'rxjs';
 
 class HistoryRouter {

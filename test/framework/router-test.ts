@@ -1,5 +1,6 @@
 import assert from 'power-assert';
-import { Router, Route, RouteAction } from '../../src/framework/router';
+import { RouteAction } from '../../src/framework/route-action';
+import { Router, Route } from '../../src/framework/router';
 
 describe('framework/router', function() {
   it('works', function() {

@@ -33,4 +33,4 @@ class Router {
   }
 }
 
-export { Router, Route, RouteAction };
+export { Router, Route };

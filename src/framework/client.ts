@@ -46,6 +46,20 @@ class Client<State> {
       .do(({ type }) => {
         console.log('action type: ' + type); // logger for action
       })
+      .map(action => {
+        if (!isGoTo(action)) return action;
+        const path: string = action.params;
+        history.go(path);
+        return { type: 'noop' };
+      })
+      .map(action => {
+        if (!isRender(action)) return action;
+        const state: any = action.params; // FIXME
+        const vtree = this.view(state);
+        dom.renderToDOM(vtree);
+        return { type: 'noop' };
+      })
+      .filter(action => action && action.type !== 'noop')
       .share();
     const app$: O<A<any>> = Observable
       .merge(
@@ -54,15 +68,7 @@ class Client<State> {
         history.changes()
       );
     history.start();
-    goTo$(app$).subscribe(path => history.go(path));
-    render$(app$)
-      .map((state: any) => this.view(state)) // FIXME
-      .subscribe(vtree => dom.renderToDOM(vtree));
-    app$
-      .filter(action => action && !isGoTo(action) && !isRender(action))
-      .subscribe((action: A<any>): void => {
-        setTimeout(() => subject.next(action));
-      });
+    app$.subscribe(action => { setTimeout(() => subject.next(action)); });
   }
 }
 

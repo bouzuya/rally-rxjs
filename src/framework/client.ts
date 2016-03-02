@@ -1,11 +1,6 @@
 import { Subject } from 'rxjs';
 import { A, O } from './o-a';
-
-type Executor = {
-  after: (context: any) => any;
-  before: (context: any) => any;
-  execute: (context: any) => (action: A<any>) => A<any>;
-};
+import { Executor } from './executor';
 
 class Client {
   private app: (

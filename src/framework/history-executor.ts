@@ -1,10 +1,11 @@
 import { Subject } from 'rxjs';
 import { A } from './o-a';
+import { Executor } from './executor';
 import { HistoryRouter } from './history-router';
 import { Route, Router } from './router';
 import { is as isGoTo } from '../app/actions/go-to';
 
-export default function init(routes: Route[]) {
+export default function init(routes: Route[]): Executor {
   const after = (context: any): any => {
     const { history }: { history: HistoryRouter; } = context;
     history.start();

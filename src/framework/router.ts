@@ -1,11 +1,7 @@
 import pathToRegexp from 'path-to-regexp';
-import { InitializerName, InitializerParameters } from './initializer';
+import { InitializerParameters } from './initializer';
 import { RouteAction } from './route-action';
-
-type Route = {
-  path: string;
-  name: InitializerName;
-};
+import { Route } from './route';
 
 class Router {
   private config: Route[];
@@ -33,4 +29,4 @@ class Router {
   }
 }
 
-export { Router, Route };
+export { Router };

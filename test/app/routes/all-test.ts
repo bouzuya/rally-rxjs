@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import { routes } from '../../../src/app/routes/all';
 import { RouteAction } from '../../../src/framework/route-action';
-import { Router, Route } from '../../../src/framework/router';
+import { Router } from '../../../src/framework/router';
 
 describe('app/routes/all', function() {
   beforeEach(function() {

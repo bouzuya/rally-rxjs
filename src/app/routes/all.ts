@@ -1,4 +1,4 @@
-import { Route } from '../../framework/router';
+import { Route } from '../../framework/route';
 
 const routes: Route[] = [
   { path: '/sign_in', name: 'sign_in#index' },

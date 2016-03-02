@@ -1,5 +1,6 @@
 import renderToHTML from 'vdom-to-html';
-import { Router, Route } from './router';
+import { Route } from './route';
+import { Router } from './router';
 import { Initializer } from './initializer';
 import run from './express-server';
 import { VTree } from './view';

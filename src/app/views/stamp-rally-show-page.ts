@@ -3,7 +3,7 @@ import { h, VTree } from '../../framework/view';
 import { State } from '../models/state';
 import renderSpotFormView from '../views/spot-form-view';
 
-export default function render(state: State): VTree {
+export default function render(state: State, { e }: any): VTree {
   return h('div.stamp-rally-show-page', [
     (
       state.stampRally
@@ -17,6 +17,6 @@ export default function render(state: State): VTree {
         spot.tagline
       ]);
     })),
-    renderSpotFormView(state.spotForm)
+    renderSpotFormView(state.spotForm, { e })
   ]);
 }

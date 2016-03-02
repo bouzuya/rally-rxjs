@@ -9,8 +9,7 @@ import { from as render$, is as isRender } from '../app/actions/render';
 
 class Client<State> {
   private viewRootSelector: string;
-  private view: (state: State) => VTree;
-  private viewAction: (dom: DOM) => O<A<string>>;
+  private view: (state: State, options: any) => VTree;
   private app: (
     action$: O<A<any>>,
     options: any
@@ -26,12 +25,10 @@ class Client<State> {
     routes: Route[],
     // for View Renderer
     viewRootSelector: string,
-    view: (state: State) => VTree,
-    viewAction: (dom: DOM) => O<A<any>>
+    view: (state: State, options: any) => VTree
   ) {
     this.viewRootSelector = viewRootSelector;
     this.view = view;
-    this.viewAction = viewAction;
     this.app = app;
     this.router = new Router(routes);
   }
@@ -39,6 +36,7 @@ class Client<State> {
   run(): void {
     const dom = new DOM(this.viewRootSelector);
     const state: State = (<any> window).INITIAL_STATE;
+    const e = (action: A<any>): void => subject.next(action);
     const subject = new Subject<A<any>>();
     const history = new HistoryRouter(this.router, subject);
     const fs = [
@@ -51,7 +49,7 @@ class Client<State> {
       (action: A<any>): A<any> => {
         if (!isRender(action)) return action;
         const state: any = action.params; // FIXME
-        const vtree = this.view(state);
+        const vtree = this.view(state, { e });
         dom.renderToDOM(vtree);
         return { type: 'noop' };
       }
@@ -66,11 +64,7 @@ class Client<State> {
       )
       .filter(action => action && action.type !== 'noop')
       .share();
-    const app$: O<A<any>> = Observable
-      .merge(
-        this.app(action$, { state }),
-        this.viewAction(dom)
-      );
+    const app$ = this.app(action$, { state });
     history.start();
     app$.subscribe(action => { setTimeout(() => subject.next(action)); });
   }

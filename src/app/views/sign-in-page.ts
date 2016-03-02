@@ -1,15 +1,19 @@
 import { h, VTree } from '../../framework/view';
 
 import { State } from '../models/state';
+import { create as changeEmail } from '../actions/change-email';
+import { create as changePassword } from '../actions/change-password';
+import { create as signIn } from '../actions/sign-in';
 
-export default function render(state: State): VTree {
+export default function render(state: State, { e }: any): VTree {
   return h('div.sign-in-page', [
     h('label', [
       'email',
       h('input.email', {
         type: 'email',
         name: 'email',
-        value: state.signIn.email
+        value: state.signIn.email,
+        onchange: ({ target: { value } }) => e(changeEmail(value))
       }, []),
     ]),
     h('label', [
@@ -17,9 +21,12 @@ export default function render(state: State): VTree {
       h('input.password', {
         type: 'password',
         name: 'password',
-        value: state.signIn.password
+        value: state.signIn.password,
+        onchange: ({ target: { value } }) => e(changePassword(value))
       }, [])
     ]),
-    h('button.sign-in', ['sign in'])
+    h('button.sign-in', {
+      onclick: () => e(signIn())
+    }, ['sign in'])
   ]);
 }

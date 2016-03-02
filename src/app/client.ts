@@ -5,7 +5,6 @@ import { routes } from './routes/all';
 import { State } from './models/state';
 
 import view from './views/app';
-import viewActions from './view-actions/all';
 
 import makeGoTo from './go-to';
 import makeOther from './other';
@@ -39,7 +38,7 @@ export default function main() {
     // for Router
     routes,
     // for View Renderer
-    'div#app', view, viewActions
+    'div#app', view
   );
   client.run();
 }

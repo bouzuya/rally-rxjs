@@ -19,6 +19,10 @@ class DOMExecutor<State> {
     this.view = view;
   }
 
+  after() {
+    // do nothing
+  }
+
   execute(action: A<any>): A<any> {
     if (!isRender(action)) return action;
     const state: any = action.params; // FIXME

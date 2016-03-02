@@ -4,24 +4,29 @@ import { HistoryRouter } from './history-router';
 import { Route, Router } from './router';
 import { is as isGoTo } from '../app/actions/go-to';
 
-class HistoryExecutor {
-  private history: HistoryRouter;
-  private subject: Subject<A<any>>;
+export default function init(routes: Route[]) {
+  const after = (context: any): any => {
+    const { history }: { history: HistoryRouter; } = context;
+    history.start();
+    return context;
+  };
 
-  constructor(routes: Route[], subject: Subject<A<any>>) {
-    this.history = new HistoryRouter(new Router(routes), subject);
-  }
+  const before = (context: any): any => {
+    const { subject }: { subject: Subject<A<any>>; } = context;
+    const history = new HistoryRouter(new Router(routes), subject);
+    return Object.assign({}, context, { history });
+  };
 
-  after(): void {
-    this.history.start();
-  }
-
-  execute(action: A<any>): A<any> {
+  const execute = (context: any) => (action: A<any>) => {
     if (!isGoTo(action)) return action;
+    const { history, subject }: {
+      history: HistoryRouter;
+      subject: Subject<A<any>>;
+    } = context;
     const path: string = action.params;
-    this.history.go(path);
+    history.go(path);
     return { type: 'noop' };
-  }
-}
+  };
 
-export { HistoryExecutor };
+  return { after, before, execute };
+}

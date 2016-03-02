@@ -4,33 +4,27 @@ import { VTree } from './view';
 import { DOM } from './dom';
 import { is as isRender } from '../app/actions/render';
 
-class DOMExecutor<State> {
-  private dom: DOM;
-  private subject: Subject<A<any>>;
-  private view: (state: State, options: any) => VTree;
+export default function init(
+  viewRootSelector: string,
+  view: (state: any, options: any) => VTree
+) {
+  const after = (context: any): any => context;
 
-  constructor(
-    rootSelector: string,
-    view: (state: State, options: any) => VTree,
-    subject: Subject<A<any>>
-  ) {
-    this.dom = new DOM(rootSelector);
-    this.subject = subject;
-    this.view = view;
-  }
+  const before = (context: any): any => {
+    const { subject }: { subject: Subject<A<any>>; } = context;
+    const dom = new DOM(viewRootSelector);
+    return Object.assign({}, context, { dom });
+  };
 
-  after() {
-    // do nothing
-  }
-
-  execute(action: A<any>): A<any> {
+  const execute = (context: any) => (action: A<any>) => {
     if (!isRender(action)) return action;
+    const { dom, subject }: { dom: DOM; subject: Subject<A<any>>; } = context;
     const state: any = action.params; // FIXME
-    const e = (action: A<any>): void => this.subject.next(action);
-    const vtree = this.view(state, { e });
-    this.dom.renderToDOM(vtree);
+    const e = (action: A<any>): void => subject.next(action);
+    const vtree = view(state, { e });
+    dom.renderToDOM(vtree);
     return { type: 'noop' };
-  }
-}
+  };
 
-export { DOMExecutor };
+  return { after, before, execute };
+}

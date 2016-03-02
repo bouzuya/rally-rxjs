@@ -7,7 +7,7 @@ type Executor = {
   execute: (context: any) => (action: A<any>) => A<any>;
 };
 
-class Client<State> {
+class Client {
   private app: (
     action$: O<A<any>>,
     options: any
@@ -26,10 +26,11 @@ class Client<State> {
   }
 
   run(): void {
-    const state: State = (<any> window).INITIAL_STATE;
     const subject = new Subject<A<any>>();
-    const context = this.executors
-      .reduce((c, { before }) => before(c), { state, subject });
+    const context = this.executors.reduce(
+      (c, { before }) => before(c),
+      { subject }
+    );
     const action$ = this.executors.reduce(
         (a$, { execute }) => a$.map(execute(context)),
         subject
@@ -41,7 +42,10 @@ class Client<State> {
       .filter(action => action && action.type !== 'noop')
       .share();
     const app$ = this.app(action$, context);
-    this.executors.reduce((c, { after }) => after(c), context);
+    this.executors.reduce(
+      (c, { after }) => after(c),
+      context
+    );
     app$.subscribe(action => { setTimeout(() => subject.next(action)); });
   }
 }

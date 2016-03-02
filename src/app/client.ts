@@ -3,6 +3,7 @@ import { Client } from '../framework/client';
 
 import dom from '../framework/dom-executor';
 import history from '../framework/history-executor';
+import state from '../framework/state-executor';
 
 import { routes } from './routes/all';
 import { State } from './models/state';
@@ -39,6 +40,7 @@ export default function main() {
   const client = new Client(
     app,
     [
+      state(),
       dom('div#app', view),
       history(routes)
     ]

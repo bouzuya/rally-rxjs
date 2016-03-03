@@ -2,47 +2,35 @@ import { Subject } from 'rxjs';
 import { A, O } from './o-a';
 import { Executor } from './executor';
 
-class Client {
-  private app: (
+export default function run(
+  app: (
     action$: O<A<any>>,
     options: any
-  ) => O<A<any>>;
-  private executors: Executor[];
-
-  constructor(
-    app: (
-      action$: O<A<any>>,
-      options: any
-    ) => O<A<any>>,
-    executors: Executor[]
-  ) {
-    this.app = app;
-    this.executors = executors;
-  }
-
-  run(): void {
-    const subject = new Subject<A<any>>();
-    const context = this.executors.reduce(
+  ) => O<A<any>>,
+  executors: Executor[]
+) {
+  const subject = new Subject<A<any>>();
+  const context = executors
+    .reduce(
       (c, { before }) => before(c),
       { subject }
     );
-    const action$ = this.executors.reduce(
-        (a$, { execute }) => a$.map(execute(context)),
-        subject
-          .asObservable()
-          .do(({ type }) => {
-            console.log('action type: ' + type); // logger for action
-          })
-      )
-      .filter(action => action && action.type !== 'noop')
-      .share();
-    const app$ = this.app(action$, context);
-    this.executors.reduce(
+  const action$ = executors
+    .reduce(
+      (a$, { execute }) => a$.map(execute(context)),
+      subject
+        .asObservable()
+        .do(({ type }) => {
+          console.log('action type: ' + type); // logger for action
+        })
+    )
+    .filter(action => action && action.type !== 'noop')
+    .share();
+  const app$ = app(action$, context);
+  executors
+    .reduce(
       (c, { after }) => after(c),
       context
     );
-    app$.subscribe(action => { setTimeout(() => subject.next(action)); });
-  }
+  app$.subscribe(action => { setTimeout(() => subject.next(action)); });
 }
-
-export { Client };

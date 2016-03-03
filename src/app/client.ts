@@ -1,5 +1,5 @@
 import { A, O, Observable } from '../framework/o-a';
-import { Client } from '../framework/client';
+import run from '../framework/client';
 
 import dom from '../framework/executors/dom-executor';
 import history from '../framework/executors/history-executor';
@@ -37,7 +37,7 @@ const app = (
 };
 
 export default function main() {
-  const client = new Client(
+  run(
     app,
     [
       state(),
@@ -45,5 +45,4 @@ export default function main() {
       history(routes)
     ]
   );
-  client.run();
 }

@@ -9,7 +9,10 @@ export default function render(state: State, helpers: any): VTree {
     h('head', [
       h('title', ['rally-rxjs']),
       h('link', { rel: 'stylesheet', href: '/styles/index.css' }, []),
-      h('script', ['var INITIAL_STATE = ' + htmlescape(state) + ';'])
+      h('script', ['var INITIAL_STATE = ' + htmlescape(state) + ';']),
+      h('script', {
+        src: 'https://maps.googleapis.com/maps/api/js?key=' + state.googleApiKey
+      }, [])
     ]),
     h('body', [
       renderApp(state, helpers),

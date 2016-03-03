@@ -35,7 +35,7 @@ export default function state(
         stampRally,
         stampRallyForm
       ): State => {
-        return {
+        return Object.assign({}, state, {
           currentPage,
           signIn,
           token,
@@ -44,7 +44,7 @@ export default function state(
           stampRallies,
           stampRally,
           stampRallyForm
-        };
+        });
       }
     )
     .do(console.log.bind(console)) // logger for state

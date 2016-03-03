@@ -6,6 +6,7 @@ import { StampRallyForm } from '../models/stamp-rally-form';
 import { Token } from '../models/token';
 
 type State = {
+  googleApiKey: string;
   currentPage: string;
   signIn: SignIn;
   spots: Spot[];

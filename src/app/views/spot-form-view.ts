@@ -6,7 +6,8 @@ import {
   create as changeSpotFormName
 } from '../actions/change-spot-form-name';
 
-const labeledTextBox = (name: string, value: string, e: any): VTree => {
+const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
+  const { e } = helpers;
   return h('label', [
     name,
     h('input.' + name, {
@@ -18,9 +19,10 @@ const labeledTextBox = (name: string, value: string, e: any): VTree => {
   ]);
 };
 
-export default function render(state: SpotForm, { e }: any): VTree {
+export default function render(state: SpotForm, helpers: any): VTree {
+  const { e } = helpers;
   return h('form.spot', [
-    labeledTextBox('name', state.name, e),
+    labeledTextBox('name', state.name, helpers),
     h('button.add-spot', {
       onclick: (event: Event) => {
         event.preventDefault();

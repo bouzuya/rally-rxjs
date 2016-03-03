@@ -9,20 +9,21 @@ import renderStampRallyListPage from '../views/stamp-rally-list-page';
 import renderStampRallyShowPage from '../views/stamp-rally-show-page';
 import renderNotFoundPage from '../views/not-found-page';
 
-const renderPage = (state: State, { e }: any): VTree => {
+const renderPage = (state: State, helpers: any): VTree => {
   switch (state.currentPage) {
     case 'sign_in#index':
-      return renderSignInPage(state, { e });
+      return renderSignInPage(state, helpers);
     case 'stamp_rallies#index':
-      return renderStampRallyListPage(state, { e });
+      return renderStampRallyListPage(state, helpers);
     case 'stamp_rallies#show':
-      return renderStampRallyShowPage(state, { e });
+      return renderStampRallyShowPage(state, helpers);
     default:
       return renderNotFoundPage();
   }
 };
 
-export default function render(state: State, { e }: any): VTree {
+export default function render(state: State, helpers: any): VTree {
+  const { e } = helpers;
   return h('div#app', {
     onclick: (event: Event) => {
       event.preventDefault();
@@ -37,6 +38,6 @@ export default function render(state: State, { e }: any): VTree {
     }
   }, [
     h('h1', ['RALLY (unofficial)']),
-    renderPage(state, { e })
+    renderPage(state, helpers)
   ]);
 }

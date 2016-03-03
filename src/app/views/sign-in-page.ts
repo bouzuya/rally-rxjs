@@ -5,7 +5,8 @@ import { create as changeEmail } from '../actions/change-email';
 import { create as changePassword } from '../actions/change-password';
 import { create as signIn } from '../actions/sign-in';
 
-export default function render(state: State, { e }: any): VTree {
+export default function render(state: State, helpers: any): VTree {
+  const { e } = helpers;
   return h('div.sign-in-page', [
     h('label', [
       'email',

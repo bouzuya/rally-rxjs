@@ -3,7 +3,7 @@ import { h, VTree } from '../../framework/view';
 import { State } from '../models/state';
 import renderStampRallyFormView from '../views/stamp-rally-form-view';
 
-export default function render(state: State, { e }: any): VTree {
+export default function render(state: State, helpers: any): VTree {
   return h('div.stamp-rally-list-page', [
     h('ul', state.stampRallies.map(stampRally => {
       const href = '/stamp_rallies/' + stampRally.name;
@@ -16,6 +16,6 @@ export default function render(state: State, { e }: any): VTree {
         ])
       ]);
     })),
-    renderStampRallyFormView(state.stampRallyForm, { e })
+    renderStampRallyFormView(state.stampRallyForm, helpers)
   ]);
 }

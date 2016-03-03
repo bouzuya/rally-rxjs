@@ -6,7 +6,8 @@ import {
   create as changeStampRallyFormName
 } from '../actions/change-stamp-rally-form-name';
 
-const labeledTextBox = (name: string, value: string, e: any): VTree => {
+const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
+  const { e } = helpers;
   return h('label', [
     name,
     h('input.' + name, {
@@ -20,9 +21,10 @@ const labeledTextBox = (name: string, value: string, e: any): VTree => {
   ]);
 };
 
-export default function render(state: StampRallyForm, { e }: any): VTree {
+export default function render(state: StampRallyForm, helpers: any): VTree {
+  const { e } = helpers;
   return h('form.stamp-rally', [
-    labeledTextBox('name', state.name, e),
+    labeledTextBox('name', state.name, helpers),
     h('button.add-stamp-rally', {
       onclick: (event: Event) => {
         event.preventDefault();

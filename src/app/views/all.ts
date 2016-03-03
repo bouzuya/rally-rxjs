@@ -4,7 +4,7 @@ import htmlescape from 'htmlescape';
 import { State } from '../models/state';
 import renderApp from '../views/app';
 
-export default function render(state: State, { e }: any): VTree {
+export default function render(state: State, helpers: any): VTree {
   return h('html', [
     h('head', [
       h('title', ['rally-rxjs']),
@@ -12,7 +12,7 @@ export default function render(state: State, { e }: any): VTree {
       h('script', ['var INITIAL_STATE = ' + htmlescape(state) + ';'])
     ]),
     h('body', [
-      renderApp(state, { e }),
+      renderApp(state, helpers),
       h('script', { src: '/scripts/bundle.js' }, [])
     ])
   ]);

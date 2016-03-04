@@ -1,29 +1,24 @@
 import { Subject } from 'rxjs';
 import { A, O } from './o-a';
 import { Executor } from './executor';
+import { Init, InitOptions } from './init';
+import run from './run';
 
-export default function run(
-  app: (
-    action$: O<A<any>>,
-    options: any
-  ) => O<A<any>>,
-  executors: Executor[]
-) {
-  const subject = new Subject<A<any>>();
-  const re = (action: A<any>) => setTimeout(() => subject.next(action));
-  const context = executors.reduce((c, { before }) => before(c), { re });
-  const action$ = executors
-    .reduce(
-      (a$, { execute }) => a$.map(execute(context)),
-      subject
-        .asObservable()
-        .do(({ type }) => {
-          console.log('action type: ' + type); // logger for action
-        })
-    )
-    .filter(action => action && action.type !== 'noop')
-    .share();
-  const app$ = app(action$, context);
-  executors.reduce((c, { after }) => after(c), context);
-  app$.subscribe(re);
+type App = (action$: O<A<any>>, options: any) => O<A<any>>;
+
+const makeInit = (app: App, executors: Executor[]): Init => {
+  const init = (action$: O<A<any>>, { re }: InitOptions): O<A<any>> => {
+    const options = executors.reduce((c, { before }) => before(c), { re });
+    const a$: O<A<any>> = executors
+      .reduce((a$, { execute }) => a$.map(execute(options)), action$)
+      .share();
+    const app$ = app(a$, options);
+    executors.reduce((c, { after }) => after(c), options);
+    return app$;
+  };
+  return init;
+};
+
+export default function main(app: App, executors: Executor[]): void {
+  run(makeInit(app, executors));
 }

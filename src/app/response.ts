@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../framework/o-a';
+import { A, O } from '../framework/o-a';
 
 import { from as request$ } from './actions/request';
 import requestSpotCreate from './requests/spot-create';
@@ -31,7 +31,7 @@ const request = (
   return request$
     .filter(({ path: p }) => p === path)
     .mergeMap(({ params: p }) => {
-      return Observable.fromPromise(request(p));
+      return O.fromPromise(request(p));
     })
     .map(r => response(r));
 };
@@ -50,6 +50,6 @@ export default function all(
   ].map(args =>
     request.apply(null, (<any[]>[request$(action$)]).concat(args))
   );
-  return Observable.merge.apply(Observable, request$s);
+  return O.merge.apply(O, request$s);
 }
 

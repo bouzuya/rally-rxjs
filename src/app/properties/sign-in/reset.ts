@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../../../framework/o-a';
+import { A, O } from '../../../framework/o-a';
 import { from as route$ } from '../../../framework/route-action';
 
 import { Updater } from '../../models/updater';
@@ -9,7 +9,7 @@ import { from as successSignIn$ } from '../../actions/success-sign-in';
 export default function updater$(
   action$: O<A<any>>
 ): O<Updater<SignIn>> {
-  return Observable
+  return O
     .merge(
       route$(action$)
         .filter(({ name }) => name === 'sign_in#index'),

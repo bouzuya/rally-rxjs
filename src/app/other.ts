@@ -1,4 +1,4 @@
-import { O, A, Observable } from '../framework/o-a';
+import { O, A } from '../framework/o-a';
 
 import {
   from as responseStampRallyShow$
@@ -14,7 +14,7 @@ import {
 export default function make(
   action$: O<A<any>>
 ): O<A<any>> {
-  return Observable
+  return O
     .merge(
       responseStampRallyShow$(action$)
         .map(successStampRallyShow),

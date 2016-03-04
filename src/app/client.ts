@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../framework/o-a';
+import { A, O } from '../framework/o-a';
 import run from '../framework/client';
 
 import dom from '../framework/executors/dom-executor';
@@ -25,7 +25,7 @@ const app = (
 ): O<A<any>> => {
   const { state } = options;
   const state$ = makeState(action$, state);
-  return Observable
+  return O
     .merge(
       makeGoTo(action$),
       makeOther(action$),

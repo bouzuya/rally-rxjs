@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../../framework/o-a';
+import { A, O } from '../../framework/o-a';
 
 import { State } from '../models/state';
 
@@ -15,7 +15,7 @@ export default function state(
   action$: O<A<any>>,
   state: State
 ): O<State> {
-  return Observable
+  return O
     .combineLatest(
       currentPage$(state.currentPage, action$),
       signIn$(state.signIn, action$),

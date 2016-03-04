@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../../framework/o-a';
+import { A, O } from '../../framework/o-a';
 
 import { Updater } from '../models/updater';
 
@@ -9,7 +9,7 @@ export default function stampRally$(
   state: StampRally,
   action$: O<A<any>>
 ): O<StampRally> {
-  return Observable
+  return O
     .of(state)
     .merge(
       reset$(action$)

@@ -1,4 +1,4 @@
-import { O, A, Observable } from '../framework/o-a';
+import { O, A } from '../framework/o-a';
 import { from as route$ } from '../framework/route-action';
 
 import { State } from './models/state';
@@ -13,9 +13,9 @@ export default function makeRequest(
   action$: O<A<any>>,
   state$: O<State>
 ): O<A<any>> {
-  return Observable
+  return O
     .merge(
-      Observable
+      O
         .merge(
           route$(action$)
             .filter(({ name }) => name === 'stamp_rallies#index')

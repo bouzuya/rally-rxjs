@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../../../framework/o-a';
+import { A, O } from '../../../framework/o-a';
 
 import { Updater } from '../../models/updater';
 
@@ -11,7 +11,7 @@ import { StampRallyForm } from '../../models/stamp-rally-form';
 export default function updater$(
   action$: O<A<any>>
 ): O<Updater<StampRallyForm>> {
-  return Observable
+  return O
     .merge(
       changeName$(action$)
         .map(({ value }) => value),

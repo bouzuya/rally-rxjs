@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../../framework/o-a';
+import { A, O } from '../../framework/o-a';
 
 import { Updater } from '../models/updater';
 
@@ -9,7 +9,7 @@ export default function property(
   state: Spot[],
   action$: O<A<any>>
 ): O<Spot[]> {
-  return Observable
+  return O
     .of(state)
     .merge(
       reset$(action$)

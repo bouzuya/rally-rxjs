@@ -4,4 +4,6 @@ import { Observable } from 'rxjs';
 type A<T> = Action<T>;
 type O<T> = Observable<T>;
 
-export { A, O, Action, Observable };
+const O = Observable;
+
+export { A, O, Action };

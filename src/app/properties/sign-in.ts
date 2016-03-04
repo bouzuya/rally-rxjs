@@ -1,4 +1,4 @@
-import { A, O, Observable } from '../../framework/o-a';
+import { A, O } from '../../framework/o-a';
 
 import { Updater } from '../models/updater';
 
@@ -11,7 +11,7 @@ export default function property(
   state: SignIn,
   action$: O<A<any>>
 ): O<SignIn> {
-  return Observable
+  return O
     .of(state)
     .merge(
       changeEmail$(action$),

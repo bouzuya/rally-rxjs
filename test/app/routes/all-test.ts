@@ -13,8 +13,8 @@ describe('app/routes/all', function() {
       const path = '/sign_in';
       const match = this.router.routes(path);
       assert(match.type === 'route');
-      assert(match.params.name === 'sign_in#index');
-      assert.deepEqual(match.params.params, {});
+      assert(match.data.name === 'sign_in#index');
+      assert.deepEqual(match.data.params, {});
     });
   });
 
@@ -23,8 +23,8 @@ describe('app/routes/all', function() {
       const path = '/stamp_rallies';
       const match = this.router.routes(path);
       assert(match.type === 'route');
-      assert(match.params.name === 'stamp_rallies#index');
-      assert.deepEqual(match.params.params, {});
+      assert(match.data.name === 'stamp_rallies#index');
+      assert.deepEqual(match.data.params, {});
     });
   });
 
@@ -33,8 +33,8 @@ describe('app/routes/all', function() {
       const path = '/stamp_rallies/bouzuya';
       const match = this.router.routes(path);
       assert(match.type === 'route');
-      assert(match.params.name === 'stamp_rallies#show');
-      assert.deepEqual(match.params.params, { id: 'bouzuya' });
+      assert(match.data.name === 'stamp_rallies#show');
+      assert.deepEqual(match.data.params, { id: 'bouzuya' });
     });
   });
 });

@@ -5,13 +5,13 @@ type P = State;
 const type = 'render';
 
 const create = (state: State): A<P> => {
-  return { type, params: state };
+  return { type, data: state };
 };
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 // TODO: This function should be removed.

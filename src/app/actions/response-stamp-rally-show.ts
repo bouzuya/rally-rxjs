@@ -6,13 +6,13 @@ type P = StampRally;
 const type = 'response-stamp-rally-show';
 
 const create = (response: StampRally): A<P> => {
-  return { type, params: response };
+  return { type, data: response };
 };
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 export { create, from };

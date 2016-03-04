@@ -9,8 +9,8 @@ describe('framework/router', function() {
     const router: Router = new Router([route]);
     const match: RouteAction = router.routes('/users');
     assert(match.type === 'route');
-    assert(match.params.name === 'users#index');
-    assert.deepEqual(match.params.params, {});
+    assert(match.data.name === 'users#index');
+    assert.deepEqual(match.data.params, {});
   });
 
   it('works', function() {
@@ -18,8 +18,8 @@ describe('framework/router', function() {
     const router = new Router([route]);
     const match = router.routes('/users/');
     assert(match.type === 'route');
-    assert(match.params.name === 'users#index');
-    assert.deepEqual(match.params.params, {});
+    assert(match.data.name === 'users#index');
+    assert.deepEqual(match.data.params, {});
   });
 
   it('works', function() {
@@ -27,7 +27,7 @@ describe('framework/router', function() {
     const router = new Router([route]);
     const match = router.routes('/users/123');
     assert(match.type === 'route');
-    assert(match.params.name === 'users#show');
-    assert.deepEqual(match.params.params, { id: '123' });
+    assert(match.data.name === 'users#show');
+    assert.deepEqual(match.data.params, { id: '123' });
   });
 });

@@ -4,13 +4,13 @@ type P = string;
 const type = 'go-to';
 
 const create = (path: string): A<P> => {
-  return { type, params: path };
+  return { type, data: path };
 };
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 // TODO: This function should be removed.

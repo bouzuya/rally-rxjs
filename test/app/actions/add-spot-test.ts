@@ -7,15 +7,15 @@ describe('app/actions/add-spot', function() {
     it('works', function() {
       const action = create();
       assert(action.type === 'add-spot');
-      assert(action.params === undefined);
+      assert(action.data === undefined);
     });
   });
 
   describe('from', function() {
     it('works', function() {
       const action$ = from(Observable.of(create()));
-      action$.subscribe(params => {
-        assert(params === undefined);
+      action$.subscribe(data => {
+        assert(data === undefined);
       });
     });
   });

@@ -4,13 +4,13 @@ type P = number;
 const type = 'click-spot-marker';
 
 const create = (id: P): A<P> => {
-  return { type, params: id };
+  return { type, data: id };
 };
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 export { create, from };

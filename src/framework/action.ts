@@ -1,3 +1,3 @@
-type Action<T> = { type: string; params?: T; };
+type Action<T> = { type: string; data?: T; };
 
 export { Action };

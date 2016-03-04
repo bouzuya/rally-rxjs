@@ -9,7 +9,7 @@ const create = (): A<P> => {
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 export { create, from };

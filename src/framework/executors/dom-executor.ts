@@ -19,7 +19,7 @@ export default function init(
   const execute = (context: any) => (action: A<any>) => {
     if (!isRender(action)) return action;
     const { dom, re }: { dom: DOM; re: (action: A<any>) => void; } = context;
-    const state: any = action.params; // FIXME
+    const state: any = action.data; // FIXME
     const vtree = view(state, { e: re });
     dom.renderToDOM(vtree);
     return { type: 'noop' };

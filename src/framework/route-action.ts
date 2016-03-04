@@ -13,7 +13,7 @@ const from = (
 ): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 export { from, type, RouteAction };

@@ -22,7 +22,7 @@ export default function init(routes: Route[]): Executor {
   const execute = (context: any) => (action: A<any>) => {
     if (!isGoTo(action)) return action;
     const { history }: { history: HistoryRouter; } = context;
-    const path: string = action.params;
+    const path: string = action.data;
     history.go(path);
     return { type: 'noop' };
   };

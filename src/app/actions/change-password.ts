@@ -4,13 +4,13 @@ type P = { value: string; };
 const type = 'change-password';
 
 const create = (value: string): A<P> => {
-  return { type, params: { value } };
+  return { type, data: { value } };
 };
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 export { create, from };

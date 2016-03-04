@@ -7,13 +7,13 @@ type P = {
 const type = 'request';
 
 const create = (path: string, params: any): A<P> => {
-  return { type, params: { path, params } };
+  return { type, data: { path, params } };
 };
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)
-    .map(({ params }) => params);
+    .map(({ data }) => data);
 };
 
 export { create, from };

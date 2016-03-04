@@ -1,8 +1,8 @@
 import { Subject } from 'rxjs';
 import { A, O } from './o-a';
-import { Init, InitOptions } from './init';
+import { App, AppOptions } from './app';
 
-export default function run(init: Init): void {
+export default function run(app: App): void {
   const subject = new Subject<A<any>>();
   const action$ = subject
     .asObservable()
@@ -10,5 +10,5 @@ export default function run(init: Init): void {
     .do(({ type }) => console.log('action type: ' + type)) // logger
     .share();
   const re = (action: A<any>) => setTimeout(() => subject.next(action));
-  init(action$, { re }).subscribe(re);
+  app(action$, { re }).subscribe(re);
 };

@@ -1,6 +1,6 @@
 {
-  "name": "virtual-dom-ssr",
-  "description": "virtual-dom-ssr",
+  "name": "rally-rxjs",
+  "description": "rally-rxjs",
   "version": "0.2.0",
   "author": {
     "name": "bouzuya",
@@ -8,7 +8,7 @@
     "url": "http://bouzuya.net"
   },
   "bugs": {
-    "url": "https://github.com/bouzuya/virtual-dom-ssr/issues"
+    "url": "https://github.com/bouzuya/rally-rxjs/issues"
   },
   "dependencies": {
     "express": "^4.13.4",
@@ -35,13 +35,13 @@
     "watch": "^0.17.1",
     "watchify": "^3.7.0"
   },
-  "homepage": "https://github.com/bouzuya/virtual-dom-ssr#readme",
+  "homepage": "https://github.com/bouzuya/rally-rxjs#readme",
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bouzuya/virtual-dom-ssr"
+    "url": "https://github.com/bouzuya/rally-rxjs"
   },
   "scripts": {
     "prebuild": "[ -d dist/scripts ] || mkdir -p dist/scripts",

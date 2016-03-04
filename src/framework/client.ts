@@ -10,11 +10,8 @@ export default function run(
   executors: Executor[]
 ) {
   const subject = new Subject<A<any>>();
-  const context = executors
-    .reduce(
-      (c, { before }) => before(c),
-      { subject }
-    );
+  const re = (action: A<any>) => setTimeout(() => subject.next(action));
+  const context = executors.reduce((c, { before }) => before(c), { re });
   const action$ = executors
     .reduce(
       (a$, { execute }) => a$.map(execute(context)),
@@ -27,10 +24,6 @@ export default function run(
     .filter(action => action && action.type !== 'noop')
     .share();
   const app$ = app(action$, context);
-  executors
-    .reduce(
-      (c, { after }) => after(c),
-      context
-    );
-  app$.subscribe(action => { setTimeout(() => subject.next(action)); });
+  executors.reduce((c, { after }) => after(c), context);
+  app$.subscribe(re);
 }

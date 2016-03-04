@@ -14,17 +14,14 @@ export default function init(routes: Route[]): Executor {
   };
 
   const before = (context: any): any => {
-    const { subject }: { subject: Subject<A<any>>; } = context;
-    const history = new HistoryRouter(new Router(routes), subject);
+    const { re }: { re: (action: A<any>) => void; } = context;
+    const history = new HistoryRouter(new Router(routes), re);
     return Object.assign({}, context, { history });
   };
 
   const execute = (context: any) => (action: A<any>) => {
     if (!isGoTo(action)) return action;
-    const { history, subject }: {
-      history: HistoryRouter;
-      subject: Subject<A<any>>;
-    } = context;
+    const { history }: { history: HistoryRouter; } = context;
     const path: string = action.params;
     history.go(path);
     return { type: 'noop' };

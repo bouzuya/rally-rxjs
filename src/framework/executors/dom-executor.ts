@@ -12,17 +12,15 @@ export default function init(
   const after = (context: any): any => context;
 
   const before = (context: any): any => {
-    const { subject }: { subject: Subject<A<any>>; } = context;
     const dom = new DOM(viewRootSelector);
     return Object.assign({}, context, { dom });
   };
 
   const execute = (context: any) => (action: A<any>) => {
     if (!isRender(action)) return action;
-    const { dom, subject }: { dom: DOM; subject: Subject<A<any>>; } = context;
+    const { dom, re }: { dom: DOM; re: (action: A<any>) => void; } = context;
     const state: any = action.params; // FIXME
-    const e = (action: A<any>): void => subject.next(action);
-    const vtree = view(state, { e });
+    const vtree = view(state, { e: re });
     dom.renderToDOM(vtree);
     return { type: 'noop' };
   };

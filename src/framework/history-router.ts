@@ -7,13 +7,13 @@ class HistoryRouter {
   private router: Router;
   private window: any;
   private history: History;
-  private subject: Subject<RouteAction>;
+  private re: (action: RouteAction) => void;
 
-  constructor(router: Router, subject: Subject<A<any>>) {
+  constructor(router: Router, re: (action: RouteAction) => void) {
     this.window = Function('return this')();
     this.history = this.window.history;
     this.router = router;
-    this.subject = subject;
+    this.re = re;
   }
 
   back(): void {
@@ -28,7 +28,7 @@ class HistoryRouter {
       const f = replace ? history.replaceState : history.pushState;
       f.apply(history, [null, null, path]);
     }
-    this.subject.next(this.router.routes(path));
+    this.re(this.router.routes(path));
   }
 
   start(): void {
@@ -36,7 +36,7 @@ class HistoryRouter {
       this.window.addEventListener('popstate', () => {
         const path = this.window.location.pathname;
         console.log('back : ' + path);
-        this.subject.next(this.router.routes(path));
+        this.re(this.router.routes(path));
       }, false);
     }
   }

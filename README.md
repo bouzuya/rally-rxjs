@@ -34,6 +34,11 @@ FW : Framework
 
 ### rally-rxjs
 
+#### 0.3.0
+
+- AP: 0.2.0
+- FW: 0.3.0
+
 #### 0.2.0
 
 - AP: 0.1.0
@@ -46,6 +51,11 @@ FW : Framework
 
 ### AP
 
+#### 0.2.0
+
+- support FW@0.3.0
+- add map view
+
 #### 0.1.0
 
 - sign in
@@ -56,6 +66,11 @@ FW : Framework
 - spot index
 
 ### FW
+
+#### 0.3.0
+
+- extract [bouzuya/b-o-a][]
+- extract `executors/`
 
 #### 0.2.0
 

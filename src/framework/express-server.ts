@@ -7,7 +7,7 @@ type Response = {
 };
 
 export default function main(
-  server: { request: (path: string) => Promise<string> }
+  proc: (request: any, response: any) => void
 ) {
   const app = express();
   app.use((req: any, res: any, next: any) => {
@@ -15,19 +15,6 @@ export default function main(
     next();
   });
   app.use(express.static(__dirname + '/../../dist/'));
-  app.use((req: Request, res: Response): void => {
-    server
-      .request(req.path)
-      .then(html => {
-        res.send(html);
-      }, error => {
-        if (error.message === 'redirect') {
-          const { status, path }: any = error;
-          res.redirect(status, path);
-        } else {
-          res.send(error.message);
-        }
-      });
-  });
+  app.use(proc);
   app.listen(3000);
 }

@@ -1,21 +1,16 @@
-import { Initializer, InitializerParameters } from '../framework/initializer';
-import { Server } from '../framework/server';
-import { VTree } from '../framework/view';
+import run from '../framework/run';
+
+import http from '../framework/executors/http-executor';
 
 import { routes } from './routes/all';
-import signInIndexInitializer from './initializers/sign-in-index';
-import stampRalliesIndexInitializer from './initializers/stamp-rallies-index';
-import stampRalliesShowInitializer from './initializers/stamp-rallies-show';
-import { State } from './models/state';
-import render from './views/all';
-
-const initializers: { [name: string]: Initializer<State> } = {
-  'sign_in#index': signInIndexInitializer,
-  'stamp_rallies#index': stampRalliesIndexInitializer,
-  'stamp_rallies#show': stampRalliesShowInitializer
-};
+import view from './views/all';
+import app from './app';
 
 export default function main() {
-  const server = new Server(initializers, render, routes);
-  server.run();
+  run(
+    app,
+    [
+      http(view, routes)
+    ]
+  );
 }

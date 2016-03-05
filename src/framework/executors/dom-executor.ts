@@ -1,7 +1,7 @@
 import { A } from 'b-o-a';
 import { Executor } from '../executor';
 import { VTree } from '../view';
-import { DOM } from '../dom';
+import { DOM } from './dom/dom';
 import { is as isRender } from '../../app/actions/render';
 
 export default function init(

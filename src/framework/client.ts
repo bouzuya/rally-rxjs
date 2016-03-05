@@ -1,13 +1,14 @@
+import { A, O, App, run } from 'b-o-a';
 import { Subject } from 'rxjs';
-import { A, O } from './o-a';
 import { Executor } from './executor';
-import { App, AppOptions } from './app';
-import run from './run';
 
 type ClientApp = (action$: O<A<any>>, options: any) => O<A<any>>;
 
 const makeApp = (clientApp: ClientApp, executors: Executor[]): App => {
-  const app = (action$: O<A<any>>, { re }: AppOptions): O<A<any>> => {
+  const app = (
+    action$: O<A<any>>,
+    { re }: { re: (action: A<any>) => void; }
+  ): O<A<any>> => {
     const options = executors.reduce((c, { before }) => before(c), { re });
     const a$: O<A<any>> = executors
       .reduce((a$, { execute }) => a$.map(execute(options)), action$)

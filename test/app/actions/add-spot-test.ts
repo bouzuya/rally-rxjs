@@ -1,5 +1,5 @@
 import assert from 'power-assert';
-import { Observable } from 'rxjs';
+import { O } from 'b-o-a';
 import { create, from } from '../../../src/app/actions/add-spot';
 
 describe('app/actions/add-spot', function() {
@@ -13,7 +13,7 @@ describe('app/actions/add-spot', function() {
 
   describe('from', function() {
     it('works', function() {
-      const action$ = from(Observable.of(create()));
+      const action$ = from(O.of(create()));
       action$.subscribe(data => {
         assert(data === undefined);
       });

@@ -1,4 +1,4 @@
-import run from '../framework/client';
+import run from '../framework/run';
 
 import dom from '../framework/executors/dom-executor';
 import history from '../framework/executors/history-executor';

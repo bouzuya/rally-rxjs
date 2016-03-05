@@ -1,5 +1,5 @@
 
-import { A, O } from '../../framework/o-a';
+import { A, O } from 'b-o-a';
 import { from as route$ } from '../../framework/route-action';
 
 import { Updater } from '../models/updater';

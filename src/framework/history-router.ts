@@ -1,4 +1,4 @@
-import { A } from './o-a';
+import { A } from 'b-o-a';
 import { create as route, RouteAction } from './route-action';
 import { Router } from './router';
 

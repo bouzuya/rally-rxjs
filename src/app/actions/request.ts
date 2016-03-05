@@ -1,4 +1,4 @@
-import { A, O } from '../../framework/o-a';
+import { A, O } from 'b-o-a';
 
 type P = {
   path: string;

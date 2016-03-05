@@ -1,4 +1,4 @@
-import { A, O } from '../../framework/o-a';
+import { A, O } from 'b-o-a';
 
 import { State } from '../models/state';
 

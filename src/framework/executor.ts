@@ -1,4 +1,4 @@
-import { A } from './o-a';
+import { A } from 'b-o-a';
 
 type Executor = {
   after: (context: any) => any;

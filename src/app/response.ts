@@ -1,4 +1,4 @@
-import { A, O } from '../framework/o-a';
+import { A, O } from 'b-o-a';
 
 import { from as request$ } from './actions/request';
 import requestSpotCreate from './requests/spot-create';

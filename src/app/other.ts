@@ -1,4 +1,4 @@
-import { O, A } from '../framework/o-a';
+import { O, A } from 'b-o-a';
 
 import {
   from as responseStampRallyShow$

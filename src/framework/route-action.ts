@@ -8,6 +8,10 @@ type P = {
 type RouteAction = A<P>;
 const type = 'route';
 
+const create = (data: P): A<P> => {
+  return { type, data };
+};
+
 const from = (
   action$: O<A<any>>
 ): O<P> => {
@@ -16,4 +20,4 @@ const from = (
     .map(({ data }) => data);
 };
 
-export { from, type, RouteAction };
+export { create, from, RouteAction };

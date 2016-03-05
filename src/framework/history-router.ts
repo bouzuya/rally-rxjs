@@ -1,5 +1,5 @@
 import { A } from './o-a';
-import { RouteAction } from './route-action';
+import { create as route, RouteAction } from './route-action';
 import { Router } from './router';
 
 class HistoryRouter {
@@ -27,7 +27,8 @@ class HistoryRouter {
       const f = replace ? history.replaceState : history.pushState;
       f.apply(history, [null, null, path]);
     }
-    this.re(this.router.routes(path));
+    const { route: { name }, params } = this.router.routes(path);
+    this.re(route({ name, params }));
   }
 
   start(): void {
@@ -35,7 +36,8 @@ class HistoryRouter {
       this.window.addEventListener('popstate', () => {
         const path = this.window.location.pathname;
         console.log('back : ' + path);
-        this.re(this.router.routes(path));
+        const { route: { name }, params } = this.router.routes(path);
+        this.re(route({ name, params }));
       }, false);
     }
   }

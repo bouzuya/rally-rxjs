@@ -1,6 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
 import { InitializerParameters } from './initializer';
-import { RouteAction } from './route-action';
 import { Route } from './route';
 
 class Router {
@@ -10,7 +9,7 @@ class Router {
     this.config = routes;
   }
 
-  routes(path: string): RouteAction {
+  routes(path: string): { route: Route; params: InitializerParameters } {
     const requestPath = path;
     for (var i = 0; i < this.config.length; i++) {
       const route = this.config[i];
@@ -22,7 +21,7 @@ class Router {
         for (var j = 1; j < match.length; j++) {
           params[keys[j - 1].name] = match[j];
         }
-        return { type: 'route', data: { name, params } };
+        return { route, params };
       }
     }
     return null;

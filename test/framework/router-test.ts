@@ -1,33 +1,32 @@
 import assert from 'power-assert';
-import { RouteAction } from '../../src/framework/route-action';
+import { InitializerParameters } from '../../src/framework/initializer';
 import { Route } from '../../src/framework/route';
 import { Router } from '../../src/framework/router';
+
+type RouteResult = { route: Route; params: InitializerParameters };
 
 describe('framework/router', function() {
   it('works', function() {
     const route: Route = { path: '/users', name: 'users#index' };
     const router: Router = new Router([route]);
-    const match: RouteAction = router.routes('/users');
-    assert(match.type === 'route');
-    assert(match.data.name === 'users#index');
-    assert.deepEqual(match.data.params, {});
+    const match: RouteResult = router.routes('/users');
+    assert(match.route.name === 'users#index');
+    assert.deepEqual(match.params, {});
   });
 
   it('works', function() {
     const route = { path: '/users', name: 'users#index' };
     const router = new Router([route]);
     const match = router.routes('/users/');
-    assert(match.type === 'route');
-    assert(match.data.name === 'users#index');
-    assert.deepEqual(match.data.params, {});
+    assert(match.route.name === 'users#index');
+    assert.deepEqual(match.params, {});
   });
 
   it('works', function() {
     const route = { path: '/users/:id', name: 'users#show' };
     const router = new Router([route]);
     const match = router.routes('/users/123');
-    assert(match.type === 'route');
-    assert(match.data.name === 'users#show');
-    assert.deepEqual(match.data.params, { id: '123' });
+    assert(match.route.name === 'users#show');
+    assert.deepEqual(match.params, { id: '123' });
   });
 });

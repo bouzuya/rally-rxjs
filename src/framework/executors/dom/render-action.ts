@@ -1,10 +1,9 @@
 import { A, O } from 'b-o-a';
-import { State } from '../models/state';
 
-type P = State;
+type P = any;
 const type = 'render';
 
-const create = (state: State): A<P> => {
+const create = (state: any): A<P> => {
   return { type, data: state };
 };
 

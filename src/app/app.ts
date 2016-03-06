@@ -1,6 +1,8 @@
 import { A, O } from 'b-o-a';
 
-import { create as render } from './actions/render';
+import {
+  create as render
+} from '../framework/executors/dom/render-action';
 
 import { State } from './models/state';
 

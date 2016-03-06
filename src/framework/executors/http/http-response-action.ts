@@ -1,9 +1,7 @@
 import { A, O } from 'b-o-a';
 
-import { State } from '../models/state';
-
 type HTTP = { request: any; response: any; };
-type P = { state: State; http: HTTP; };
+type P = { state: any; http: HTTP; };
 const type = 'http-response';
 
 const create = (data: P): A<P> => {

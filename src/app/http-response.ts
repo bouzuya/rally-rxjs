@@ -1,6 +1,8 @@
 import { O, A } from 'b-o-a';
 
-import { create as httpResponse } from './actions/http-response';
+import {
+  create as httpResponse
+} from '../framework/executors/http/http-response-action';
 import {
   from as httpRequest$
 } from '../framework/executors/http/http-request-action';

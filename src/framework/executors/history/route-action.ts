@@ -1,9 +1,8 @@
 import { A, O } from 'b-o-a';
-import { InitializerName, InitializerParameters } from '../../initializer';
 
 type P = {
-  name: InitializerName;
-  params: InitializerParameters;
+  name: string;
+  params: { [name: string]: string; };
 };
 type RouteAction = A<P>;
 const type = 'route';

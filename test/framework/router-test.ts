@@ -1,9 +1,8 @@
 import assert from 'power-assert';
-import { InitializerParameters } from '../../src/framework/initializer';
 import { Route } from '../../src/framework/route';
 import { Router } from '../../src/framework/router';
 
-type RouteResult = { route: Route; params: InitializerParameters };
+type RouteResult = { route: Route; params: { [name: string]: string; } };
 
 describe('framework/router', function() {
   it('works', function() {

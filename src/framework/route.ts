@@ -1,8 +1,6 @@
-import { InitializerName } from './initializer';
-
 type Route = {
   path: string;
-  name: InitializerName;
+  name: string;
 };
 
 export { Route };

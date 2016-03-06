@@ -1,6 +1,6 @@
 import run from '../framework/run';
 
-import http from '../framework/executors/http-executor';
+import http from '../executors/http-executor';
 
 import { routes } from './routes/all';
 import view from './views/all';

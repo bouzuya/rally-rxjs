@@ -1,4 +1,4 @@
-import { diff, patch, VTree, RTree } from '../../view';
+import { diff, patch, VTree, RTree } from '../../framework/view';
 import parse from 'vdom-parser';
 
 class DOM {

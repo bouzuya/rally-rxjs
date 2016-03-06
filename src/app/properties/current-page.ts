@@ -2,7 +2,7 @@
 import { A, O } from 'b-o-a';
 import {
   from as route$
-} from '../../framework/executors/history/route-action';
+} from '../../executors/history/route-action';
 
 import { Updater } from '../models/updater';
 

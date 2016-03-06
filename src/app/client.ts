@@ -1,8 +1,8 @@
 import run from '../framework/run';
 
-import dom from '../framework/executors/dom-executor';
-import history from '../framework/executors/history-executor';
-import state from '../framework/executors/state-executor';
+import dom from '../executors/dom-executor';
+import history from '../executors/history-executor';
+import state from '../executors/state-executor';
 
 import { routes } from './routes/all';
 import view from './views/app';

@@ -14,7 +14,7 @@ export default function main(
     console.log('%s %s %s', req.method, req.url, req.path);
     next();
   });
-  app.use(express.static(__dirname + '/../../../../dist/'));
+  app.use(express.static(__dirname + '/../../../dist/'));
   app.use(proc);
   app.listen(3000);
 }

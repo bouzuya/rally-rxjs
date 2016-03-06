@@ -1,7 +1,7 @@
 import { O, A } from 'b-o-a';
 import {
   from as route$
-} from '../framework/executors/history/route-action';
+} from '../executors/history/route-action';
 
 import { State } from './models/state';
 import { Token } from './models/token';

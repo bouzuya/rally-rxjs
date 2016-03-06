@@ -2,10 +2,10 @@ import { O, A } from 'b-o-a';
 
 import {
   create as httpResponse
-} from '../framework/executors/http/http-response-action';
+} from '../executors/http/http-response-action';
 import {
   from as httpRequest$
-} from '../framework/executors/http/http-request-action';
+} from '../executors/http/http-request-action';
 import signInIndexInitializer from './initializers/sign-in-index';
 import stampRalliesIndexInitializer from './initializers/stamp-rallies-index';
 import stampRalliesShowInitializer from './initializers/stamp-rallies-show';

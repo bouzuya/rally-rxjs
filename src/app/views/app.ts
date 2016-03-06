@@ -2,7 +2,9 @@ import { h, VTree } from '../../framework/view';
 
 import { State } from '../models/state';
 
-import { create as goTo } from '../actions/go-to';
+import {
+  create as goTo
+} from '../../framework/executors/history/go-to-action';
 
 import renderSignInPage from '../views/sign-in-page';
 import renderStampRallyListPage from '../views/stamp-rally-list-page';

@@ -3,7 +3,7 @@ import { Executor } from '../executor';
 import { HistoryRouter } from './history/history-router';
 import { Route } from '../route';
 import { Router } from '../router';
-import { is as isGoTo } from '../../app/actions/go-to';
+import { is as isGoTo } from './history/go-to-action';
 
 export default function init(routes: Route[]): Executor {
   const after = (context: any): any => {

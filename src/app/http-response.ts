@@ -1,7 +1,9 @@
 import { O, A } from 'b-o-a';
 
 import { create as httpResponse } from './actions/http-response';
-import { from as httpRequest$ } from './actions/http-request';
+import {
+  from as httpRequest$
+} from '../framework/executors/http/http-request-action';
 import signInIndexInitializer from './initializers/sign-in-index';
 import stampRalliesIndexInitializer from './initializers/stamp-rallies-index';
 import stampRalliesShowInitializer from './initializers/stamp-rallies-show';

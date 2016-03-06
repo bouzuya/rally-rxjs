@@ -2,7 +2,7 @@ import { A } from 'b-o-a';
 import { Executor } from '../executor';
 import { VTree } from '../view';
 import renderToHTML from 'vdom-to-html';
-import { create as httpRequest } from '../../app/actions/http-request';
+import { create as httpRequest } from './http/http-request-action';
 import { is as isHTTPResponse } from '../../app/actions/http-response';
 import { Route } from '../route';
 import { Router } from '../router';

@@ -1,6 +1,6 @@
 import { A } from 'b-o-a';
 import { Executor } from '../executor';
-import { HistoryRouter } from '../history-router';
+import { HistoryRouter } from './history/history-router';
 import { Route } from '../route';
 import { Router } from '../router';
 import { is as isGoTo } from '../../app/actions/go-to';

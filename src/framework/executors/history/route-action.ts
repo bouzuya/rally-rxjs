@@ -1,5 +1,5 @@
 import { A, O } from 'b-o-a';
-import { InitializerName, InitializerParameters } from './initializer';
+import { InitializerName, InitializerParameters } from '../../initializer';
 
 type P = {
   name: InitializerName;

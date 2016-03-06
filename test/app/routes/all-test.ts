@@ -1,6 +1,8 @@
 import assert from 'power-assert';
 import { routes } from '../../../src/app/routes/all';
-import { RouteAction } from '../../../src/framework/route-action';
+import {
+  RouteAction
+} from '../../../src/framework/executors/history/route-action';
 import { Router } from '../../../src/framework/router';
 
 describe('app/routes/all', function() {

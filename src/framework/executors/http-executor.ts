@@ -6,7 +6,7 @@ import { create as httpRequest } from './http/http-request-action';
 import { is as isHTTPResponse } from './http/http-response-action';
 import { Route } from '../route';
 import { Router } from '../router';
-import runServer from '../express-server';
+import runServer from './http/express-server';
 
 export default function init(
   view: (state: any, options: any) => VTree,

@@ -6,9 +6,9 @@ import {
 import {
   from as httpRequest$
 } from '../../executors/http/http-request-action';
-import signInIndexInitializer from '../initializers/sign-in-index';
-import stampRalliesIndexInitializer from '../initializers/stamp-rallies-index';
-import stampRalliesShowInitializer from '../initializers/stamp-rallies-show';
+import signInIndex from '../http-responses/sign-in-index';
+import stampRalliesIndex from '../http-responses/stamp-rallies-index';
+import stampRalliesShow from '../http-responses/stamp-rallies-show';
 
 export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
   return O
@@ -16,7 +16,7 @@ export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
       httpRequest$(action$)
         .filter(({ route: { name } }) => name === 'sign_in#index')
         .map(({ params, http }) => {
-          return signInIndexInitializer() // no params
+          return signInIndex() // no params
             .then(
               state => ({ state, http }),
               error => ({ error, http })
@@ -25,7 +25,7 @@ export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
       httpRequest$(action$)
         .filter(({ route: { name } }) => name === 'stamp_rallies#index')
         .map(({ params, http }) => {
-          return stampRalliesIndexInitializer() // no params
+          return stampRalliesIndex() // no params
             .then(
               state => ({ state, http }),
               error => ({ error, http })
@@ -34,7 +34,7 @@ export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
       httpRequest$(action$)
         .filter(({ route: { name } }) => name === 'stamp_rallies#show')
         .map(({ params, http }) => {
-          return stampRalliesShowInitializer(params)
+          return stampRalliesShow(params)
             .then(
               state => ({ state, http }),
               error => ({ error, http })

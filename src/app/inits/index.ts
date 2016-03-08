@@ -6,9 +6,9 @@ import {
 import {
   from as httpRequest$
 } from '../../executors/http/http-request-action';
-import signInIndex from '../http-responses/sign-in-index';
-import stampRalliesIndex from '../http-responses/stamp-rallies-index';
-import stampRalliesShow from '../http-responses/stamp-rallies-show';
+import signInIndex from '../inits/sign-in-index';
+import stampRalliesIndex from '../inits/stamp-rallies-index';
+import stampRalliesShow from '../inits/stamp-rallies-show';
 
 const inits = {
   'sign_in#index': signInIndex,

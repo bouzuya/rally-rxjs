@@ -6,7 +6,7 @@ import makeGoTo from './go-to';
 import makeOther from './other';
 import makeRequest from './request';
 import makeResponse from './response';
-import makeHTTPResponse from './http-responses/';
+import makeHTTPResponse from './inits/';
 import makeState from './properties/';
 
 export default function app(

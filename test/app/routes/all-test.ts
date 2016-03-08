@@ -1,11 +1,11 @@
 import assert from 'power-assert';
-import { routes } from '../../../src/app/routes/all';
+import { routes } from '../../../src/app/routes/';
 import {
   RouteAction
 } from '../../../src/executors/history/route-action';
 import { Router } from '../../../src/framework/router';
 
-describe('app/routes/all', function() {
+describe('app/routes', function() {
   let router: Router;
 
   beforeEach(function() {

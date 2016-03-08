@@ -2,7 +2,7 @@ import run from '../framework/run';
 
 import http from '../executors/http/';
 
-import { routes } from './routes/all';
+import { routes } from './routes/';
 import view from './views/all';
 import app from './app';
 

@@ -10,13 +10,13 @@ import signInIndex from '../inits/sign-in-index';
 import stampRalliesIndex from '../inits/stamp-rallies-index';
 import stampRalliesShow from '../inits/stamp-rallies-show';
 
-const inits = {
+const inits: { [k:string]: (params: any) => Promise<any>; } = {
   'sign_in#index': signInIndex,
   'stamp_rallies#index': stampRalliesIndex,
   'stamp_rallies#show': stampRalliesShow
 };
 
-export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
+const $ = (action$: O<A<any>>): O<A<any>> => {
   return httpRequest$(action$)
     .map(({ route: { name }, params, http }) => {
       return inits[name](params).then(
@@ -26,4 +26,6 @@ export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
     })
     .mergeMap((promise: Promise<any>) => O.fromPromise(promise))
     .map(httpResponse);
-}
+};
+
+export { $ };

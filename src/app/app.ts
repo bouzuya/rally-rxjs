@@ -6,7 +6,7 @@ import makeGoTo from './go-to';
 import makeOther from './other';
 import makeRequest from './request';
 import makeResponse from './response';
-import makeHTTPResponse from './inits/';
+import { $ as httpResponse$ } from './app/http-response';
 import makeState from './properties/';
 
 export default function app(
@@ -41,7 +41,7 @@ export default function app(
   return O
     .merge(
       makeGoTo(action$),
-      makeHTTPResponse(action$),
+      httpResponse$(action$),
       makeOther(action$),
       state$.map(state => ({ type: 'render', data: state })),
       makeRequest(action$, state$),

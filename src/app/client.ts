@@ -2,7 +2,7 @@ import run from '../framework/run';
 
 import dom from '../executors/dom/';
 import history from '../executors/history/';
-import state from '../executors/state-executor';
+import state from '../executors/state/';
 
 import { routes } from './routes/all';
 import view from './views/app';

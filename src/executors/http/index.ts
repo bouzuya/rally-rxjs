@@ -1,12 +1,12 @@
 import renderToHTML from 'vdom-to-html';
 import { A } from 'b-o-a';
-import { Executor } from '../framework/executor';
-import { VTree } from '../framework/view';
-import { Route } from '../framework/route';
-import { Router } from '../framework/router';
-import runServer from './http/express-server';
-import { create as httpRequest } from './http/http-request-action';
-import { is as isHTTPResponse } from './http/http-response-action';
+import { Executor } from '../../framework/executor';
+import { VTree } from '../../framework/view';
+import { Route } from '../../framework/route';
+import { Router } from '../../framework/router';
+import runServer from './express-server';
+import { create as httpRequest } from './http-request-action';
+import { is as isHTTPResponse } from './http-response-action';
 
 export default function init(
   view: (state: any, options: any) => VTree,

@@ -15,29 +15,8 @@ export default function app(
     state: State
   }
 ): O<A<any>> {
-  const { state } = options;
-  const defaultState: State = {
-    googleApiKey: process.env.GOOGLE_API_KEY,
-    currentPage: 'sign_in#index',
-    signIn: {
-      email: null,
-      password: null
-    },
-    spots: [],
-    spotForm: {
-      name: null
-    },
-    stampRallies: [],
-    stampRally: null,
-    stampRallyForm: {
-      name: null
-    },
-    token: {
-      token: null,
-      userId: null
-    }
-  };
-  const state$ = properties(action$, state ? state : defaultState);
+  const { state: initialState } = options;
+  const state$ = properties(action$, initialState);
   return O
     .merge(
       goTo$(action$),

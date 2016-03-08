@@ -11,17 +11,42 @@ import stampRally$ from '../properties/stamp-rally';
 import stampRallyForm$ from '../properties/stamp-rally-form';
 import token$ from '../properties/token';
 
+const getDefaultState = (): State => {
+  return {
+    googleApiKey: process.env.GOOGLE_API_KEY,
+    currentPage: 'sign_in#index',
+    signIn: {
+      email: null,
+      password: null
+    },
+    spots: [],
+    spotForm: {
+      name: null
+    },
+    stampRallies: [],
+    stampRally: null,
+    stampRallyForm: {
+      name: null
+    },
+    token: {
+      token: null,
+      userId: null
+    }
+  };
+};
+
 const $ = (action$: O<A<any>>, state: State): O<State> => {
+  const s = (state ? state : getDefaultState());
   return O
     .combineLatest(
-      currentPage$(state.currentPage, action$),
-      signIn$(state.signIn, action$),
-      token$(state.token, action$),
-      spots$(state.spots, action$),
-      spotForm$(state.spotForm, action$),
-      stampRallies$(state.stampRallies, action$),
-      stampRally$(state.stampRally, action$),
-      stampRallyForm$(state.stampRallyForm, action$),
+      currentPage$(s.currentPage, action$),
+      signIn$(s.signIn, action$),
+      token$(s.token, action$),
+      spots$(s.spots, action$),
+      spotForm$(s.spotForm, action$),
+      stampRallies$(s.stampRallies, action$),
+      stampRally$(s.stampRally, action$),
+      stampRallyForm$(s.stampRallyForm, action$),
       (
         currentPage,
         signIn,
@@ -32,7 +57,7 @@ const $ = (action$: O<A<any>>, state: State): O<State> => {
         stampRally,
         stampRallyForm
       ): State => {
-        return Object.assign({}, state, {
+        return Object.assign({}, s, {
           currentPage,
           signIn,
           token,

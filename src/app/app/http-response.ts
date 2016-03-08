@@ -7,12 +7,14 @@ import {
   from as httpRequest$
 } from '../../executors/http/http-request-action';
 
+import rootIndex from '../inits/root-index';
 import signInIndex from '../inits/sign-in-index';
 import stampRalliesIndex from '../inits/stamp-rallies-index';
 import stampRalliesShow from '../inits/stamp-rallies-show';
 import { State } from '../property-types/state';
 
 const inits: { [k:string]: (params: any) => Promise<any>; } = {
+  'root#index': rootIndex,
   'sign_in#index': signInIndex,
   'stamp_rallies#index': stampRalliesIndex,
   'stamp_rallies#show': stampRalliesShow

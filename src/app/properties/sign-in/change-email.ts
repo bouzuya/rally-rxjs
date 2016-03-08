@@ -2,7 +2,9 @@ import { A, O } from 'b-o-a';
 
 import { Updater } from '../../property-types/updater';
 
-import { from as changeEmail$ } from '../../actions/change-email';
+import {
+  from as changeEmail$
+} from '../../actions/change-sign-in-form-email';
 import { SignIn } from '../../property-types/sign-in';
 
 export default function updater$(

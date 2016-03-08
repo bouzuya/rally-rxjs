@@ -1,8 +1,12 @@
 import { h, VTree } from '../../framework/view';
 
 import { State } from '../property-types/state';
-import { create as changeEmail } from '../actions/change-email';
-import { create as changePassword } from '../actions/change-password';
+import {
+  create as changeEmail
+} from '../actions/change-sign-in-form-email';
+import {
+  create as changePassword
+} from '../actions/change-sign-in-form-password';
 import { create as signIn } from '../actions/sign-in';
 
 const view = (state: State, helpers: any): VTree => {

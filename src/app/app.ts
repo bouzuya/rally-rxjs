@@ -7,7 +7,7 @@ import makeOther from './other';
 import makeRequest from './request';
 import makeResponse from './response';
 import makeHTTPResponse from './http-responses/';
-import makeState from './properties/all';
+import makeState from './properties/';
 
 export default function app(
   action$: O<A<any>>,

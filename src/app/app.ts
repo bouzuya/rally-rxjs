@@ -5,8 +5,8 @@ import { State } from './property-types/state';
 import { $ as goTo$ } from './app/go-to';
 import { $ as httpResponse$ } from './app/http-response';
 import { $ as request$ } from './app/request';
+import { $ as response$ } from './app/response';
 import makeOther from './other';
-import makeResponse from './response';
 import makeState from './properties/';
 
 export default function app(
@@ -43,9 +43,9 @@ export default function app(
       goTo$(action$),
       httpResponse$(action$),
       request$(action$, state$),
+      response$(action$),
       makeOther(action$),
-      state$.map(state => ({ type: 'render', data: state })),
-      makeResponse(action$)
+      state$.map(state => ({ type: 'render', data: state }))
     )
     .share();
 };

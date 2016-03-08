@@ -1,26 +1,26 @@
 import { A, O } from 'b-o-a';
 
-import { from as request$ } from './actions/request';
-import requestSpotCreate from './requests/spot-create';
-import requestSpotIndex from './requests/spot-index';
-import requestStampRallyCreate from './requests/stamp-rally-create';
-import requestStampRallyIndex from './requests/stamp-rally-index';
-import requestStampRallyShow from './requests/stamp-rally-show';
-import requestTokenCreate from './requests/token-create';
-import { create as responseSpotCreate } from './actions/response-spot-create';
-import { create as responseSpotIndex } from './actions/response-spot-index';
+import { from as request$ } from '../actions/request';
+import requestSpotCreate from '../requests/spot-create';
+import requestSpotIndex from '../requests/spot-index';
+import requestStampRallyCreate from '../requests/stamp-rally-create';
+import requestStampRallyIndex from '../requests/stamp-rally-index';
+import requestStampRallyShow from '../requests/stamp-rally-show';
+import requestTokenCreate from '../requests/token-create';
+import { create as responseSpotCreate } from '../actions/response-spot-create';
+import { create as responseSpotIndex } from '../actions/response-spot-index';
 import {
   create as responseStampRallyCreate
-} from './actions/response-stamp-rally-create';
+} from '../actions/response-stamp-rally-create';
 import {
   create as responseStampRallyIndex
-} from './actions/response-stamp-rally-index';
+} from '../actions/response-stamp-rally-index';
 import {
   create as responseStampRallyShow
-} from './actions/response-stamp-rally-show';
+} from '../actions/response-stamp-rally-show';
 import {
   create as responseTokenCreate
-} from './actions/response-token-create';
+} from '../actions/response-token-create';
 
 const request = (
   request$: O<any>,
@@ -37,9 +37,7 @@ const request = (
 };
 
 // RequestAction to ResponseAction
-export default function all(
-  action$: O<A<any>>
-): O<A<any>> {
+const $ = (action$: O<A<any>>): O<A<any>> => {
   const request$s = [
     ['spot-create', requestSpotCreate, responseSpotCreate],
     ['spot-index', requestSpotIndex, responseSpotIndex],
@@ -51,5 +49,6 @@ export default function all(
     request.apply(null, (<any[]>[request$(action$)]).concat(args))
   );
   return O.merge.apply(O, request$s);
-}
+};
 
+export { $ };

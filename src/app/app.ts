@@ -4,6 +4,7 @@ import { State } from './property-types/state';
 
 import { $ as goTo$ } from './app/go-to';
 import { $ as httpResponse$ } from './app/http-response';
+import { $ as render$ } from './app/render';
 import { $ as request$ } from './app/request';
 import { $ as response$ } from './app/response';
 import { $ as success$ } from './app/success';
@@ -21,10 +22,10 @@ export default function app(
     .merge(
       goTo$(action$, state$),
       httpResponse$(action$, state$),
+      render$(action$, state$, { type: 'render' }),
       request$(action$, state$),
       response$(action$, state$),
-      success$(action$, state$),
-      state$.map(state => ({ type: 'render', data: state }))
+      success$(action$, state$)
     )
     .share();
 };

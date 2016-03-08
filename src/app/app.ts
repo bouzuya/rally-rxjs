@@ -1,9 +1,5 @@
 import { A, O } from 'b-o-a';
 
-import {
-  create as render
-} from '../executors/dom/render-action';
-
 import { State } from './models/state';
 
 import makeGoTo from './go-to';
@@ -47,7 +43,7 @@ export default function app(
       makeGoTo(action$),
       makeHTTPResponse(action$),
       makeOther(action$),
-      state$.map(render),
+      state$.map(state => ({ type: 'render', data: state })),
       makeRequest(action$, state$),
       makeResponse(action$)
     )

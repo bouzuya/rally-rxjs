@@ -4,8 +4,8 @@ import { State } from './property-types/state';
 
 import { $ as goTo$ } from './app/go-to';
 import { $ as httpResponse$ } from './app/http-response';
+import { $ as request$ } from './app/request';
 import makeOther from './other';
-import makeRequest from './request';
 import makeResponse from './response';
 import makeState from './properties/';
 
@@ -42,9 +42,9 @@ export default function app(
     .merge(
       goTo$(action$),
       httpResponse$(action$),
+      request$(action$, state$),
       makeOther(action$),
       state$.map(state => ({ type: 'render', data: state })),
-      makeRequest(action$, state$),
       makeResponse(action$)
     )
     .share();

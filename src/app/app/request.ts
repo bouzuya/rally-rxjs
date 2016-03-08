@@ -1,20 +1,17 @@
 import { O, A } from 'b-o-a';
 import {
   from as route$
-} from '../executors/history/route-action';
+} from '../../executors/history/route-action';
 
-import { State } from './property-types/state';
-import { Token } from './property-types/token';
-import { from as addSpot$ } from './actions/add-spot';
-import { from as addStampRally$ } from './actions/add-stamp-rally';
-import { create as createRequest } from './actions/request';
-import { from as responseSpotCreate$ } from './actions/response-spot-create';
-import { from as goToSignIn$ } from './actions/sign-in';
+import { State } from '../property-types/state';
+import { Token } from '../property-types/token';
+import { from as addSpot$ } from '../actions/add-spot';
+import { from as addStampRally$ } from '../actions/add-stamp-rally';
+import { create as createRequest } from '../actions/request';
+import { from as responseSpotCreate$ } from '../actions/response-spot-create';
+import { from as goToSignIn$ } from '../actions/sign-in';
 
-export default function makeRequest(
-  action$: O<A<any>>,
-  state$: O<State>
-): O<A<any>> {
+const $ = (action$: O<A<any>>, state$: O<State>): O<A<any>> => {
   return O
     .merge(
       O
@@ -74,4 +71,6 @@ export default function makeRequest(
         })
         .map(params => createRequest('token-create', params))
   );
-}
+};
+
+export { $ };

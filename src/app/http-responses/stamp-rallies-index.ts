@@ -1,6 +1,6 @@
 import { State } from '../property-types/state';
 
-export default function initializer(): Promise<State> {
+export default function initializer(_: any): Promise<State> {
   // `Promise.reject` is type error
   return new Promise((_, reject) => {
     const error: any = new Error('redirect');

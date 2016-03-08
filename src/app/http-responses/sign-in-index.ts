@@ -1,6 +1,6 @@
 import { State } from '../property-types/state';
 
-export default function initializer(): Promise<State> {
+export default function initializer(_: any): Promise<State> {
   return Promise.resolve({
     googleApiKey: process.env.GOOGLE_API_KEY,
     currentPage: 'sign_in#index',

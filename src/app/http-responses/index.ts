@@ -16,7 +16,7 @@ export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
       httpRequest$(action$)
         .filter(({ route: { name } }) => name === 'sign_in#index')
         .map(({ params, http }) => {
-          return signInIndex() // no params
+          return signInIndex(params)
             .then(
               state => ({ state, http }),
               error => ({ error, http })
@@ -25,7 +25,7 @@ export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
       httpRequest$(action$)
         .filter(({ route: { name } }) => name === 'stamp_rallies#index')
         .map(({ params, http }) => {
-          return stampRalliesIndex() // no params
+          return stampRalliesIndex(params)
             .then(
               state => ({ state, http }),
               error => ({ error, http })

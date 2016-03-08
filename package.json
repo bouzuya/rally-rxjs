@@ -53,7 +53,7 @@
     "clean": "rm -rf lib/ .tmp/ dist/ bundle.js",
     "cp": "cp -r .tmp/es5/src/ lib/",
     "prepublish": "typings install && npm run clean && npm run build",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "test": "npm run build && mocha --recursive --require intelli-espower-loader .tmp/es5/test/",
     "watch": "npm run build && parallelshell 'npm run watch-ts' 'npm run watch-es2015' 'npm run watch-cp' 'npm run watch-browserify' 'npm run watch-less'",
     "watch-browserify": "watchify -v -o dist/scripts/bundle.js client.js",

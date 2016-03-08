@@ -1,17 +1,17 @@
 import { A } from 'b-o-a';
 import { Executor } from '../../framework/executor';
-import { VTree } from '../../framework/view';
 import { DOM } from './dom';
 import { is as isRender } from './render-action';
 
-export default function init(
-  viewRootSelector: string,
-  view: (state: any, options: any) => VTree
-): Executor {
+const init = (options: any): Executor => {
+  const { root, render }: {
+    root: string;
+    render: (state: any, options: any) => any;
+  } = options;
   const after = (context: any): any => context;
 
   const before = (context: any): any => {
-    const dom = new DOM(viewRootSelector);
+    const dom = new DOM(root);
     return Object.assign({}, context, { dom });
   };
 
@@ -19,10 +19,12 @@ export default function init(
     if (!isRender(action)) return action;
     const { dom, re }: { dom: DOM; re: (action: A<any>) => void; } = context;
     const state: any = action.data; // FIXME
-    const vtree = view(state, { e: re });
+    const vtree = render(state, { e: re });
     dom.renderToDOM(vtree);
     return { type: 'noop' };
   };
 
   return { after, before, execute };
 }
+
+export { init };

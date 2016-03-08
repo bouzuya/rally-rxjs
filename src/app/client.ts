@@ -1,6 +1,6 @@
 import run from '../framework/run';
 
-import dom from '../executors/dom/';
+import { init as dom } from '../executors/dom/';
 import history from '../executors/history/';
 import state from '../executors/state/';
 
@@ -13,7 +13,10 @@ export default function main() {
     app,
     [
       state(),
-      dom('div#app', view),
+      dom({
+        render: view,
+        root: 'div#app'
+      }),
       history(routes)
     ]
   );

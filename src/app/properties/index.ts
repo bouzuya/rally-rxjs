@@ -11,10 +11,7 @@ import stampRally$ from '../properties/stamp-rally';
 import stampRallyForm$ from '../properties/stamp-rally-form';
 import token$ from '../properties/token';
 
-export default function state(
-  action$: O<A<any>>,
-  state: State
-): O<State> {
+const $ = (action$: O<A<any>>, state: State): O<State> => {
   return O
     .combineLatest(
       currentPage$(state.currentPage, action$),
@@ -49,4 +46,6 @@ export default function state(
     )
     .do(console.log.bind(console)) // logger for state
     .share();
-}
+};
+
+export { $ };

@@ -7,7 +7,7 @@ import { $ as httpResponse$ } from './app/http-response';
 import { $ as request$ } from './app/request';
 import { $ as response$ } from './app/response';
 import { $ as success$ } from './app/success';
-import makeState from './properties/';
+import { $ as properties } from './properties/';
 
 export default function app(
   action$: O<A<any>>,
@@ -37,7 +37,7 @@ export default function app(
       userId: null
     }
   };
-  const state$ = makeState(action$, state ? state : defaultState);
+  const state$ = properties(action$, state ? state : defaultState);
   return O
     .merge(
       goTo$(action$),

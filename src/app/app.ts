@@ -19,11 +19,11 @@ export default function app(
   const state$ = properties(action$, initialState);
   return O
     .merge(
-      goTo$(action$),
-      httpResponse$(action$),
+      goTo$(action$, state$),
+      httpResponse$(action$, state$),
       request$(action$, state$),
-      response$(action$),
-      success$(action$),
+      response$(action$, state$),
+      success$(action$, state$),
       state$.map(state => ({ type: 'render', data: state }))
     )
     .share();

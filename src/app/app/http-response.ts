@@ -6,9 +6,11 @@ import {
 import {
   from as httpRequest$
 } from '../../executors/http/http-request-action';
+
 import signInIndex from '../inits/sign-in-index';
 import stampRalliesIndex from '../inits/stamp-rallies-index';
 import stampRalliesShow from '../inits/stamp-rallies-show';
+import { State } from '../property-types/state';
 
 const inits: { [k:string]: (params: any) => Promise<any>; } = {
   'sign_in#index': signInIndex,
@@ -16,7 +18,7 @@ const inits: { [k:string]: (params: any) => Promise<any>; } = {
   'stamp_rallies#show': stampRalliesShow
 };
 
-const $ = (action$: O<A<any>>): O<A<any>> => {
+const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
   return httpRequest$(action$)
     .map(({ route: { name }, params, http }) => {
       return inits[name](params).then(

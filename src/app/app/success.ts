@@ -1,5 +1,6 @@
 import { O, A } from 'b-o-a';
 
+import { State } from '../property-types/state';
 import {
   from as responseStampRallyShow$
 } from '../actions/response-stamp-rally-show';
@@ -11,7 +12,7 @@ import {
   create as successStampRallyShow
 } from '../actions/success-stamp-rally-show';
 
-const $ = (action$: O<A<any>>): O<A<any>> => {
+const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
   return O
     .merge(
       responseStampRallyShow$(action$)

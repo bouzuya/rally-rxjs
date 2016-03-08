@@ -1,6 +1,7 @@
 import { A, O } from 'b-o-a';
 
 import { from as request$ } from '../actions/request';
+import { State } from '../property-types/state';
 import requestSpotCreate from '../requests/spot-create';
 import requestSpotIndex from '../requests/spot-index';
 import requestStampRallyCreate from '../requests/stamp-rally-create';
@@ -37,7 +38,7 @@ const request = (
 };
 
 // RequestAction to ResponseAction
-const $ = (action$: O<A<any>>): O<A<any>> => {
+const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
   const request$s = [
     ['spot-create', requestSpotCreate, responseSpotCreate],
     ['spot-index', requestSpotIndex, responseSpotIndex],

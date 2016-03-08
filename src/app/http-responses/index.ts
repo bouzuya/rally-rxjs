@@ -2,13 +2,13 @@ import { O, A } from 'b-o-a';
 
 import {
   create as httpResponse
-} from '../executors/http/http-response-action';
+} from '../../executors/http/http-response-action';
 import {
   from as httpRequest$
-} from '../executors/http/http-request-action';
-import signInIndexInitializer from './initializers/sign-in-index';
-import stampRalliesIndexInitializer from './initializers/stamp-rallies-index';
-import stampRalliesShowInitializer from './initializers/stamp-rallies-show';
+} from '../../executors/http/http-request-action';
+import signInIndexInitializer from '../initializers/sign-in-index';
+import stampRalliesIndexInitializer from '../initializers/stamp-rallies-index';
+import stampRalliesShowInitializer from '../initializers/stamp-rallies-show';
 
 export default function makeHTTPResponse(action$: O<A<any>>): O<A<any>> {
   return O

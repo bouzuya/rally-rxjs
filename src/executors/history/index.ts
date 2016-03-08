@@ -1,9 +1,9 @@
 import { A } from 'b-o-a';
-import { Executor } from '../framework/executor';
-import { Route } from '../framework/route';
-import { Router } from '../framework/router';
-import { HistoryRouter } from './history/history-router';
-import { is as isGoTo } from './history/go-to-action';
+import { Executor } from '../../framework/executor';
+import { Route } from '../../framework/route';
+import { Router } from '../../framework/router';
+import { HistoryRouter } from './history-router';
+import { is as isGoTo } from './go-to-action';
 
 export default function init(routes: Route[]): Executor {
   const after = (context: any): any => {

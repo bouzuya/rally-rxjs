@@ -1,7 +1,7 @@
 import run from '../framework/run';
 
 import dom from '../executors/dom/';
-import history from '../executors/history-executor';
+import history from '../executors/history/';
 import state from '../executors/state-executor';
 
 import { routes } from './routes/all';

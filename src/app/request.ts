@@ -3,8 +3,8 @@ import {
   from as route$
 } from '../executors/history/route-action';
 
-import { State } from './models/state';
-import { Token } from './models/token';
+import { State } from './property-types/state';
+import { Token } from './property-types/token';
 import { from as addSpot$ } from './actions/add-spot';
 import { from as addStampRally$ } from './actions/add-stamp-rally';
 import { create as createRequest } from './actions/request';

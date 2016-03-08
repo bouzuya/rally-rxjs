@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { Spot } from '../models/spot';
+import { Spot } from '../property-types/spot';
 
 type P = Spot[];
 const type = 'response-spot-index';

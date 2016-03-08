@@ -1,6 +1,6 @@
 import { h, VTree } from '../../framework/view';
 
-import { State } from '../models/state';
+import { State } from '../property-types/state';
 import renderStampRallyFormView from '../views/stamp-rally-form-view';
 
 export default function render(state: State, helpers: any): VTree {

@@ -1,6 +1,6 @@
 import { h, VTree } from '../../framework/view';
 
-import { State } from '../models/state';
+import { State } from '../property-types/state';
 import renderMapView from '../views/map-view';
 import renderSpotFormView from '../views/spot-form-view';
 

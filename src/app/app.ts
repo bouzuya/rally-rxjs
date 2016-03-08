@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { State } from './models/state';
+import { State } from './property-types/state';
 
 import makeGoTo from './go-to';
 import makeOther from './other';

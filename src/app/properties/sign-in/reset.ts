@@ -3,8 +3,8 @@ import {
   from as route$
 } from '../../../executors/history/route-action';
 
-import { Updater } from '../../models/updater';
-import { SignIn } from '../../models/sign-in';
+import { Updater } from '../../property-types/updater';
+import { SignIn } from '../../property-types/sign-in';
 
 import { from as successSignIn$ } from '../../actions/success-sign-in';
 

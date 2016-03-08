@@ -1,6 +1,6 @@
 import { h, VTree } from '../../framework/view';
 
-import { SpotForm } from '../models/spot-form';
+import { SpotForm } from '../property-types/spot-form';
 import { create as addSpot } from '../actions/add-spot';
 import {
   create as changeSpotFormName

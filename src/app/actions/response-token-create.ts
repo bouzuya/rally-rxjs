@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { Token } from '../models/token';
+import { Token } from '../property-types/token';
 
 type P = Token;
 const type = 'response-token-create';

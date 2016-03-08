@@ -1,6 +1,6 @@
 import { h, VTree } from '../../framework/view';
 
-import { StampRallyForm } from '../models/stamp-rally-form';
+import { StampRallyForm } from '../property-types/stamp-rally-form';
 import { create as addStampRally } from '../actions/add-stamp-rally';
 import {
   create as changeStampRallyFormName

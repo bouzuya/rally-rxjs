@@ -1,12 +1,12 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../../models/updater';
+import { Updater } from '../../property-types/updater';
 
 import { from as changeName$ } from '../../actions/change-stamp-rally-form-name';
 import {
   from as responseStampRallyCreate$
 } from '../../actions/response-stamp-rally-create';
-import { StampRallyForm } from '../../models/stamp-rally-form';
+import { StampRallyForm } from '../../property-types/stamp-rally-form';
 
 export default function updater$(
   action$: O<A<any>>

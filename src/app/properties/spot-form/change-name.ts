@@ -1,12 +1,12 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../../models/updater';
+import { Updater } from '../../property-types/updater';
 
 import { from as changeName$ } from '../../actions/change-spot-form-name';
 import {
   from as responseSpotCreate$
 } from '../../actions/response-spot-create';
-import { SpotForm } from '../../models/spot-form';
+import { SpotForm } from '../../property-types/spot-form';
 
 export default function updater$(
   action$: O<A<any>>

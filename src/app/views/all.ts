@@ -1,7 +1,7 @@
 import { h, VTree } from '../../framework/view';
 import htmlescape from 'htmlescape';
 
-import { State } from '../models/state';
+import { State } from '../property-types/state';
 import renderApp from '../views/app';
 
 export default function render(state: State, helpers: any): VTree {

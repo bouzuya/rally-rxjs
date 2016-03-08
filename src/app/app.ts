@@ -18,14 +18,13 @@ export default function app(
 ): O<A<any>> {
   const { state: initialState } = options;
   const state$ = properties(action$, initialState);
-  return O
-    .merge(
-      goTo$(action$, state$),
-      httpResponse$(action$, state$),
-      render$(action$, state$, { type: 'render' }),
-      request$(action$, state$),
-      response$(action$, state$),
-      success$(action$, state$)
-    )
+  return O.merge(
+    goTo$(action$, state$),
+    httpResponse$(action$, state$),
+    render$(action$, state$, { type: 'render' }),
+    request$(action$, state$),
+    response$(action$, state$),
+    success$(action$, state$)
+  )
     .share();
 };

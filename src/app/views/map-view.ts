@@ -13,7 +13,7 @@ class MapView {
   private e: any; // emitter
   private map: any; // google.maps.Map;
   private markers: any[]; // google.maps.Marker[];
-  
+
   constructor(state: S, helpers: any) {
     this.type = 'Widget';
     this.state = state;
@@ -52,7 +52,7 @@ class MapView {
   destroy(node: Element): void {
     // do nothing
   }
-  
+
   private buildMarker(spot: SpotMarker, map: any, maps: any, e: any) {
     const { lat, lng, id } = spot;
     const position = { lat, lng };
@@ -60,11 +60,11 @@ class MapView {
     marker.addListener('click', () => e(clickSpotMarker(id)));
     return marker;
   }
-  
+
   private maps(): any {
-    return (<any> window).google.maps;
+    return (<any>window).google.maps;
   }
-  
+
   private getBounds(maps: any, state: S) {
     const bounds = new maps.LatLngBounds();
     state.markers.forEach(i => {
@@ -117,6 +117,8 @@ class MapView {
   }
 }
 
-export default function render(state: S, helpers: any): VTree {
+const view = (state: S, helpers: any): VTree => {
   return new MapView(state, helpers);
-}
+};
+
+export { view };

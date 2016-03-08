@@ -19,7 +19,7 @@ const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
   ]);
 };
 
-export default function render(state: SpotForm, helpers: any): VTree {
+const view = (state: SpotForm, helpers: any): VTree => {
   const { e } = helpers;
   return h('form.spot', [
     labeledTextBox('name', state.name, helpers),
@@ -32,3 +32,5 @@ export default function render(state: SpotForm, helpers: any): VTree {
     }, ['add spot'])
   ]);
 };
+
+export { view };

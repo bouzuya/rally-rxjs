@@ -6,40 +6,53 @@ import {
   create as goTo
 } from '../../executors/history/go-to-action';
 
-import renderSignInPage from '../views/sign-in-page';
-import renderStampRallyListPage from '../views/stamp-rally-list-page';
-import renderStampRallyShowPage from '../views/stamp-rally-show-page';
-import renderNotFoundPage from '../views/not-found-page';
+import {
+  view as signInPage
+} from '../views/sign-in-page';
+import {
+  view as stampRallyListPage
+} from '../views/stamp-rally-list-page';
+import {
+  view as stampRallyShowPage
+} from '../views/stamp-rally-show-page';
+import {
+  view as notFoundPage
+} from '../views/not-found-page';
 
-const renderPage = (state: State, helpers: any): VTree => {
+const pageView = (state: State, helpers: any): VTree => {
   switch (state.currentPage) {
     case 'sign_in#index':
-      return renderSignInPage(state, helpers);
+      return signInPage(state, helpers);
     case 'stamp_rallies#index':
-      return renderStampRallyListPage(state, helpers);
+      return stampRallyListPage(state, helpers);
     case 'stamp_rallies#show':
-      return renderStampRallyShowPage(state, helpers);
+      return stampRallyShowPage(state, helpers);
     default:
-      return renderNotFoundPage();
+      return notFoundPage();
   }
 };
 
-export default function render(state: State, helpers: any): VTree {
+const view = (state: State, helpers: any): VTree => {
   const { e } = helpers;
-  return h('div#app', {
-    onclick: (event: Event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      let node = <any> event.target;
-      while (node && node.tagName !== 'A') {
-        node = node.parentNode;
+  return h(
+    'div#app',
+    {
+      onclick: (event: Event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        let node = <any>event.target;
+        while (node && node.tagName !== 'A') {
+          node = node.parentNode;
+        }
+        if (!node) return;
+        const path: string = node.getAttribute('href');
+        e(goTo(path));
       }
-      if (!node) return;
-      const path: string = node.getAttribute('href');
-      e(goTo(path));
-    }
-  }, [
-    h('h1', ['RALLY (unofficial)']),
-    renderPage(state, helpers)
-  ]);
-}
+    },
+    [
+      h('h1', ['RALLY (unofficial)']),
+      pageView(state, helpers)
+    ]);
+};
+
+export { view };

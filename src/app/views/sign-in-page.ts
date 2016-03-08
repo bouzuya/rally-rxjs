@@ -5,7 +5,7 @@ import { create as changeEmail } from '../actions/change-email';
 import { create as changePassword } from '../actions/change-password';
 import { create as signIn } from '../actions/sign-in';
 
-export default function render(state: State, helpers: any): VTree {
+const view = (state: State, helpers: any): VTree => {
   const { e } = helpers;
   return h('div.sign-in-page', [
     h('label', [
@@ -30,4 +30,6 @@ export default function render(state: State, helpers: any): VTree {
       onclick: () => e(signIn())
     }, ['sign in'])
   ]);
-}
+};
+
+export { view };

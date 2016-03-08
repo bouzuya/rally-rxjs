@@ -2,21 +2,23 @@ import { h, VTree } from '../../framework/view';
 import htmlescape from 'htmlescape';
 
 import { State } from '../property-types/state';
-import renderApp from '../views/app';
+import { view as appView } from '../views/app';
 
-export default function render(state: State, helpers: any): VTree {
+const view = (state: State, helpers: any): VTree => {
+  const key = state.googleApiKey;
+  const src = 'https://maps.googleapis.com/maps/api/js?key=' + key;
   return h('html', [
     h('head', [
       h('title', ['rally-rxjs']),
       h('link', { rel: 'stylesheet', href: '/styles/index.css' }, []),
       h('script', ['var INITIAL_STATE = ' + htmlescape(state) + ';']),
-      h('script', {
-        src: 'https://maps.googleapis.com/maps/api/js?key=' + state.googleApiKey
-      }, [])
+      h('script', { src }, [])
     ]),
     h('body', [
-      renderApp(state, helpers),
+      appView(state, helpers),
       h('script', { src: '/scripts/bundle.js' }, [])
     ])
   ]);
-}
+};
+
+export { view };

@@ -1,10 +1,10 @@
 import { h, VTree } from '../../framework/view';
 
 import { State } from '../property-types/state';
-import renderMapView from '../views/map-view';
-import renderSpotFormView from '../views/spot-form-view';
+import { view as mapView } from '../views/map-view';
+import { view as spotFormView } from '../views/spot-form-view';
 
-export default function render(state: State, helpers: any): VTree {
+const view = (state: State, helpers: any): VTree => {
   const { e } = helpers;
   const map = {
     markers: state.spots.map(spot => {
@@ -20,10 +20,10 @@ export default function render(state: State, helpers: any): VTree {
   return h('div.stamp-rally-show-page', [
     (
       state.stampRally
-      ? h('h1', [state.stampRally.name])
-      : h('h1', ['loading...'])
+        ? h('h1', [state.stampRally.name])
+        : h('h1', ['loading...'])
     ),
-    renderMapView(map, helpers),
+    mapView(map, helpers),
     h('ul', state.spots.map(spot => {
       return h('li', [
         spot.id,
@@ -31,6 +31,8 @@ export default function render(state: State, helpers: any): VTree {
         spot.tagline
       ]);
     })),
-    renderSpotFormView(state.spotForm, helpers)
+    spotFormView(state.spotForm, helpers)
   ]);
-}
+};
+
+export { view };

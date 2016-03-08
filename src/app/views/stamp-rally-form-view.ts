@@ -21,7 +21,7 @@ const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
   ]);
 };
 
-export default function render(state: StampRallyForm, helpers: any): VTree {
+const view = (state: StampRallyForm, helpers: any): VTree => {
   const { e } = helpers;
   return h('form.stamp-rally', [
     labeledTextBox('name', state.name, helpers),
@@ -34,3 +34,5 @@ export default function render(state: StampRallyForm, helpers: any): VTree {
     }, ['add stamp-rally'])
   ]);
 };
+
+export { view };

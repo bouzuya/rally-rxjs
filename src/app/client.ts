@@ -5,7 +5,7 @@ import history from '../executors/history/';
 import state from '../executors/state/';
 
 import { routes } from './routes/';
-import view from './views/app';
+import { view } from './views/app';
 import app from './app';
 
 export default function main() {

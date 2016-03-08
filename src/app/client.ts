@@ -1,6 +1,6 @@
 import run from '../framework/run';
 
-import dom from '../executors/dom-executor';
+import dom from '../executors/dom/';
 import history from '../executors/history-executor';
 import state from '../executors/state-executor';
 

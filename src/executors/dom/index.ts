@@ -1,8 +1,8 @@
 import { A } from 'b-o-a';
-import { Executor } from '../framework/executor';
-import { VTree } from '../framework/view';
-import { DOM } from './dom/dom';
-import { is as isRender } from './dom/render-action';
+import { Executor } from '../../framework/executor';
+import { VTree } from '../../framework/view';
+import { DOM } from './dom';
+import { is as isRender } from './render-action';
 
 export default function init(
   viewRootSelector: string,

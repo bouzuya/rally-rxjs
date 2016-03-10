@@ -23,33 +23,46 @@ import {
   create as responseTokenCreate
 } from '../actions/response-token-create';
 
-const request = (
-  request$: O<any>,
-  path: string,
-  request: (params: any) => Promise<any>,
-  response: (res: any) => A<any>
-): O<A<any>> => {
-  return request$
-    .filter(({ path: p }) => p === path)
-    .mergeMap(({ params: p }) => {
-      return O.fromPromise(request(p));
-    })
-    .map(r => response(r));
+type RequestMap = {
+  [k: string]: {
+    request: (params: any) => Promise<any>;
+    response: (res: any) => A<any>;
+  };
 };
 
 // RequestAction to ResponseAction
 const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
-  const request$s = [
-    ['spot-create', requestSpotCreate, responseSpotCreate],
-    ['spot-index', requestSpotIndex, responseSpotIndex],
-    ['stamp-rally-create', requestStampRallyCreate, responseStampRallyCreate],
-    ['stamp-rally-index', requestStampRallyIndex, responseStampRallyIndex],
-    ['stamp-rally-show', requestStampRallyShow, responseStampRallyShow],
-    ['token-create', requestTokenCreate, responseTokenCreate]
-  ].map(args =>
-    request.apply(null, (<any[]>[request$(action$)]).concat(args))
-  );
-  return O.merge.apply(O, request$s);
+  const requests: RequestMap = {
+    'spot-create': {
+      request: requestSpotCreate,
+      response: responseSpotCreate
+    },
+    'spot-index': {
+      request: requestSpotIndex,
+      response: responseSpotIndex
+    },
+    'stamp-rally-create': {
+      request: requestStampRallyCreate,
+      response: responseStampRallyCreate
+    },
+    'stamp-rally-index': {
+      request: requestStampRallyIndex,
+      response: responseStampRallyIndex
+    },
+    'stamp-rally-show': {
+      request: requestStampRallyShow,
+      response: responseStampRallyShow
+    },
+    'token-create': {
+      request: requestTokenCreate,
+      response: responseTokenCreate
+    }
+  };
+  return request$(action$)
+    .mergeMap(({ path, params: p }) => {
+      const { request, response } = requests[path];
+      return O.fromPromise(request(p)).map(response);
+    });
 };
 
 export { $ };

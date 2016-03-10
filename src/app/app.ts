@@ -6,7 +6,6 @@ import { $ as goTo$ } from './app/go-to';
 import { $ as httpResponse$ } from './app/http-response';
 import { $ as render$ } from './app/render';
 import { $ as request$ } from './app/request';
-import { $ as response$ } from './app/response';
 import { $ as success$ } from './app/success';
 import { $ as properties } from './properties/';
 
@@ -23,7 +22,6 @@ export default function app(
     httpResponse$(action$, state$),
     render$(action$, state$, { type: 'render' }),
     request$(action$, state$),
-    response$(action$, state$),
     success$(action$, state$)
   )
     .share();

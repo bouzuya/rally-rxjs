@@ -7,9 +7,12 @@ import { State } from '../property-types/state';
 import { Token } from '../property-types/token';
 import { from as addSpot$ } from '../actions/add-spot';
 import { from as addStampRally$ } from '../actions/add-stamp-rally';
-import { create as createRequest } from '../actions/request';
 import { from as responseSpotCreate$ } from '../actions/response-spot-create';
 import { from as goToSignIn$ } from '../actions/sign-in';
+
+const request = (path: string, params: any): A<any> => {
+  return { type: 'request', data: { path, params } };
+};
 
 const $ = (action$: O<A<any>>, state$: O<State>): O<A<any>> => {
   return O
@@ -19,57 +22,57 @@ const $ = (action$: O<A<any>>, state$: O<State>): O<A<any>> => {
           route$(action$)
             .filter(({ name }) => name === 'stamp_rallies#index')
             .map(() => ({ token, userId }: Token) => {
-              return createRequest('stamp-rally-index', { token, userId });
+              return request('stamp-rally-index', { token, userId });
             }),
           route$(action$)
             .filter(({ name }) => name === 'stamp_rallies#show')
             .map(({ params }) => params['id'])
             .map(stampRallyId => ({ token }: Token) => {
-              return createRequest('stamp-rally-show', { token, stampRallyId });
+              return request('stamp-rally-show', { token, stampRallyId });
             }),
           route$(action$)
             .filter(({ name }) => name === 'stamp_rallies#show')
             .map(({ params }) => params['id'])
             .map(stampRallyId => ({ token }: Token) => {
-              return createRequest('spot-index', { token, stampRallyId });
+              return request('spot-index', { token, stampRallyId });
             })
         )
         .withLatestFrom(state$, (create: any, state: any) => {
           return create(state.token);
         }),
       addSpot$(action$)
-        .withLatestFrom(state$, (_, state) => {
+        .withLatestFrom<State, any>(state$, (_, state) => {
           return {
             token: state.token.token,
             stampRallyId: state.stampRally.name,
             name: state.spotForm.name
           };
         })
-        .map(params => createRequest('spot-create', params)),
+        .map(params => request('spot-create', params)),
       addStampRally$(action$)
-        .withLatestFrom(state$, (_, state) => {
+        .withLatestFrom<State, any>(state$, (_, state) => {
           return {
             token: state.token.token,
             name: state.stampRallyForm.name
           };
         })
-        .map(params => createRequest('stamp-rally-create', params)),
+        .map(params => request('stamp-rally-create', params)),
       responseSpotCreate$(action$)
-        .withLatestFrom(state$, (_, state) => {
+        .withLatestFrom<State, any>(state$, (_, state) => {
           return {
             token: state.token.token,
             stampRallyId: state.stampRally.name
           };
         })
-        .map(params => createRequest('spot-index', params)),
+        .map(params => request('spot-index', params)),
       goToSignIn$(action$)
-        .withLatestFrom(state$, (_, state) => {
+        .withLatestFrom<State, any>(state$, (_, state) => {
           return {
             email: state.signIn.email,
             password: state.signIn.password,
           };
         })
-        .map(params => createRequest('token-create', params))
+        .map(params => request('token-create', params))
   );
 };
 

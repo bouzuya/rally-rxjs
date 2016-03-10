@@ -7,13 +7,15 @@ export default function runUserApp(
   app: UserApp,
   executors: Executor[]
 ): void {
-  run((action$, { re }) => {
-    const options = executors.reduce((c, { before }) => before(c), { re });
-    const a$: O<A<any>> = executors
-      .reduce((a$, { execute }) => a$.map(execute(options)), action$)
+  run((action$, options) => {
+    const opts = executors.map(({ before }) => before)
+      .reduce((c, b) => b(c), options);
+    const a$ = executors.map(({ execute }) => execute)
+      .reduce((a$, e) => a$.map(e(opts)).filter(a => !!a), action$)
       .share();
-    const app$ = app(a$, options);
-    executors.reduce((c, { after }) => after(c), options);
+    const app$ = app(a$, opts);
+    executors.map(({ after }) => after)
+      .reduce((c, a) => a(c), opts);
     return app$;
   });
 }

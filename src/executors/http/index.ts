@@ -40,7 +40,7 @@ export default function init(
       const html = renderToHTML(vtree);
       response.send(html);
     }
-    return { type: 'noop' };
+    return; // return undefined
   };
 
   return { after, before, execute };

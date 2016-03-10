@@ -22,7 +22,7 @@ const init = (options: any): Executor => {
     const state: any = action.data; // FIXME
     const vtree = render(state, { e: re });
     dom.renderToDOM(vtree);
-    return { type: 'noop' };
+    return; // return undefined
   };
 
   return { after, before, execute };

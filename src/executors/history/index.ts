@@ -23,7 +23,7 @@ export default function init(routes: Route[]): Executor {
     const { history }: { history: HistoryRouter; } = context;
     const path: string = action.data;
     history.go(path);
-    return { type: 'noop' };
+    return; // return undefined
   };
 
   return { after, before, execute };

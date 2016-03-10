@@ -56,7 +56,7 @@ const init = (options: any): Executor => {
     } = action.data;
     const { request, responseToAction } = requestMap[path];
     request(params).then(response => re(responseToAction(response)));
-    return { type: 'noop' };
+    return; // return undefined
   };
 
   return { after, before, execute };

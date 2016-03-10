@@ -1,3 +1,5 @@
+// RenderAction -> render -> render to DOM
+
 import { A } from 'b-o-a';
 import { Executor } from '../../framework/executor';
 import { DOM } from './dom';

@@ -1,3 +1,5 @@
+// load state from window.INITIAL_STATE -> set state to options.state
+
 import { A } from 'b-o-a';
 
 export default function init() {

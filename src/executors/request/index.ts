@@ -1,3 +1,5 @@
+// RequestAction -> HTTP request -> *Action
+
 import { A, O } from 'b-o-a';
 import { Executor } from '../../framework/executor';
 

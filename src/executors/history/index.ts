@@ -1,3 +1,8 @@
+// History API Action (pushState / onpopstate event) -> RouteAction
+// GoToAction -> History API Action
+
+// TODO: GoBackAction
+
 import { A } from 'b-o-a';
 import { Executor } from '../../framework/executor';
 import { Route } from '../../framework/route';

@@ -10,11 +10,11 @@ import { from as addStampRally$ } from '../actions/add-stamp-rally';
 import { from as responseSpotCreate$ } from '../actions/response-spot-create';
 import { from as goToSignIn$ } from '../actions/sign-in';
 
-const request = (path: string, params: any): A<any> => {
-  return { type: 'request', data: { path, params } };
-};
-
-const $ = (action$: O<A<any>>, state$: O<State>): O<A<any>> => {
+const $ = (action$: O<A<any>>, state$: O<State>, options: any): O<A<any>> => {
+  const { type }: { type: string; } = options;
+  const request = (path: string, params: any): A<any> => {
+    return { type, data: { path, params } };
+  };
   return O
     .merge(
       O

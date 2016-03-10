@@ -20,8 +20,10 @@ export default function app(
   return O.merge(
     goTo$(action$, state$),
     init$(action$, state$),
+    // TODO: type is specified in client or server.
     render$(action$, state$, { type: 'render' }),
-    request$(action$, state$),
+    // TODO: type is specified in client or server.
+    request$(action$, state$, { type: 'request' }),
     success$(action$, state$)
   )
     .share();

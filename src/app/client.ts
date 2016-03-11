@@ -6,7 +6,7 @@ import { init as request } from '../executors/request/';
 import state from '../executors/state/';
 
 import { requests } from './requests/';
-import { routes } from './routes/';
+import { routes } from './route/';
 import { view } from './view/app';
 import app from './app';
 

@@ -1,12 +1,7 @@
 {
   "dependencies": {},
   "devDependencies": {},
-  "ambientDevDependencies": {
-    "empower": "github:DefinitelyTyped/DefinitelyTyped/empower/empower.d.ts#aeb7701fbef3b7fc7261d67c025c823666ab98ea",
-    "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#d6dd320291705694ba8e1a79497a908e9f5e6617",
-    "power-assert": "github:DefinitelyTyped/DefinitelyTyped/power-assert/power-assert.d.ts#8ab759a80cfd768be64d2215e935a73347bc68ea",
-    "power-assert-formatter": "github:DefinitelyTyped/DefinitelyTyped/power-assert-formatter/power-assert-formatter.d.ts#aeb7701fbef3b7fc7261d67c025c823666ab98ea"
-  },
+  "ambientDevDependencies": {},
   "ambientDependencies": {
     "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#dd638012d63e069f2c99d06ef4dcc9616a943ee4",
     "htmlescape": "github:bouzuya/my-dts/htmlescape/htmlescape.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",

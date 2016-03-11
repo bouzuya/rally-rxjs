@@ -3,7 +3,7 @@
     "declaration": false,
     "module": "commonjs",
     "target": "es5",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "outDir": ".tmp/",
     "rootDir": ".",
     "sourceMap": false,
@@ -12,10 +12,9 @@
   "files": [
     "./src/app/client.ts",
     "./src/app/server.ts",
-    "./test/add-test.ts",
-    "./test/app/action/add-spot-test.ts",
-    "./test/app/route/all-test.ts",
-    "./test/framework/router-test.ts",
+    "./test/app/action/add-spot.ts",
+    "./test/app/route/index.ts",
+    "./test/framework/router.ts",
     "./typings/main.d.ts",
     "./node_modules/typescript/lib/lib.es6.d.ts"
   ]

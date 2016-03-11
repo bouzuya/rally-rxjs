@@ -29,7 +29,7 @@
     "parallelshell": "^2.0.0",
     "power-assert": "^1.2.0",
     "typescript": "^1.7.5",
-    "typings": "^0.6.3",
+    "typings": "^0.7.7",
     "watch": "^0.17.1",
     "watchify": "^3.7.0"
   },
@@ -42,13 +42,13 @@
     "url": "https://github.com/bouzuya/rally-rxjs"
   },
   "scripts": {
-    "prebuild": "[ -d dist/scripts ] || mkdir -p dist/scripts",
     "build": "npm run build-ts && npm run cp && npm run build-browserify && npm run build-less",
     "build-browserify": "browserify -o dist/scripts/bundle.js client.js",
     "build-less": "lessc src/app/style/index.less dist/styles/index.css",
     "build-ts": "tsc",
     "clean": "rm -rf lib/ .tmp/ dist/ bundle.js",
     "cp": "cp -r .tmp/es5/src/ lib/",
+    "prebuild": "[ -d dist/scripts ] || mkdir -p dist/scripts",
     "prepublish": "typings install && npm run clean && npm run build",
     "start": "nodemon server.js",
     "test": "npm run build && mocha --recursive --require intelli-espower-loader .tmp/es5/test/",

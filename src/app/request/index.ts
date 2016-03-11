@@ -1,11 +1,11 @@
 import { Request } from '../../executors/request/';
 
-import requestSpotCreate from '../requests/spot-create';
-import requestSpotIndex from '../requests/spot-index';
-import requestStampRallyCreate from '../requests/stamp-rally-create';
-import requestStampRallyIndex from '../requests/stamp-rally-index';
-import requestStampRallyShow from '../requests/stamp-rally-show';
-import requestTokenCreate from '../requests/token-create';
+import requestSpotCreate from '../request/spot-create';
+import requestSpotIndex from '../request/spot-index';
+import requestStampRallyCreate from '../request/stamp-rally-create';
+import requestStampRallyIndex from '../request/stamp-rally-index';
+import requestStampRallyShow from '../request/stamp-rally-show';
+import requestTokenCreate from '../request/token-create';
 import { create as responseSpotCreate } from '../actions/response-spot-create';
 import { create as responseSpotIndex } from '../actions/response-spot-index';
 import {

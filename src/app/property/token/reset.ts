@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import * as fetch from 'node-fetch';
 import { A, O } from 'b-o-a';
 
 import { Updater } from '../../property-type/updater';

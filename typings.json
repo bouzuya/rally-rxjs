@@ -8,13 +8,15 @@
     "power-assert-formatter": "github:DefinitelyTyped/DefinitelyTyped/power-assert-formatter/power-assert-formatter.d.ts#aeb7701fbef3b7fc7261d67c025c823666ab98ea"
   },
   "ambientDependencies": {
-    "express": "github:bouzuya/my-dts/express/express.d.ts#8332d5a24d81822920309e0c4bcfafeb418feb11",
-    "htmlescape": "github:bouzuya/my-dts/htmlescape/htmlescape.d.ts#5ef1b4a584610f34bf176b9c5fac584105667c6b",
+    "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#dd638012d63e069f2c99d06ef4dcc9616a943ee4",
+    "htmlescape": "github:bouzuya/my-dts/htmlescape/htmlescape.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
+    "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#cb5206a8ac1c9a3ddfd126f5ecea6729b2361452",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81",
-    "node-fetch": "github:bouzuya/my-dts/node-fetch/node-fetch.d.ts#a3b451226dbc7926d40b923d8d630c23efbf8d54",
-    "path-to-regexp": "github:bouzuya/my-dts/path-to-regexp/path-to-regexp.d.ts#9da7cde06da5e948df14e6bac6562f24406326b9",
-    "vdom-parser": "github:bouzuya/my-dts/vdom-parser/vdom-parser.d.ts#66d43ffe2e932b29c414d3f82097f6c111cc9ada",
-    "vdom-to-html": "github:bouzuya/my-dts/vdom-to-html/vdom-to-html.d.ts#6a33bb24ac5fdc820c2580d5d9891a39b746e11d",
+    "node-fetch": "github:bouzuya/my-dts/node-fetch/node-fetch.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
+    "path-to-regexp": "github:bouzuya/my-dts/path-to-regexp/path-to-regexp.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
+    "serve-static": "github:DefinitelyTyped/DefinitelyTyped/serve-static/serve-static.d.ts#0fa4e9e61385646ea6a4cba2aef357353d2ce77f",
+    "vdom-parser": "github:bouzuya/my-dts/vdom-parser/vdom-parser.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
+    "vdom-to-html": "github:bouzuya/my-dts/vdom-to-html/vdom-to-html.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
     "virtual-dom": "github:DefinitelyTyped/DefinitelyTyped/virtual-dom/virtual-dom.d.ts#df507c636cf0c799a8a20f35af89a3d0caae6c32"
   }
 }

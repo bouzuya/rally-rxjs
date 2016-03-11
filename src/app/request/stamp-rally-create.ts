@@ -1,5 +1,5 @@
 import * as url from 'url';
-import fetch from 'node-fetch';
+import * as fetch from 'node-fetch';
 
 import { StampRally } from '../property-type/stamp-rally';
 

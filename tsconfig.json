@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "declaration": false,
-    "module": "es2015",
-    "target": "es2015",
+    "module": "commonjs",
+    "target": "es5",
     "noImplicitAny": true,
-    "outDir": ".tmp/es2015/",
+    "outDir": ".tmp/es5/",
     "rootDir": ".",
     "sourceMap": false,
     "moduleResolution": "node"
@@ -16,6 +16,7 @@
     "./test/app/action/add-spot-test.ts",
     "./test/app/route/all-test.ts",
     "./test/framework/router-test.ts",
-    "./typings/main.d.ts"
+    "./typings/main.d.ts",
+    "./node_modules/typescript/lib/lib.es6.d.ts"
   ]
 }

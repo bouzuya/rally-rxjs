@@ -1,7 +1,7 @@
 // HTTP request -> HttpRequestAction
 // HTTPResponseAction -> HTTP response
 
-import renderToHTML from 'vdom-to-html';
+import * as renderToHTML from 'vdom-to-html';
 import { A } from 'b-o-a';
 import { Executor } from '../../framework/executor';
 import { VTree } from '../../framework/view';

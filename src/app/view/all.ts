@@ -1,5 +1,5 @@
 import { h, VTree } from '../../framework/view';
-import htmlescape from 'htmlescape';
+import * as htmlescape from 'htmlescape';
 
 import { State } from '../property-type/state';
 import { view as appView } from '../view/app';

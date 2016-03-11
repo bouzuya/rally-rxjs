@@ -21,8 +21,6 @@
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-preset-es2015": "^6.3.13",
     "browserify": "^13.0.0",
     "intelli-espower-loader": "^1.0.1",
     "less": "^2.6.0",
@@ -45,9 +43,8 @@
   },
   "scripts": {
     "prebuild": "[ -d dist/scripts ] || mkdir -p dist/scripts",
-    "build": "npm run build-ts && npm run build-es2015 && npm run cp && npm run build-browserify && npm run build-less",
+    "build": "npm run build-ts && npm run cp && npm run build-browserify && npm run build-less",
     "build-browserify": "browserify -o dist/scripts/bundle.js client.js",
-    "build-es2015": "babel --presets es2015 --out-dir .tmp/es5/ .tmp/es2015/ >/dev/null",
     "build-less": "lessc src/app/style/index.less dist/styles/index.css",
     "build-ts": "tsc",
     "clean": "rm -rf lib/ .tmp/ dist/ bundle.js",
@@ -55,10 +52,9 @@
     "prepublish": "typings install && npm run clean && npm run build",
     "start": "nodemon server.js",
     "test": "npm run build && mocha --recursive --require intelli-espower-loader .tmp/es5/test/",
-    "watch": "npm run build && parallelshell 'npm run watch-ts' 'npm run watch-es2015' 'npm run watch-cp' 'npm run watch-browserify' 'npm run watch-less'",
+    "watch": "npm run build && parallelshell 'npm run watch-ts' 'npm run watch-cp' 'npm run watch-browserify' 'npm run watch-less'",
     "watch-browserify": "watchify -v -o dist/scripts/bundle.js client.js",
     "watch-cp": "watch --ignoreUnreadable --wait 2 'npm run cp' .tmp/es5/src/",
-    "watch-es2015": "watch --ignoreUnreadable --wait 2 'npm run build-es2015' .tmp/es2015/src/",
     "watch-less": "watch --ignoreUnreadable --wait 2 'npm run build-less' src/app/style/",
     "watch-test": "mocha --watch --recursive --require intelli-espower-loader .tmp/es5/test/",
     "watch-ts": "tsc --watch"

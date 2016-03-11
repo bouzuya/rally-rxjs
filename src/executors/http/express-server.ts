@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 
 type Request = { path: string; };
 type Response = {

@@ -7,7 +7,7 @@ import { $ as init$ } from './app/init';
 import { $ as render$ } from './app/render';
 import { $ as request$ } from './app/request';
 import { $ as success$ } from './app/success';
-import { $ as properties } from './properties/';
+import { $ as properties } from './property/';
 
 export default function app(
   action$: O<A<any>>,

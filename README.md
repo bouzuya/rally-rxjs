@@ -8,6 +8,7 @@ This is a [bouzuya/vdom-rxjs-ssr][] fork.
 ## Usage
 
 ```
+$ npm install
 $ npm run build
 $ npm start
 $ open http://localhost:3000/

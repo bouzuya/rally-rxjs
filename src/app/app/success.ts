@@ -1,6 +1,6 @@
 import { O, A } from 'b-o-a';
 
-import { State } from '../property-types/state';
+import { State } from '../property-type/state';
 import {
   from as responseStampRallyShow$
 } from '../actions/response-stamp-rally-show';

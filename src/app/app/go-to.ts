@@ -2,7 +2,7 @@ import { O, A } from 'b-o-a';
 
 import { create as goTo } from '../../executors/history/go-to-action';
 
-import { State } from '../property-types/state';
+import { State } from '../property-type/state';
 import { from as successSignIn$ } from '../actions/success-sign-in';
 
 const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {

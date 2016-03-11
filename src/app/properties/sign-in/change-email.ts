@@ -1,11 +1,11 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../../property-types/updater';
+import { Updater } from '../../property-type/updater';
 
 import {
   from as changeEmail$
 } from '../../actions/change-sign-in-form-email';
-import { SignIn } from '../../property-types/sign-in';
+import { SignIn } from '../../property-type/sign-in';
 
 export default function updater$(
   action$: O<A<any>>

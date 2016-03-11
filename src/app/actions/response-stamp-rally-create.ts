@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { StampRally } from '../property-types/stamp-rally';
+import { StampRally } from '../property-type/stamp-rally';
 
 type P = StampRally;
 const type = 'response-stamp-rally-create';

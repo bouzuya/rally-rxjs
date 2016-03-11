@@ -4,7 +4,7 @@ import {
   from as route$
 } from '../../executors/history/route-action';
 
-import { Updater } from '../property-types/updater';
+import { Updater } from '../property-type/updater';
 
 export default function property(
   state: string,

@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { State } from './property-types/state';
+import { State } from './property-type/state';
 
 import { $ as goTo$ } from './app/go-to';
 import { $ as init$ } from './app/init';

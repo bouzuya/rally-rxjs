@@ -1,9 +1,9 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../../property-types/updater';
+import { Updater } from '../../property-type/updater';
 
 import { from as responseSpotIndex$ } from '../../actions/response-spot-index';
-import { Spot } from '../../property-types/spot';
+import { Spot } from '../../property-type/spot';
 
 export default function updater$(
   action$: O<A<any>>

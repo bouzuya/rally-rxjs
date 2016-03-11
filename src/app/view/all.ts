@@ -1,7 +1,7 @@
 import { h, VTree } from '../../framework/view';
 import htmlescape from 'htmlescape';
 
-import { State } from '../property-types/state';
+import { State } from '../property-type/state';
 import { view as appView } from '../view/app';
 
 const view = (state: State, helpers: any): VTree => {

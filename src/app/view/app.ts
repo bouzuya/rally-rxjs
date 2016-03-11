@@ -1,6 +1,6 @@
 import { h, VTree } from '../../framework/view';
 
-import { State } from '../property-types/state';
+import { State } from '../property-type/state';
 
 import {
   create as goTo

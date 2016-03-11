@@ -1,8 +1,8 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../property-types/updater';
+import { Updater } from '../property-type/updater';
 
-import { Token } from '../property-types/token';
+import { Token } from '../property-type/token';
 import reset$ from './token/reset';
 
 export default function property(

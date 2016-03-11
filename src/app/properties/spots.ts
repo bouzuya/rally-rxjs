@@ -1,8 +1,8 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../property-types/updater';
+import { Updater } from '../property-type/updater';
 
-import { Spot } from '../property-types/spot';
+import { Spot } from '../property-type/spot';
 import reset$ from './spots/reset';
 
 export default function property(

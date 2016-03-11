@@ -1,6 +1,6 @@
 import { h, VTree } from '../../framework/view';
 
-import { State } from '../property-types/state';
+import { State } from '../property-type/state';
 import { view as mapView } from '../view/map-view';
 import { view as spotFormView } from '../view/spot-form-view';
 

@@ -2,10 +2,10 @@ import { A, O } from 'b-o-a';
 
 import { Updater } from '../../property-type/updater';
 
-import { from as changeName$ } from '../../actions/change-stamp-rally-form-name';
+import { from as changeName$ } from '../../action/change-stamp-rally-form-name';
 import {
   from as responseStampRallyCreate$
-} from '../../actions/response-stamp-rally-create';
+} from '../../action/response-stamp-rally-create';
 import { StampRallyForm } from '../../property-type/stamp-rally-form';
 
 export default function updater$(

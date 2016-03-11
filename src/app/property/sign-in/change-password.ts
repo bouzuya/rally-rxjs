@@ -4,7 +4,7 @@ import { Updater } from '../../property-type/updater';
 
 import {
   from as changePassword$
-} from '../../actions/change-sign-in-form-password';
+} from '../../action/change-sign-in-form-password';
 import { SignIn } from '../../property-type/sign-in';
 
 export default function updater$(

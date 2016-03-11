@@ -6,20 +6,20 @@ import requestStampRallyCreate from '../request/stamp-rally-create';
 import requestStampRallyIndex from '../request/stamp-rally-index';
 import requestStampRallyShow from '../request/stamp-rally-show';
 import requestTokenCreate from '../request/token-create';
-import { create as responseSpotCreate } from '../actions/response-spot-create';
-import { create as responseSpotIndex } from '../actions/response-spot-index';
+import { create as responseSpotCreate } from '../action/response-spot-create';
+import { create as responseSpotIndex } from '../action/response-spot-index';
 import {
   create as responseStampRallyCreate
-} from '../actions/response-stamp-rally-create';
+} from '../action/response-stamp-rally-create';
 import {
   create as responseStampRallyIndex
-} from '../actions/response-stamp-rally-index';
+} from '../action/response-stamp-rally-index';
 import {
   create as responseStampRallyShow
-} from '../actions/response-stamp-rally-show';
+} from '../action/response-stamp-rally-show';
 import {
   create as responseTokenCreate
-} from '../actions/response-token-create';
+} from '../action/response-token-create';
 
 const requests: Request[] = [
   {

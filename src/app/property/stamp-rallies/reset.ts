@@ -4,7 +4,7 @@ import { Updater } from '../../property-type/updater';
 
 import {
   from as responseStampRallyIndex$
-} from '../../actions/response-stamp-rally-index';
+} from '../../action/response-stamp-rally-index';
 import { StampRally } from '../../property-type/stamp-rally';
 
 export default function updater$(

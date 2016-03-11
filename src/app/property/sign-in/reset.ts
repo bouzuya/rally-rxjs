@@ -6,7 +6,7 @@ import {
 import { Updater } from '../../property-type/updater';
 import { SignIn } from '../../property-type/sign-in';
 
-import { from as successSignIn$ } from '../../actions/success-sign-in';
+import { from as successSignIn$ } from '../../action/success-sign-in';
 
 export default function updater$(
   action$: O<A<any>>

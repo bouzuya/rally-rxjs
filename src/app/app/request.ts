@@ -5,10 +5,10 @@ import {
 
 import { State } from '../property-type/state';
 import { Token } from '../property-type/token';
-import { from as addSpot$ } from '../actions/add-spot';
-import { from as addStampRally$ } from '../actions/add-stamp-rally';
-import { from as responseSpotCreate$ } from '../actions/response-spot-create';
-import { from as goToSignIn$ } from '../actions/sign-in';
+import { from as addSpot$ } from '../action/add-spot';
+import { from as addStampRally$ } from '../action/add-stamp-rally';
+import { from as responseSpotCreate$ } from '../action/response-spot-create';
+import { from as goToSignIn$ } from '../action/sign-in';
 
 const $ = (action$: O<A<any>>, state$: O<State>, options: any): O<A<any>> => {
   const { type }: { type: string; } = options;

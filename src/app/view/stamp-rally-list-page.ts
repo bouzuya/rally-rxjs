@@ -1,7 +1,7 @@
 import { h, VTree } from '../../framework/view';
 
 import { State } from '../property-types/state';
-import { view as stampRallyFormView } from '../views/stamp-rally-form-view';
+import { view as stampRallyFormView } from '../view/stamp-rally-form-view';
 
 const view = (state: State, helpers: any): VTree => {
   return h('div.stamp-rally-list-page', [

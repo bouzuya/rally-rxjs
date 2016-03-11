@@ -2,7 +2,7 @@ import { h, VTree } from '../../framework/view';
 import htmlescape from 'htmlescape';
 
 import { State } from '../property-types/state';
-import { view as appView } from '../views/app';
+import { view as appView } from '../view/app';
 
 const view = (state: State, helpers: any): VTree => {
   const key = state.googleApiKey;

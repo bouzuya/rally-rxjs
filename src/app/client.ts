@@ -7,7 +7,7 @@ import state from '../executors/state/';
 
 import { requests } from './requests/';
 import { routes } from './routes/';
-import { view } from './views/app';
+import { view } from './view/app';
 import app from './app';
 
 export default function main() {

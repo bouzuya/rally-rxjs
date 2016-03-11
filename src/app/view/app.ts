@@ -8,16 +8,16 @@ import {
 
 import {
   view as signInPage
-} from '../views/sign-in-page';
+} from '../view/sign-in-page';
 import {
   view as stampRallyListPage
-} from '../views/stamp-rally-list-page';
+} from '../view/stamp-rally-list-page';
 import {
   view as stampRallyShowPage
-} from '../views/stamp-rally-show-page';
+} from '../view/stamp-rally-show-page';
 import {
   view as notFoundPage
-} from '../views/not-found-page';
+} from '../view/not-found-page';
 
 const pageView = (state: State, helpers: any): VTree => {
   switch (state.currentPage) {

@@ -19,15 +19,15 @@ $ open http://localhost:3000/
 
 ```
 app/
-  actions/        ... `type AT = A<P>; type P = ...;`
+  action/         ... `type AT = A<P>; type P = ...;`
   app/            ... `type f = (action$: O<A>, state$: O<PT>) => O<A>;`
-  inits/          ... `type init = (params: any) => Promise<PT>`
-  properties/     ... `type p = (action$: O<A>, state: <PT>) => O<PT>;`
-  property-types/ ... `type PT = { ... };`
-  requests/       ... `type request = (params: any) => Promise<PT>;`
-  routes/         ... route config file
-  styles/         ... less files
-  views/          ... `type view = (state: PT, helpers: any) => V;`
+  init/           ... `type init = (params: any) => Promise<PT>`
+  propertie/      ... `type p = (action$: O<A>, state: <PT>) => O<PT>;`
+  property-type/  ... `type PT = { ... };`
+  request/        ... `type request = (params: any) => Promise<PT>;`
+  route/          ... route config file
+  style/          ... less files
+  view/           ... `type view = (state: PT, helpers: any) => V;`
   app.ts          ... `type app = (action$: O<A>, options: any) => O<A>;`
   client.ts       ... client entry point. configure executors and run app.
   server.ts       ... server entry point. configure executors and run app.

@@ -7,6 +7,14 @@
     "email": "m@bouzuya.net",
     "url": "http://bouzuya.net"
   },
+  "ava": {
+    "files": [
+      ".tmp/test"
+    ],
+    "source": [
+      "!**/*.js"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/bouzuya/rally-rxjs/issues"
   },
@@ -52,12 +60,12 @@
     "prebuild": "parallelshell 'npm run md1' 'npm run md2' 'npm run md3'",
     "prepublish": "typings install",
     "start": "nodemon server.js",
-    "test": "npm run build && ava .tmp/test/",
+    "test": "ava",
     "watch": "parallelshell 'npm run watch-ts' 'npm run watch-cp' 'npm run watch-browserify' 'npm run watch-less' 'npm run watch-test'",
     "watch-browserify": "watchify -v -o dist/scripts/bundle.js client.js",
-    "watch-cp": "watch --ignoreUnreadable --wait 2 'npm run cp' .tmp/src/",
-    "watch-less": "watch --ignoreUnreadable --wait 2 'npm run build-less' src/app/style/",
-    "watch-test": "ava --watch .tmp/test/",
+    "watch-cp": "watch --ignoreUnreadable --wait 5 'npm run cp' .tmp/src/",
+    "watch-less": "watch --ignoreUnreadable --wait 5 'npm run build-less' src/app/style/",
+    "watch-test": "ava --watch",
     "watch-ts": "tsc --watch"
   }
 }

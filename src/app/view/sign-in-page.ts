@@ -3,11 +3,11 @@ import { h, VTree } from '../../framework/view';
 import { State } from '../property-type/state';
 import {
   create as changeEmail
-} from '../action/change-sign-in-form-email';
+} from '../action/view/change-sign-in-form-email';
 import {
   create as changePassword
-} from '../action/change-sign-in-form-password';
-import { create as signIn } from '../action/sign-in';
+} from '../action/view/change-sign-in-form-password';
+import { create as signIn } from '../action/view/sign-in';
 
 const view = (state: State, helpers: any): VTree => {
   const { e } = helpers;

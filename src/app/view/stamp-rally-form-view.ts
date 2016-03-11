@@ -1,10 +1,10 @@
 import { h, VTree } from '../../framework/view';
 
 import { StampRallyForm } from '../property-type/stamp-rally-form';
-import { create as addStampRally } from '../action/add-stamp-rally';
+import { create as addStampRally } from '../action/view/add-stamp-rally';
 import {
   create as changeStampRallyFormName
-} from '../action/change-stamp-rally-form-name';
+} from '../action/view/change-stamp-rally-form-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
   const { e } = helpers;

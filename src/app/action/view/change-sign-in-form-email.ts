@@ -1,11 +1,12 @@
 import { A, O } from 'b-o-a';
 
-type P = void;
-const type = 'add-stamp-rally';
+type P = { value: string; };
+const type = 'view/change-sign-in-form-email';
 
-const create = (): A<P> => {
-  return { type };
+const create = (value: string): A<P> => {
+  return { type, data: { value } };
 };
+
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)

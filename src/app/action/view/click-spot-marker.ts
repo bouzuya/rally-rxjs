@@ -1,10 +1,10 @@
 import { A, O } from 'b-o-a';
 
-type P = { value: string; };
-const type = 'change-spot-form-name';
+type P = number;
+const type = 'view/click-spot-marker';
 
-const create = (value: string): A<P> => {
-  return { type, data: { value } };
+const create = (id: P): A<P> => {
+  return { type, data: id };
 };
 
 const from = (action$: O<A<any>>): O<P> => {

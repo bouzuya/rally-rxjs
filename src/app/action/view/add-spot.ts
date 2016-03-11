@@ -1,12 +1,11 @@
 import { A, O } from 'b-o-a';
 
-type P = { value: string; };
-const type = 'change-stamp-rally-form-name';
+type P = void;
+const type = 'view/add-spot';
 
-const create = (value: string): A<P> => {
-  return { type, data: { value } };
+const create = (): A<P> => {
+  return { type };
 };
-
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === type)

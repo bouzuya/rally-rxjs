@@ -2,7 +2,7 @@ import { A, O } from 'b-o-a';
 
 import { Updater } from '../../property-type/updater';
 
-import { from as changeName$ } from '../../action/change-spot-form-name';
+import { from as changeName$ } from '../../action/view/change-spot-form-name';
 import {
   from as responseSpotCreate$
 } from '../../action/response-spot-create';

@@ -1,10 +1,10 @@
 import { h, VTree } from '../../framework/view';
 
 import { SpotForm } from '../property-type/spot-form';
-import { create as addSpot } from '../action/add-spot';
+import { create as addSpot } from '../action/view/add-spot';
 import {
   create as changeSpotFormName
-} from '../action/change-spot-form-name';
+} from '../action/view/change-spot-form-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
   const { e } = helpers;

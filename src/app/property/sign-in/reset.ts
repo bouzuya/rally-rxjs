@@ -1,7 +1,5 @@
 import { A, O } from 'b-o-a';
-import {
-  from as route$
-} from '../../../executors/history/route-action';
+import { from as route$ } from '../../action/route';
 
 import { Updater } from '../../property-type/updater';
 import { SignIn } from '../../property-type/sign-in';

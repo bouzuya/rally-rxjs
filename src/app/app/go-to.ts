@@ -1,6 +1,6 @@
 import { O, A } from 'b-o-a';
 
-import { create as goTo } from '../../executors/history/go-to-action';
+import { create as goTo } from '../action/go-to';
 
 import { State } from '../property-type/state';
 import { from as successSignIn$ } from '../action/success-sign-in';

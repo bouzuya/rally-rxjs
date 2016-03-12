@@ -1,7 +1,7 @@
 import run from '../framework/run';
 
 import { init as domInit } from '../handlers/dom/';
-import { init as history } from '../executors/history/';
+import { init as historyInit } from '../handlers/history/';
 import { init as request } from '../executors/request/';
 import state from '../executors/state/';
 
@@ -13,6 +13,7 @@ import app from './app';
 export default function main() {
   run(
     (action$, options) => {
+      // dom handler
       const {
         handler: domHandler,
         options: domOptions
@@ -20,13 +21,21 @@ export default function main() {
         render: view,
         root: 'div#app'
       }, options);
-      const dom$ = domHandler(action$, options);
-      return app(dom$.filter(a => !!a), domOptions);
+      const dom$ = domHandler(action$, domOptions);
+
+      // history handler
+      const {
+        handler: historyHandler,
+        options: historyOptions,
+        start: historyStart
+      } = historyInit({ routes }, domOptions);
+      const history$ = historyHandler(dom$.filter(a => !!a), options);
+
+      return app(history$.filter(a => !!a), historyOptions);
     },
     [
       request({ requests }),
-      state(),
-      history(routes)
+      state()
     ]
   );
 }

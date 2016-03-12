@@ -2,9 +2,7 @@ import { h, VTree } from '../../framework/view';
 
 import { State } from '../property-type/state';
 
-import {
-  create as goTo
-} from '../../executors/history/go-to-action';
+import { create as goTo } from '../action/go-to';
 
 import {
   view as signInPage

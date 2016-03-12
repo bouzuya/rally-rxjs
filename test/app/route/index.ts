@@ -1,8 +1,5 @@
 import test from 'ava';
 import { routes } from '../../../src/app/route/';
-import {
-  RouteAction
-} from '../../../src/executors/history/route-action';
 import { init, Router } from 'boajs-router';
 import { Route } from '../../../src/framework/route';
 

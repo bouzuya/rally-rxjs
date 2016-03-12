@@ -1,7 +1,5 @@
 import { O, A } from 'b-o-a';
-import {
-  from as route$
-} from '../../executors/history/route-action';
+import { from as route$ } from '../action/route';
 
 import { State } from '../property-type/state';
 import { Token } from '../property-type/token';

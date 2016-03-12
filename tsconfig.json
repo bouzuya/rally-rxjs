@@ -14,7 +14,6 @@
     "./src/app/server.ts",
     "./test/app/action/add-spot.ts",
     "./test/app/route/index.ts",
-    "./test/framework/router.ts",
     "./typings/main.d.ts",
     "./node_modules/typescript/lib/lib.es6.d.ts"
   ]

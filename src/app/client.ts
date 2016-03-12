@@ -30,6 +30,7 @@ export default function main() {
         start: historyStart
       } = historyInit({ routes }, domOptions);
       const history$ = historyHandler(dom$.filter(a => !!a), historyOptions);
+      historyStart();
 
       // request handler
       const {

@@ -9,7 +9,7 @@ type DOMOptions = {
   renderActionType?: string;
 };
 
-const init = (domOptions: DOMOptions, options: any) => {
+const init = (domOptions: DOMOptions) => {
   const { root, render, renderActionType } = domOptions;
   const type = renderActionType ? renderActionType : 'render';
   const dom = new DOM(root);
@@ -24,8 +24,7 @@ const init = (domOptions: DOMOptions, options: any) => {
         dom.renderToDOM(vtree);
         return; // return undefined
       });
-    },
-    options
+    }
   };
 };
 

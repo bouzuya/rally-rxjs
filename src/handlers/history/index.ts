@@ -15,28 +15,31 @@ type HistoryOptions = {
   routeActionType?: string;
 };
 
-const init = (historyOptions: HistoryOptions, options: any) => {
+const init = (historyOptions: HistoryOptions) => {
   const { routes, goToActionType, routeActionType } = historyOptions;
-  const { re }: { re: (action: A<any>) => void; } = options;
   const goToType = goToActionType ? goToActionType : 'go-to';
   const routeType = routeActionType ? routeActionType : 'route';
   const router = makeRouter(routes);
-  const history = new HistoryRouter(path => {
-    const { route: { name }, params } = router(path);
-    re({ type: routeType, data: { name, params } });
-  });
 
   return {
-    handler: (action$: O<A<any>>, _: any) => {
-      return action$.map(action => {
-        if (action.type !== goToType) return action;
-        const path: string = action.data; // FIXME
-        history.go(path);
-        return; // return undefined
+    handler: (action$: O<A<any>>, options: any) => {
+      const { re }: { re: (action: A<any>) => void; } = options;
+      const history = new HistoryRouter(path => {
+        const { route: { name }, params } = router(path);
+        re({ type: routeType, data: { name, params } });
       });
-    },
-    options,
-    start: () => { history.start(); }
+      return O.merge(
+        action$.map(action => {
+          if (action.type !== goToType) return action;
+          const path: string = action.data; // FIXME
+          history.go(path);
+          return; // return undefined
+        }),
+        action$.first().do(() => {
+          history.start();
+        })
+      );
+    }
   };
 };
 

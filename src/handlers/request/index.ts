@@ -15,8 +15,8 @@ type RequestOptions = {
 
 type RequestMap = { [name: string]: Request; };
 
-const init = (requestOptions: RequestOptions, options: any) => {
-  const { requests, requestActionType }: RequestOptions = options;
+const init = (options: RequestOptions) => {
+  const { requests, requestActionType } = options;
   const type = requestActionType ? requestActionType : 'request';
   const requestMap: RequestMap = requests.reduce((a, i) => {
     const o: RequestMap = {};
@@ -37,8 +37,7 @@ const init = (requestOptions: RequestOptions, options: any) => {
         request(params).then(response => re(responseToAction(response)));
         return; // return undefined
       });
-    },
-    options
+    }
   };
 };
 

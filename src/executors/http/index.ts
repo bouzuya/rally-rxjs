@@ -17,7 +17,7 @@ export default function init(
   const after = (context: any): any => {
     const { re, http } = context;
     const proc = (request: any, response: any) => {
-      const { route, params } = http.routes(request.path);
+      const { route, params } = http(request.path);
       re(httpRequest({ route, params, http: { request, response } }));
     };
     runServer(proc);

@@ -12,18 +12,23 @@ import app from './app';
 export default function main() {
   run(
     (action$, options) => {
+      // TODO: Argument of type 'Observable<{ type: string; data?: any; }>
+      // is not assignable to parameter of type
+      // 'Observable<{ type: string; data?: any }>'.
+      // Property 'source' is protected but type 'Observable<T>'
+      // is not a class derived from 'Observable<T>'.
       const state = (<any>window).INITIAL_STATE;
       const opts = Object.assign({}, options, { state })
       const dom$ = dom({
         render: view,
         root: 'div#app'
-      }).handler(action$, opts);
+      }).handler(<any>action$, opts);
       const history$ = history({
         routes
-      }).handler(dom$, opts);
+      }).handler(<any>dom$, opts);
       const request$ = request({
         requests
-      }).handler(history$.filter(a => !!a), opts);
+      }).handler(<any>history$.filter(a => !!a), opts);
       return app(request$.filter(a => !!a), opts);
     }
   );

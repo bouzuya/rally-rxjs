@@ -5,11 +5,11 @@
 
 import { A } from 'b-o-a';
 import { Executor } from '../../framework/executor';
+import { Route } from '../../framework/route';
 import { init as makeRouter } from 'boajs-router';
 import { HistoryRouter } from './history-router';
 import { is as isGoTo } from './go-to-action';
-
-import { Route } from '../../framework/route';
+import { create as route } from './route-action';
 
 export default function init(routes: Route[]): Executor {
   const after = (context: any): any => {
@@ -20,7 +20,11 @@ export default function init(routes: Route[]): Executor {
 
   const before = (context: any): any => {
     const { re }: { re: (action: A<any>) => void; } = context;
-    const history = new HistoryRouter(makeRouter(routes), re);
+    const router = makeRouter(routes);
+    const history = new HistoryRouter(path => {
+      const { route: { name }, params } = router(path);
+      re(route({ name, params }));
+    });
     return Object.assign({}, context, { history });
   };
 

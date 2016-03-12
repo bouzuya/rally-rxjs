@@ -1,19 +1,12 @@
-import { A } from 'b-o-a';
-import { create as route, RouteAction } from './route-action';
-import { Router } from 'boajs-router';
-import { Route } from '../../framework/route';
-
 class HistoryRouter {
-  private router: Router<Route>;
+  private callback: (path: string) => void;
   private window: any;
   private history: History;
-  private re: (action: RouteAction) => void;
 
-  constructor(router: Router<Route>, re: (action: RouteAction) => void) {
+  constructor(callback: (path: string) => void) {
+    this.callback = callback;
     this.window = Function('return this')();
     this.history = this.window.history;
-    this.router = router;
-    this.re = re;
   }
 
   back(): void {
@@ -28,7 +21,7 @@ class HistoryRouter {
       const f = replace ? history.replaceState : history.pushState;
       f.apply(history, [null, null, path]);
     }
-    this.route(path);
+    this.callback(path);
   }
 
   start(): void {
@@ -36,14 +29,9 @@ class HistoryRouter {
       this.window.addEventListener('popstate', () => {
         const path = this.window.location.pathname;
         console.log('back : ' + path);
-        this.route(path);
+        this.callback(path);
       }, false);
     }
-  }
-
-  private route(path): void {
-    const { route: { name }, params } = this.router(path);
-    this.re(route({ name, params }));
   }
 }
 

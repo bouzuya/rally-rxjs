@@ -9,7 +9,6 @@
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81",
     "node-fetch": "github:bouzuya/my-dts/node-fetch/node-fetch.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
     "serve-static": "github:DefinitelyTyped/DefinitelyTyped/serve-static/serve-static.d.ts#0fa4e9e61385646ea6a4cba2aef357353d2ce77f",
-    "vdom-parser": "github:bouzuya/my-dts/vdom-parser/vdom-parser.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
     "vdom-to-html": "github:bouzuya/my-dts/vdom-to-html/vdom-to-html.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
     "virtual-dom": "github:DefinitelyTyped/DefinitelyTyped/virtual-dom/virtual-dom.d.ts#df507c636cf0c799a8a20f35af89a3d0caae6c32"
   }

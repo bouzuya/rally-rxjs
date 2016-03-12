@@ -1,6 +1,6 @@
 import { run } from 'b-o-a';
 
-import { init as dom } from '../handlers/dom/';
+import { init as dom } from 'boajs-handler-dom';
 import { init as history } from '../handlers/history/';
 import { init as request } from '../handlers/request/';
 

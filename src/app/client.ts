@@ -1,4 +1,4 @@
-import run from '../framework/run';
+import { run } from 'b-o-a';
 
 import { init as domInit } from '../handlers/dom/';
 import { init as historyInit } from '../handlers/history/';
@@ -41,10 +41,11 @@ export default function main() {
         history$.filter(a => !!a), requestOptions
       );
 
-      return app(request$.filter(a => !!a), requestOptions);
-    },
-    [
-      state()
-    ]
+      const state = (<any>window).INITIAL_STATE;
+      return app(
+        request$.filter(a => !!a),
+        Object.assign({}, requestOptions, { state })
+      );
+    }
   );
 }

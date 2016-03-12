@@ -17,13 +17,15 @@ const init = (domOptions: DOMOptions) => {
   return {
     handler: (action$: O<A<any>>, options: any) => {
       const { re }: { re: (action: A<any>) => void; } = options;
-      return action$.map(action => {
-        if (action.type !== type) return action;
-        const state: any = action.data; // FIXME
-        const vtree = render(state, { e: re });
-        dom.renderToDOM(vtree);
-        return; // return undefined
-      });
+      return action$
+        .map(action => {
+          if (action.type !== type) return action;
+          const state: any = action.data; // FIXME
+          const vtree = render(state, { e: re });
+          dom.renderToDOM(vtree);
+          return; // return undefined
+        })
+        .share();
     }
   };
 };

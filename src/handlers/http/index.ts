@@ -57,7 +57,7 @@ const init = (options: HTTPOptions) => {
           }
           return; // return undefined
         })
-      );
+      ).share();
     }
   };
 };

@@ -36,7 +36,7 @@ const init = (options: RequestOptions) => {
         const { request, responseToAction } = requestMap[path];
         request(params).then(response => re(responseToAction(response)));
         return; // return undefined
-      });
+      }).share();
     }
   };
 };

@@ -38,7 +38,7 @@ const init = (historyOptions: HistoryOptions) => {
         action$.first().do(() => {
           history.start();
         })
-      );
+      ).share();
     }
   };
 };

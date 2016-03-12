@@ -2,7 +2,7 @@ import run from '../framework/run';
 
 import { init as domInit } from '../handlers/dom/';
 import { init as historyInit } from '../handlers/history/';
-import { init as request } from '../executors/request/';
+import { init as requestInit } from '../handlers/request/';
 import state from '../executors/state/';
 
 import { requests } from './request/';
@@ -29,12 +29,20 @@ export default function main() {
         options: historyOptions,
         start: historyStart
       } = historyInit({ routes }, domOptions);
-      const history$ = historyHandler(dom$.filter(a => !!a), options);
+      const history$ = historyHandler(dom$.filter(a => !!a), historyOptions);
 
-      return app(history$.filter(a => !!a), historyOptions);
+      // request handler
+      const {
+        handler: requestHandler,
+        options: requestOptions
+      } = requestInit({ requests }, historyOptions);
+      const request$ = requestHandler(
+        history$.filter(a => !!a), requestOptions
+      );
+
+      return app(request$.filter(a => !!a), requestOptions);
     },
     [
-      request({ requests }),
       state()
     ]
   );

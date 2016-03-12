@@ -20,7 +20,7 @@ export default function main() {
       }).handler(action$, opts);
       const history$ = history({
         routes
-      }).handler(dom$.filter(a => !!a), opts);
+      }).handler(dom$, opts);
       const request$ = request({
         requests
       }).handler(history$.filter(a => !!a), opts);

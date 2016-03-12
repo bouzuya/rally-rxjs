@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "b-o-a": "0.2.0",
-    "boajs-handler-dom": "^0.1.0",
+    "boajs-handler-dom": "^0.1.1",
     "boajs-router": "^0.2.0",
     "express": "^4.13.4",
     "htmlescape": "^1.1.0",

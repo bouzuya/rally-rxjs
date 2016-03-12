@@ -1,12 +1,5 @@
 import { O, A } from 'b-o-a';
 
-import {
-  create as httpResponse
-} from '../../executors/http/http-response-action';
-import {
-  from as httpRequest$
-} from '../../executors/http/http-request-action';
-
 import rootIndex from '../init/root-index';
 import signInIndex from '../init/sign-in-index';
 import stampRalliesIndex from '../init/stamp-rallies-index';
@@ -21,7 +14,9 @@ const inits: { [k:string]: (params: any) => Promise<any>; } = {
 };
 
 const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
-  return httpRequest$(action$)
+  return action$
+    .filter(action => action.type === 'http-request') // TODO: specified by app.
+    .map(({ data }) => data)
     .map(({ route: { name }, params, http }) => {
       return inits[name](params).then(
         state => ({ state, http }),
@@ -29,7 +24,7 @@ const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
       );
     })
     .mergeMap((promise: Promise<any>) => O.fromPromise(promise))
-    .map(httpResponse);
+    .map(data => ({ type: 'http-response', data }));
 };
 
 export { $ };

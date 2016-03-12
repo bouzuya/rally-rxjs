@@ -1,4 +1,4 @@
-import { Request } from '../../executors/request/';
+import { Request } from '../../handlers/request/';
 
 import requestSpotCreate from '../request/spot-create';
 import requestSpotIndex from '../request/spot-index';

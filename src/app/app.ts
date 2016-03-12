@@ -12,7 +12,7 @@ import { $ as properties } from './property/';
 export default function app(
   action$: O<A<any>>,
   options: {
-    state: State
+    state?: State
   }
 ): O<A<any>> {
   const { state: initialState } = options;

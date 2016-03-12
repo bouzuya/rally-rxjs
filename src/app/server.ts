@@ -1,6 +1,6 @@
-import run from '../framework/run';
+import { run } from 'b-o-a';
 
-import http from '../executors/http/';
+import { init as http } from '../handlers/http/';
 
 import { routes } from './route/';
 import { view } from './view/all';
@@ -8,9 +8,12 @@ import app from './app';
 
 export default function main() {
   run(
-    app,
-    [
-      http(view, routes)
-    ]
+    (action$, options) => {
+      const http$ = http({
+        render: view,
+        routes
+      }).handler(action$, options);
+      return app(http$.filter(a => !!a), options);
+    }
   );
 }

@@ -1,7 +1,7 @@
 import run from '../framework/run';
 
 import { init as domInit } from '../handlers/dom/';
-import history from '../executors/history/';
+import { init as history } from '../executors/history/';
 import { init as request } from '../executors/request/';
 import state from '../executors/state/';
 

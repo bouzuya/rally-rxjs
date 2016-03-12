@@ -11,7 +11,7 @@ import { HistoryRouter } from './history-router';
 import { is as isGoTo } from './go-to-action';
 import { create as route } from './route-action';
 
-export default function init(routes: Route[]): Executor {
+const init = (routes: Route[]): Executor => {
   const after = (context: any): any => {
     const { history }: { history: HistoryRouter; } = context;
     history.start();
@@ -37,4 +37,6 @@ export default function init(routes: Route[]): Executor {
   };
 
   return { after, before, execute };
-}
+};
+
+export { init };

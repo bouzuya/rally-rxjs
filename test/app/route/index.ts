@@ -1,7 +1,7 @@
 import test from 'ava';
 import { routes } from '../../../src/app/route/';
 import { init, Router } from 'boajs-router';
-import { Route } from '../../../src/framework/route';
+import { Route } from '../../../src/app/property-type/route';
 
 type MyRouter = Router<Route>;
 

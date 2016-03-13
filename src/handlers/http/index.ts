@@ -1,10 +1,12 @@
 // HTTP request -> HttpRequestAction
 // HTTPResponseAction -> HTTP response
 
-import * as renderToHTML from 'vdom-to-html';
+import { HTML } from 'boajs-vdom';
 import { A, O } from 'b-o-a';
 import { init as makeRouter, Route } from 'boajs-router';
 import runServer from './express-server';
+
+const makeRender = HTML.init;
 
 type HTTPOptions = {
   render: (state: any, options: any) => any;
@@ -30,6 +32,7 @@ const init = (options: HTTPOptions) => {
   return {
     handler: (action$: O<A<any>>, options: any) => {
       const { re } = options;
+      let renderToHTML = makeRender();
       return O.merge(
         action$.first().do(() => {
           const proc = (request: any, response: any) => {
@@ -52,7 +55,9 @@ const init = (options: HTTPOptions) => {
             response.send(error.message);
           } else {
             const vtree = render(state, { e: (): void => null });
-            const html = renderToHTML(vtree);
+            const rendered = renderToHTML(vtree);
+            const { result: html } = rendered;
+            renderToHTML = rendered.render;
             response.send(html);
           }
           return; // return undefined

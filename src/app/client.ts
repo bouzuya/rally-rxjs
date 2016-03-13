@@ -29,7 +29,7 @@ export default function main() {
       const request$ = request({
         requests
       }).handler(<any>history$, opts);
-      return app().handler(request$.filter(a => !!a), opts);
+      return app().handler(request$, opts);
     }
   );
 }

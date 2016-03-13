@@ -13,7 +13,7 @@ export default function main() {
         render: view,
         routes
       }).handler(action$, options);
-      return app().handler(http$.filter(a => !!a), options);
+      return app().handler(http$, options);
     }
   );
 }

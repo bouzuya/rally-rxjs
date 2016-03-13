@@ -62,7 +62,9 @@ const init = (options: HTTPOptions) => {
           }
           return; // return undefined
         })
-      ).share();
+      )
+        .filter(a => !!a)
+        .share();
     }
   };
 };

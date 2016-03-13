@@ -1,7 +1,9 @@
 import { A, O } from 'b-o-a';
 
 type P = {
-  name: string;
+  route: {
+    name: string;
+  },
   params: { [k: string]: string; }
 };
 const type = 'route'; // TODO: specified by app

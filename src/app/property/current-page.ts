@@ -10,7 +10,7 @@ export default function property(
 ): O<string> {
   return O
     .of(state)
-    .merge(route$(action$).map(({ name }) => () => name))
+    .merge(route$(action$).map(({ route: { name } }) => () => name))
     .scan((state: string, updater: Updater<string>) => {
       return updater(state);
     });

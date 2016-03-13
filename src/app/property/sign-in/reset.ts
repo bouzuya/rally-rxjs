@@ -12,7 +12,7 @@ export default function updater$(
   return O
     .merge(
       route$(action$)
-        .filter(({ name }) => name === 'sign_in#index'),
+      .filter(({ route: { name } }) => name === 'sign_in#index'),
       successSignIn$(action$)
     )
     .map(() => (signIn: SignIn): SignIn => {

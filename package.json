@@ -43,6 +43,7 @@
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/bouzuya/rally-rxjs"

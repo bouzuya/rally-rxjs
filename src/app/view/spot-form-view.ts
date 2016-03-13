@@ -1,4 +1,4 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 
 import { SpotForm } from '../property-type/spot-form';
 import { create as addSpot } from '../action/view/add-spot';
@@ -6,7 +6,7 @@ import {
   create as changeSpotFormName
 } from '../action/view/change-spot-form-name';
 
-const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
+const labeledTextBox = (name: string, value: string, helpers: any) => {
   const { e } = helpers;
   return h('label', [
     name,
@@ -19,7 +19,7 @@ const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
   ]);
 };
 
-const view = (state: SpotForm, helpers: any): VTree => {
+const view = (state: SpotForm, helpers: any) => {
   const { e } = helpers;
   return h('form.spot', [
     labeledTextBox('name', state.name, helpers),

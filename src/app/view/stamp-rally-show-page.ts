@@ -1,10 +1,10 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 
 import { State } from '../property-type/state';
 import { view as mapView } from '../view/map-view';
 import { view as spotFormView } from '../view/spot-form-view';
 
-const view = (state: State, helpers: any): VTree => {
+const view = (state: State, helpers: any) => {
   const { e } = helpers;
   const map = {
     markers: state.spots.map(spot => {

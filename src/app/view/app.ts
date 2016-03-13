@@ -1,4 +1,4 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 
 import { State } from '../property-type/state';
 
@@ -17,7 +17,7 @@ import {
   view as notFoundPage
 } from '../view/not-found-page';
 
-const pageView = (state: State, helpers: any): VTree => {
+const pageView = (state: State, helpers: any) => {
   switch (state.currentPage) {
     case 'sign_in#index':
       return signInPage(state, helpers);
@@ -30,7 +30,7 @@ const pageView = (state: State, helpers: any): VTree => {
   }
 };
 
-const view = (state: State, helpers: any): VTree => {
+const view = (state: State, helpers: any) => {
   const { e } = helpers;
   return h(
     'div#app',

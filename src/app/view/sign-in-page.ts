@@ -1,4 +1,4 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 
 import { State } from '../property-type/state';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../action/view/change-sign-in-form-password';
 import { create as signIn } from '../action/view/sign-in';
 
-const view = (state: State, helpers: any): VTree => {
+const view = (state: State, helpers: any) => {
   const { e } = helpers;
   return h('div.sign-in-page', [
     h('label', [

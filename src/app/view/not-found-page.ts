@@ -1,6 +1,6 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 
-const view = (): VTree => {
+const view = () => {
   return h('div.not-found', ['page not found']);
 };
 

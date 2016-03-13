@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "b-o-a": "0.4.0",
-    "boajs-handler-dom": "^0.1.1",
+    "boajs-handler-dom": "^0.2.0",
     "boajs-handler-history": "^0.1.0",
     "boajs-router": "^0.3.0",
     "boajs-vdom": "^0.1.1",

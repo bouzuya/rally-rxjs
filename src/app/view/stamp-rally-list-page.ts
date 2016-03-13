@@ -1,9 +1,9 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 
 import { State } from '../property-type/state';
 import { view as stampRallyFormView } from '../view/stamp-rally-form-view';
 
-const view = (state: State, helpers: any): VTree => {
+const view = (state: State, helpers: any) => {
   return h('div.stamp-rally-list-page', [
     h('ul', state.stampRallies.map(stampRally => {
       const href = '/stamp_rallies/' + stampRally.name;

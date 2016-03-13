@@ -1,10 +1,10 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 import * as htmlescape from 'htmlescape';
 
 import { State } from '../property-type/state';
 import { view as appView } from '../view/app';
 
-const view = (state: State, helpers: any): VTree => {
+const view = (state: State, helpers: any) => {
   const key = state.googleApiKey;
   const src = 'https://maps.googleapis.com/maps/api/js?key=' + key;
   return h('html', [

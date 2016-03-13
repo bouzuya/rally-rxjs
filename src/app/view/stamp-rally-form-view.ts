@@ -1,4 +1,4 @@
-import { h, VTree } from '../../framework/view';
+import { create as h } from 'boajs-vdom';
 
 import { StampRallyForm } from '../property-type/stamp-rally-form';
 import { create as addStampRally } from '../action/view/add-stamp-rally';
@@ -6,7 +6,7 @@ import {
   create as changeStampRallyFormName
 } from '../action/view/change-stamp-rally-form-name';
 
-const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
+const labeledTextBox = (name: string, value: string, helpers: any) => {
   const { e } = helpers;
   return h('label', [
     name,
@@ -21,7 +21,7 @@ const labeledTextBox = (name: string, value: string, helpers: any): VTree => {
   ]);
 };
 
-const view = (state: StampRallyForm, helpers: any): VTree => {
+const view = (state: StampRallyForm, helpers: any) => {
   const { e } = helpers;
   return h('form.stamp-rally', [
     labeledTextBox('name', state.name, helpers),

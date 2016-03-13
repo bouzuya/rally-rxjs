@@ -1,4 +1,3 @@
-import { VTree } from '../../framework/view';
 import { create as clickSpotMarker } from '../action/view/click-spot-marker';
 
 type SpotMarker = { lat: number; lng: number; id: number; };
@@ -117,7 +116,7 @@ class MapView {
   }
 }
 
-const view = (state: S, helpers: any): VTree => {
+const view = (state: S, helpers: any): any => {
   return new MapView(state, helpers);
 };
 

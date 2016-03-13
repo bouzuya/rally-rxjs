@@ -1,10 +1,10 @@
 import { run } from 'b-o-a';
 
+import { init as app } from './app';
 import { init as http } from '../handlers/http/';
 
 import { routes } from './route/';
 import { view } from './view/all';
-import app from './app';
 
 export default function main() {
   run(
@@ -13,7 +13,7 @@ export default function main() {
         render: view,
         routes
       }).handler(action$, options);
-      return app(http$.filter(a => !!a), options);
+      return app().handler(http$.filter(a => !!a), options);
     }
   );
 }

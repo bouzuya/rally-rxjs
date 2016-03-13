@@ -9,12 +9,12 @@ import { $ as request$ } from './app/request';
 import { $ as success$ } from './app/success';
 import { $ as properties } from './property/';
 
-export default function app(
+const handler = (
   action$: O<A<any>>,
   options: {
     state?: State
   }
-): O<A<any>> {
+): O<A<any>> => {
   const { state: initialState } = options;
   const state$ = properties(action$, initialState);
   return O.merge(
@@ -28,3 +28,9 @@ export default function app(
   )
     .share();
 };
+
+const init = () => {
+  return { handler };
+};
+
+export { init };

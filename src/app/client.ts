@@ -28,7 +28,7 @@ export default function main() {
       }).handler(<any>dom$, opts);
       const request$ = request({
         requests
-      }).handler(<any>history$.filter(a => !!a), opts);
+      }).handler(<any>history$, opts);
       return app(request$.filter(a => !!a), opts);
     }
   );

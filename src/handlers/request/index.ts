@@ -29,11 +29,11 @@ const init = (options: RequestOptions) => {
       const { re }: { re: (action: A<any>) => void; } = options;
       return action$.map(action => {
         if (action.type !== type) return action;
-        const { path, params }: {
-          path: string;
+        const { name, params }: {
+          name: string;
           params: any;
         } = action.data;
-        const { request, responseToAction } = requestMap[path];
+        const { request, responseToAction } = requestMap[name];
         request(params).then(response => re(responseToAction(response)));
         return; // return undefined
       })

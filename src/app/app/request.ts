@@ -10,8 +10,8 @@ import { from as responseSpotCreate$ } from '../action/response-spot-create';
 
 const $ = (action$: O<A<any>>, state$: O<State>, options: any): O<A<any>> => {
   const { type }: { type: string; } = options;
-  const request = (path: string, params: any): A<any> => {
-    return { type, data: { path, params } };
+  const request = (name: string, params: any): A<any> => {
+    return { type, data: { name, params } };
   };
   return O.merge(
     O.merge(

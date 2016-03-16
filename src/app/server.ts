@@ -12,6 +12,12 @@ export default function main() {
       const act$ = action$.do(console.log.bind(console)).share();
       const http$ = http({
         dir: __dirname + '/../../dist/',
+        middlewares: [
+          (req: any, res: any, next: any) => {
+            console.log('%s %s %s', req.method, req.url, req.path);
+            next();
+          }
+        ],
         port: 3000,
         render: view,
         routes

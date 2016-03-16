@@ -10,6 +10,7 @@ const makeRender = HTML.init;
 
 type HTTPOptions = {
   dir: string;
+  middlewares: any[];
   port: number;
   render: (state: any, options: any) => any;
   routes: Route[];
@@ -20,6 +21,7 @@ type HTTPOptions = {
 const init = (options: HTTPOptions) => {
   const {
     dir,
+    middlewares,
     port,
     render,
     routes,
@@ -46,7 +48,7 @@ const init = (options: HTTPOptions) => {
               data: { route, params, http: { request, response } }
             });
           };
-          runServer(dir, port, proc);
+          runServer(dir, middlewares, port, proc);
         }),
         action$.map(action => {
           if (action.type !== httpResponseType) return action;

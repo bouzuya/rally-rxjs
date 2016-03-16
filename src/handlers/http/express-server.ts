@@ -8,13 +8,13 @@ type Response = {
 
 export default function main(
   dir: string,
+  middlewares: any[],
   port: number,
   proc: (request: any, response: any) => void
 ) {
   const app = express();
-  app.use((req: any, res: any, next: any) => {
-    console.log('%s %s %s', req.method, req.url, req.path);
-    next();
+  middlewares.forEach(middleware => {
+    app.use(middleware);
   });
   app.use(express.static(dir)); // TODO: if dir is null
   app.use(proc);

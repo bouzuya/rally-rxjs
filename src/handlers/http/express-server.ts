@@ -7,6 +7,7 @@ type Response = {
 };
 
 export default function main(
+  dir: string,
   port: number,
   proc: (request: any, response: any) => void
 ) {
@@ -15,7 +16,7 @@ export default function main(
     console.log('%s %s %s', req.method, req.url, req.path);
     next();
   });
-  app.use(express.static(__dirname + '/../../../dist/'));
+  app.use(express.static(dir)); // TODO: if dir is null
   app.use(proc);
-  app.listen(port);
+  app.listen(port); // TODO: if port is null
 }

@@ -9,10 +9,11 @@ import { view } from './view/all';
 export default function main() {
   run(
     (action$, options) => {
+      const act$ = action$.do(console.log.bind(console)).share();
       const http$ = http({
         render: view,
         routes
-      }).handler(action$, options);
+      }).handler(act$, options);
       return app().handler(http$, options);
     }
   );

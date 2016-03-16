@@ -19,10 +19,11 @@ export default function main() {
       // is not a class derived from 'Observable<T>'.
       const state = (<any>window).INITIAL_STATE;
       const opts = Object.assign({}, options, { state });
+      const act$ = action$.do(console.log.bind(console)).share();
       const dom$ = dom({
         render: view,
         root: 'div#app'
-      }).handler(<any>action$, opts);
+      }).handler(<any>act$, opts);
       const history$ = history({
         routes
       }).handler(<any>dom$, opts);

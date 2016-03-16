@@ -5,19 +5,21 @@ import { A, O } from 'b-o-a';
 type Request = {
   name: string;
   request: (params: any) => Promise<any>;
-  responseToAction: (response: any) => A<any>;
+  [x: string]: any;
 };
 
 type RequestOptions = {
   requests: Request[],
   requestActionType?: string;
+  responseActionType?: string;
 };
 
 type RequestMap = { [name: string]: Request; };
 
 const init = (options: RequestOptions) => {
-  const { requests, requestActionType } = options;
-  const type = requestActionType ? requestActionType : 'request';
+  const { requests, requestActionType, responseActionType } = options;
+  const requestType = requestActionType ? requestActionType : 'request';
+  const responseType = responseActionType ? responseActionType : 'response';
   const requestMap: RequestMap = requests.reduce((a, i) => {
     const o: RequestMap = {};
     o[i.name] = i;
@@ -28,13 +30,21 @@ const init = (options: RequestOptions) => {
     handler: (action$: O<A<any>>, options: any) => {
       const { re }: { re: (action: A<any>) => void; } = options;
       return action$.map(action => {
-        if (action.type !== type) return action;
+        if (action.type !== requestType) return action;
         const { name, params }: {
           name: string;
           params: any;
         } = action.data;
-        const { request, responseToAction } = requestMap[name];
-        request(params).then(response => re(responseToAction(response)));
+        const request = requestMap[name];
+        request.request(params).then(response => {
+          return re({
+            type: responseType,
+            data: {
+              request,
+              response
+            }
+          });
+        });
         return; // return undefined
       })
         .filter(a => !!a)

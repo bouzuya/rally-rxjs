@@ -3,7 +3,7 @@ import { A, O } from 'b-o-a';
 import { Token } from '../property-type/token';
 
 type P = Token;
-const type = 'response-token-create';
+const type = 'token-create';
 
 const create = (response: Token): A<P> => {
   return { type, data: response };
@@ -11,8 +11,9 @@ const create = (response: Token): A<P> => {
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
-    .filter(action => action.type === type)
-    .map(({ data }) => data);
+    .filter(action => action.type === 'response')
+    .filter(action => action.data.request.name === type)
+    .map(({ data }) => data.response);
 };
 
 export { create, from };

@@ -11,6 +11,7 @@ export default function main() {
     (action$, options) => {
       const act$ = action$.do(console.log.bind(console)).share();
       const http$ = http({
+        port: 3000,
         render: view,
         routes
       }).handler(act$, options);

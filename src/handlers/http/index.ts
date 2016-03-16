@@ -9,6 +9,7 @@ import runServer from './express-server';
 const makeRender = HTML.init;
 
 type HTTPOptions = {
+  port: number;
   render: (state: any, options: any) => any;
   routes: Route[];
   httpRequestActionType?: string;
@@ -17,6 +18,7 @@ type HTTPOptions = {
 
 const init = (options: HTTPOptions) => {
   const {
+    port,
     render,
     routes,
     httpRequestActionType,
@@ -42,7 +44,7 @@ const init = (options: HTTPOptions) => {
               data: { route, params, http: { request, response } }
             });
           };
-          runServer(proc);
+          runServer(port, proc);
         }),
         action$.map(action => {
           if (action.type !== httpResponseType) return action;

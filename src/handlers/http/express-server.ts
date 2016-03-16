@@ -7,6 +7,7 @@ type Response = {
 };
 
 export default function main(
+  port: number,
   proc: (request: any, response: any) => void
 ) {
   const app = express();
@@ -16,5 +17,5 @@ export default function main(
   });
   app.use(express.static(__dirname + '/../../../dist/'));
   app.use(proc);
-  app.listen(3000);
+  app.listen(port);
 }

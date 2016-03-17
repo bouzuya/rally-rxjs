@@ -4,7 +4,22 @@
 import { HTML } from 'boajs-vdom';
 import { A, O } from 'b-o-a';
 import { init as makeRouter, Route } from 'boajs-router';
-import runServer from './express-server';
+import * as express from 'express';
+
+const runServer = (
+  dir: string,
+  middlewares: any[],
+  port: number,
+  proc: (request: any, response: any) => void
+) => {
+  const app = express();
+  middlewares.forEach(middleware => {
+    app.use(middleware);
+  });
+  app.use(express.static(dir)); // TODO: if dir is null
+  app.use(proc);
+  app.listen(port); // TODO: if port is null
+};
 
 const makeRender = HTML.init;
 

@@ -1,4 +1,4 @@
-// RequestAction -> HTTP request -> *Action
+// RequestAction -> HTTP request -> ResponseAction
 
 import { A, O } from 'b-o-a';
 

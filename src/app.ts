@@ -7,7 +7,7 @@ import { $ as init$ } from './maps/init';
 import { $ as render$ } from './maps/render';
 import { $ as request$ } from './maps/request';
 import { $ as success$ } from './maps/success';
-import { $ as properties } from './property/';
+import { $ as properties } from './props/';
 
 const handler = (
   action$: O<A<any>>,

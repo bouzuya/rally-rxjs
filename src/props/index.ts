@@ -2,14 +2,14 @@ import { A, O } from 'b-o-a';
 
 import { State } from '../property-type/state';
 
-import currentPage$ from '../property/current-page';
-import signIn$ from '../property/sign-in';
-import spots$ from '../property/spots';
-import spotForm$ from '../property/spot-form';
-import stampRallies$ from '../property/stamp-rallies';
-import stampRally$ from '../property/stamp-rally';
-import stampRallyForm$ from '../property/stamp-rally-form';
-import token$ from '../property/token';
+import currentPage$ from '../props/current-page';
+import signIn$ from '../props/sign-in';
+import spots$ from '../props/spots';
+import spotForm$ from '../props/spot-form';
+import stampRallies$ from '../props/stamp-rallies';
+import stampRally$ from '../props/stamp-rally';
+import stampRallyForm$ from '../props/stamp-rally-form';
+import token$ from '../props/token';
 
 const getDefaultState = (): State => {
   return {

@@ -10,10 +10,10 @@
     "moduleResolution": "node"
   },
   "files": [
-    "./src/app/client.ts",
-    "./src/app/server.ts",
-    "./test/app/action/add-spot.ts",
-    "./test/app/route/index.ts",
+    "./src/client.ts",
+    "./src/server.ts",
+    "./test/action/add-spot.ts",
+    "./test/route/index.ts",
     "./typings/main.d.ts",
     "./node_modules/typescript/lib/lib.es6.d.ts"
   ]

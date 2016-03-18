@@ -1,6 +1,6 @@
 import test from 'ava';
 import { O } from 'b-o-a';
-import { create, from } from '../../../src/app/action/view/add-spot';
+import { create, from } from '../../src/action/view/add-spot';
 
 test('create', t => {
   const action = create();

@@ -1,1 +1,1 @@
-require('./lib/app/server').default();
+require('./lib/server').default();

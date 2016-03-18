@@ -5,7 +5,7 @@ import { init as dom } from 'boajs-handler-dom';
 import { init as history } from 'boajs-handler-history';
 import { init as request } from 'boajs-handler-request';
 
-import { requests } from './request/';
+import { requests } from './requests/';
 import { routes } from './route/';
 import { view } from './view/app';
 

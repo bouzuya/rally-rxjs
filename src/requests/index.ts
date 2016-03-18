@@ -1,11 +1,11 @@
 import { Request } from 'boajs-handler-request';
 
-import spotCreate from '../request/spot-create';
-import spotIndex from '../request/spot-index';
-import stampRallyCreate from '../request/stamp-rally-create';
-import stampRallyIndex from '../request/stamp-rally-index';
-import stampRallyShow from '../request/stamp-rally-show';
-import tokenCreate from '../request/token-create';
+import spotCreate from '../requests/spot-create';
+import spotIndex from '../requests/spot-index';
+import stampRallyCreate from '../requests/stamp-rally-create';
+import stampRallyIndex from '../requests/stamp-rally-index';
+import stampRallyShow from '../requests/stamp-rally-show';
+import tokenCreate from '../requests/token-create';
 
 const requests: Request[] = [
   { name: 'spot-create', request: spotCreate },

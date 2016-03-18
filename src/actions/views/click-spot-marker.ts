@@ -1,10 +1,10 @@
 import { A, O } from 'b-o-a';
 
-type P = { value: string; };
-const type = 'view/change-stamp-rally-form-name';
+type P = number;
+const type = 'views/click-spot-marker';
 
-const create = (value: string): A<P> => {
-  return { type, data: { value } };
+const create = (id: P): A<P> => {
+  return { type, data: id };
 };
 
 const from = (action$: O<A<any>>): O<P> => {

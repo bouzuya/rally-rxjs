@@ -4,7 +4,7 @@ import { Updater } from '../../types/updater';
 
 import {
   from as changePassword$
-} from '../../actions/view/change-sign-in-form-password';
+} from '../../actions/views/change-sign-in-form-password';
 import { SignIn } from '../../types/sign-in';
 
 export default function updater$(

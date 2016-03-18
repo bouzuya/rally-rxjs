@@ -1,7 +1,7 @@
 import { A, O } from 'b-o-a';
 
 type P = { value: string; };
-const type = 'view/change-spot-form-name';
+const type = 'views/change-sign-in-form-email';
 
 const create = (value: string): A<P> => {
   return { type, data: { value } };

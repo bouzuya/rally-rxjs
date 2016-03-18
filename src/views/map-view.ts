@@ -1,4 +1,6 @@
-import { create as clickSpotMarker } from '../actions/view/click-spot-marker';
+import {
+  create as clickSpotMarker
+} from '../actions/views/click-spot-marker';
 
 type SpotMarker = { lat: number; lng: number; id: number; };
 type Map = any;

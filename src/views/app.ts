@@ -6,16 +6,16 @@ import { create as goTo } from '../actions/go-to';
 
 import {
   view as signInPage
-} from '../view/sign-in-page';
+} from '../views/sign-in-page';
 import {
   view as stampRallyListPage
-} from '../view/stamp-rally-list-page';
+} from '../views/stamp-rally-list-page';
 import {
   view as stampRallyShowPage
-} from '../view/stamp-rally-show-page';
+} from '../views/stamp-rally-show-page';
 import {
   view as notFoundPage
-} from '../view/not-found-page';
+} from '../views/not-found-page';
 
 const pageView = (state: State, helpers: any) => {
   switch (state.currentPage) {

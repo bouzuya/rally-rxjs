@@ -1,10 +1,10 @@
 import { A, O } from 'b-o-a';
 
-type P = number;
-const type = 'view/click-spot-marker';
+type P = void;
+const type = 'views/sign-in';
 
-const create = (id: P): A<P> => {
-  return { type, data: id };
+const create = (): A<P> => {
+  return { type };
 };
 
 const from = (action$: O<A<any>>): O<P> => {

@@ -2,7 +2,7 @@ import { create as h } from 'boajs-vdom';
 import * as htmlescape from 'htmlescape';
 
 import { State } from '../types/state';
-import { view as appView } from '../view/app';
+import { view as appView } from '../views/app';
 
 const view = (state: State, helpers: any) => {
   const key = state.googleApiKey;

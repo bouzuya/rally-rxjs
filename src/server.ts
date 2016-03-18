@@ -4,7 +4,7 @@ import { init as app } from './app';
 import { init as http } from 'boajs-handler-init';
 
 import { routes } from './routes/';
-import { view } from './view/all';
+import { view } from './views/all';
 
 export default function main() {
   run(

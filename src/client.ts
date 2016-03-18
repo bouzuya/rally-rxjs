@@ -7,7 +7,7 @@ import { init as request } from 'boajs-handler-request';
 
 import { requests } from './requests/';
 import { routes } from './routes/';
-import { view } from './view/app';
+import { view } from './views/app';
 
 export default function main() {
   run(

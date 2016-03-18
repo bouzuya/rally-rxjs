@@ -4,7 +4,7 @@ import { Updater } from '../../types/updater';
 
 import {
   from as changeName$
-} from '../../actions/view/change-stamp-rally-form-name';
+} from '../../actions/views/change-stamp-rally-form-name';
 import {
   from as responseStampRallyCreate$
 } from '../../actions/response-stamp-rally-create';

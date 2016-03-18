@@ -3,11 +3,13 @@ import { create as h } from 'boajs-vdom';
 import { State } from '../types/state';
 import {
   create as changeEmail
-} from '../actions/view/change-sign-in-form-email';
+} from '../actions/views/change-sign-in-form-email';
 import {
   create as changePassword
-} from '../actions/view/change-sign-in-form-password';
-import { create as signIn } from '../actions/view/sign-in';
+} from '../actions/views/change-sign-in-form-password';
+import {
+  create as signIn
+} from '../actions/views/sign-in';
 
 const view = (state: State, helpers: any) => {
   const { e } = helpers;

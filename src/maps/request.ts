@@ -3,9 +3,9 @@ import { from as route$ } from '../actions/route';
 
 import { State } from '../types/state';
 import { Token } from '../types/token';
-import { from as addSpot$ } from '../actions/view/add-spot';
-import { from as addStampRally$ } from '../actions/view/add-stamp-rally';
-import { from as goToSignIn$ } from '../actions/view/sign-in';
+import { from as addSpot$ } from '../actions/views/add-spot';
+import { from as addStampRally$ } from '../actions/views/add-stamp-rally';
+import { from as goToSignIn$ } from '../actions/views/sign-in';
 import { from as responseSpotCreate$ } from '../actions/response-spot-create';
 
 const $ = (action$: O<A<any>>, state$: O<State>, options: any): O<A<any>> => {

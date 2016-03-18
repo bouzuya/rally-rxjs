@@ -4,7 +4,7 @@ import { Updater } from '../../types/updater';
 
 import {
   from as changeEmail$
-} from '../../actions/view/change-sign-in-form-email';
+} from '../../actions/views/change-sign-in-form-email';
 import { SignIn } from '../../types/sign-in';
 
 export default function updater$(

@@ -1,7 +1,7 @@
 import { A, O } from 'b-o-a';
 
 type P = void;
-const type = 'view/add-stamp-rally';
+const type = 'views/add-spot';
 
 const create = (): A<P> => {
   return { type };

@@ -3,6 +3,7 @@
 An unofficial client for [RALLY](https://rallyapp.jp).
 
 This is a [bouzuya/b-o-a][] example.
+
 This is a [bouzuya/vdom-rxjs-ssr][] fork.
 
 ## Usage
@@ -19,21 +20,19 @@ $ open http://localhost:3000/
 ## directories and files
 
 ```
-app/
-  action/         ... `type AT = A<P>; type P = ...;`
-  app/            ... `type f = (action$: O<A>, state$: O<PT>) => O<A>;`
-  init/           ... `type init = (params: any) => Promise<PT>`
-  propertie/      ... `type p = (action$: O<A>, state: <PT>) => O<PT>;`
-  property-type/  ... `type PT = { ... };`
-  request/        ... `type request = (params: any) => Promise<PT>;`
-  route/          ... route config file
-  style/          ... less files
-  view/           ... `type view = (state: PT, helpers: any) => V;`
-  app.ts          ... `type app = (action$: O<A>, options: any) => O<A>;`
-  client.ts       ... client entry point. configure executors and run app.
-  server.ts       ... server entry point. configure executors and run app.
-executors/        ... executor files
-framework/        ... b-o-a & executors
+actions/        ... `type AT = A<P>; type P = ...;`
+maps/           ... `type f = (action$: O<A>, state$: O<PT>) => O<A>;`
+handlers/       ... `type Handler = (action$: O<A>, options: any) => O<A>;`
+inits/          ... `type init = (params: any) => Promise<PT>`
+props/          ... `type p = (action$: O<A>, state: <PT>) => O<PT>;`
+types/          ... `type PT = { ... };`
+requests/       ... `type request = (params: any) => Promise<PT>;`
+routes/         ... route config file
+styles/         ... less files
+views/          ... `type view = (state: PT, helpers: any) => V;`
+app.ts          ... `type app = (action$: O<A>, options: any) => O<A>;`
+client.ts       ... client entry point. configure handlers and run app.
+server.ts       ... server entry point. configure handlers and run app.
 
 A: Action
 O: Observable
@@ -98,22 +97,40 @@ FW : Framework
 
 ### rally-rxjs
 
+#### 0.4.0
+
+- AP: 0.3.0
+- FW: 0.4.0 final
+
+[0.3.0...0.4.0](https://github.com/bouzuya/rally-rxjs/compare/0.3.0...0.4.0)
+
 #### 0.3.0
 
 - AP: 0.2.0
 - FW: 0.3.0
+
+[0.2.0...0.3.0](https://github.com/bouzuya/rally-rxjs/compare/0.2.0...0.3.0)
 
 #### 0.2.0
 
 - AP: 0.1.0
 - FW: 0.2.0
 
+[0.1.0...0.2.0](https://github.com/bouzuya/rally-rxjs/compare/0.1.0...0.2.0)
+
 #### 0.1.0
 
 - AP: 0.1.0
 - FW: 0.1.0
 
+[initial commit...0.2.0](https://github.com/bouzuya/rally-rxjs/compare/8c4e87420ffd455bfac2a68dca24677a1e35590d...0.1.0)
+
 ### AP
+
+#### 0.3.0
+
+- support FW@0.4.0
+- rename directory names
 
 #### 0.2.0
 
@@ -130,6 +147,24 @@ FW : Framework
 - spot index
 
 ### FW
+
+#### 0.4.0 final
+
+- rename `executors/` to `handlers/`
+- extract packages
+    - [bouzuya/boajs-handler-dom][]
+    - [bouzuya/boajs-handler-history][]
+    - [bouzuya/boajs-handler-init][]
+    - [bouzuya/boajs-handler-request][]
+    - [bouzuya/boajs-router][]
+    - [bouzuya/boajs-vdom][]
+
+[bouzuya/boajs-handler-dom]: https://github.com/bouzuya/boajs-handler-dom
+[bouzuya/boajs-handler-history]: https://github.com/bouzuya/boajs-handler-history
+[bouzuya/boajs-handler-init]: https://github.com/bouzuya/boajs-handler-init
+[bouzuya/boajs-handler-request]: https://github.com/bouzuya/boajs-handler-request
+[bouzuya/boajs-router]: https://github.com/bouzuya/boajs-router
+[bouzuya/boajs-vdom]: https://github.com/bouzuya/boajs-vdom
 
 #### 0.3.0
 

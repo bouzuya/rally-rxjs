@@ -2,11 +2,11 @@ import { A, O } from 'b-o-a';
 
 import { State } from './property-type/state';
 
-import { $ as goTo$ } from './app/go-to';
-import { $ as init$ } from './app/init';
-import { $ as render$ } from './app/render';
-import { $ as request$ } from './app/request';
-import { $ as success$ } from './app/success';
+import { $ as goTo$ } from './maps/go-to';
+import { $ as init$ } from './maps/init';
+import { $ as render$ } from './maps/render';
+import { $ as request$ } from './maps/request';
+import { $ as success$ } from './maps/success';
 import { $ as properties } from './property/';
 
 const handler = (

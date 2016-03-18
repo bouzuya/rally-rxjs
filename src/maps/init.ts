@@ -1,9 +1,9 @@
 import { O, A } from 'b-o-a';
 
-import rootIndex from '../init/root-index';
-import signInIndex from '../init/sign-in-index';
-import stampRalliesIndex from '../init/stamp-rallies-index';
-import stampRalliesShow from '../init/stamp-rallies-show';
+import rootIndex from '../inits/root-index';
+import signInIndex from '../inits/sign-in-index';
+import stampRalliesIndex from '../inits/stamp-rallies-index';
+import stampRalliesShow from '../inits/stamp-rallies-show';
 import { State } from '../property-type/state';
 
 const inits: { [k:string]: (params: any) => Promise<any>; } = {

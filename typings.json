@@ -3,11 +3,7 @@
   "devDependencies": {},
   "ambientDevDependencies": {},
   "ambientDependencies": {
-    "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#dd638012d63e069f2c99d06ef4dcc9616a943ee4",
     "htmlescape": "github:bouzuya/my-dts/htmlescape/htmlescape.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
-    "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#cb5206a8ac1c9a3ddfd126f5ecea6729b2361452",
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81",
-    "node-fetch": "github:bouzuya/my-dts/node-fetch/node-fetch.d.ts#d735250dcf9503affb1bde712ce08e773432cb09",
-    "serve-static": "github:DefinitelyTyped/DefinitelyTyped/serve-static/serve-static.d.ts#0fa4e9e61385646ea6a4cba2aef357353d2ce77f"
+    "node-fetch": "github:bouzuya/my-dts/node-fetch/node-fetch.d.ts#d735250dcf9503affb1bde712ce08e773432cb09"
   }
 }

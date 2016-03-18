@@ -13,7 +13,7 @@
     "./src/client.ts",
     "./src/server.ts",
     "./test/actions/add-spot.ts",
-    "./test/route/index.ts",
+    "./test/routes/index.ts",
     "./typings/main.d.ts",
     "./node_modules/typescript/lib/lib.es6.d.ts"
   ]

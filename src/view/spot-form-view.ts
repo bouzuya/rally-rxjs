@@ -1,10 +1,10 @@
 import { create as h } from 'boajs-vdom';
 
 import { SpotForm } from '../property-type/spot-form';
-import { create as addSpot } from '../action/view/add-spot';
+import { create as addSpot } from '../actions/view/add-spot';
 import {
   create as changeSpotFormName
-} from '../action/view/change-spot-form-name';
+} from '../actions/view/change-spot-form-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any) => {
   const { e } = helpers;

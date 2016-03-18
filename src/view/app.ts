@@ -2,7 +2,7 @@ import { create as h } from 'boajs-vdom';
 
 import { State } from '../property-type/state';
 
-import { create as goTo } from '../action/go-to';
+import { create as goTo } from '../actions/go-to';
 
 import {
   view as signInPage

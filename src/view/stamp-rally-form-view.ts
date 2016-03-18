@@ -1,10 +1,10 @@
 import { create as h } from 'boajs-vdom';
 
 import { StampRallyForm } from '../property-type/stamp-rally-form';
-import { create as addStampRally } from '../action/view/add-stamp-rally';
+import { create as addStampRally } from '../actions/view/add-stamp-rally';
 import {
   create as changeStampRallyFormName
-} from '../action/view/change-stamp-rally-form-name';
+} from '../actions/view/change-stamp-rally-form-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any) => {
   const { e } = helpers;

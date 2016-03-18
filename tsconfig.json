@@ -12,7 +12,7 @@
   "files": [
     "./src/client.ts",
     "./src/server.ts",
-    "./test/action/add-spot.ts",
+    "./test/actions/add-spot.ts",
     "./test/route/index.ts",
     "./typings/main.d.ts",
     "./node_modules/typescript/lib/lib.es6.d.ts"

@@ -4,10 +4,10 @@ import { Updater } from '../../property-type/updater';
 
 import {
   from as changeName$
-} from '../../action/view/change-stamp-rally-form-name';
+} from '../../actions/view/change-stamp-rally-form-name';
 import {
   from as responseStampRallyCreate$
-} from '../../action/response-stamp-rally-create';
+} from '../../actions/response-stamp-rally-create';
 import { StampRallyForm } from '../../property-type/stamp-rally-form';
 
 export default function updater$(

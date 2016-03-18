@@ -1,12 +1,12 @@
 import { O, A } from 'b-o-a';
-import { from as route$ } from '../action/route';
+import { from as route$ } from '../actions/route';
 
 import { State } from '../property-type/state';
 import { Token } from '../property-type/token';
-import { from as addSpot$ } from '../action/view/add-spot';
-import { from as addStampRally$ } from '../action/view/add-stamp-rally';
-import { from as goToSignIn$ } from '../action/view/sign-in';
-import { from as responseSpotCreate$ } from '../action/response-spot-create';
+import { from as addSpot$ } from '../actions/view/add-spot';
+import { from as addStampRally$ } from '../actions/view/add-stamp-rally';
+import { from as goToSignIn$ } from '../actions/view/sign-in';
+import { from as responseSpotCreate$ } from '../actions/response-spot-create';
 
 const $ = (action$: O<A<any>>, state$: O<State>, options: any): O<A<any>> => {
   const { type }: { type: string; } = options;

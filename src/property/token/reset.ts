@@ -5,7 +5,7 @@ import { Updater } from '../../property-type/updater';
 
 import {
   from as responseTokenCreate$
-} from '../../action/response-token-create';
+} from '../../actions/response-token-create';
 import { Token } from '../../property-type/token';
 
 export default function updater$(

@@ -1,6 +1,6 @@
 
 import { A, O } from 'b-o-a';
-import { from as route$ } from '../action/route';
+import { from as route$ } from '../actions/route';
 
 import { Updater } from '../property-type/updater';
 

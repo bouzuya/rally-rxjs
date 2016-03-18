@@ -1,4 +1,4 @@
-import { Request } from 'boajs-handler-request';
+import { Request } from 'b-o-a/handlers/request';
 
 import spotCreate from '../requests/spot-create';
 import spotIndex from '../requests/spot-index';

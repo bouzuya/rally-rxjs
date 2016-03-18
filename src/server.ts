@@ -1,7 +1,7 @@
 import { run } from 'b-o-a';
 
 import { init as app } from './app';
-import { init as http } from 'boajs-handler-init';
+import { init as http } from 'b-o-a/handlers/init';
 
 import { routes } from './routes/';
 import { view } from './views/all';
@@ -21,8 +21,8 @@ export default function main() {
         port: 3000,
         render: view,
         routes
-      }).handler(act$, options);
-      return app().handler(http$, options);
+      }).handler(<any>act$, options);
+      return app().handler(<any>http$, options);
     }
   );
 }

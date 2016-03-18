@@ -19,11 +19,7 @@
     "url": "https://github.com/bouzuya/rally-rxjs/issues"
   },
   "dependencies": {
-    "b-o-a": "0.4.0",
-    "boajs-handler-dom": "0.3.0",
-    "boajs-handler-history": "0.1.0",
-    "boajs-handler-init": "0.2.0",
-    "boajs-handler-request": "0.1.0",
+    "b-o-a": "0.5.1",
     "boajs-router": "^0.3.0",
     "htmlescape": "^1.1.0",
     "node-fetch": "^1.3.3"

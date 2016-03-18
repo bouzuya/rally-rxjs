@@ -50,10 +50,9 @@
     "url": "https://github.com/bouzuya/rally-rxjs"
   },
   "scripts": {
-    "build": "npm run build-ts && npm run cp && npm run build-browserify && npm run build-less",
+    "build": "tsc && npm run cp && npm run build-browserify && npm run build-less",
     "build-browserify": "browserify -o dist/scripts/bundle.js client.js",
     "build-less": "lessc src/styles/index.less dist/styles/index.css",
-    "build-ts": "tsc",
     "clean": "rm -rf lib/ .tmp/ dist/ bundle.js",
     "cp": "cp -R .tmp/src/* lib/",
     "md1": "[ -d .tmp/src ] || mkdir -p .tmp/src",
@@ -63,11 +62,9 @@
     "prepublish": "typings install",
     "start": "nodemon server.js",
     "test": "ava",
-    "watch": "parallelshell 'npm run watch-ts' 'npm run watch-cp' 'npm run watch-browserify' 'npm run watch-less' 'npm run watch-test'",
+    "watch": "parallelshell 'tsc --watch' 'npm run watch-cp' 'npm run watch-browserify' 'npm run watch-less' 'ava --watch'",
     "watch-browserify": "watchify -v -o dist/scripts/bundle.js client.js",
     "watch-cp": "watch --ignoreUnreadable --wait 5 'npm run cp' .tmp/src/",
-    "watch-less": "watch --ignoreUnreadable --wait 5 'npm run build-less' src/styles/",
-    "watch-test": "ava --watch",
-    "watch-ts": "tsc --watch"
+    "watch-less": "watch --ignoreUnreadable --wait 5 'npm run build-less' src/styles/"
   }
 }

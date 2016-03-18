@@ -1,5 +1,3 @@
-import { create as h } from 'boajs-vdom';
-
 import { State } from '../types/state';
 
 import { create as goTo } from '../actions/go-to';
@@ -26,12 +24,12 @@ const pageView = (state: State, helpers: any) => {
     case 'stamp_rallies#show':
       return stampRallyShowPage(state, helpers);
     default:
-      return notFoundPage();
+      return notFoundPage(state, helpers);
   }
 };
 
 const view = (state: State, helpers: any) => {
-  const { e } = helpers;
+  const { e, create: h } = helpers;
   return h(
     'div#app',
     {

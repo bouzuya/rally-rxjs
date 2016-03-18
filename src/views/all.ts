@@ -1,10 +1,10 @@
-import { create as h } from 'boajs-vdom';
 import * as htmlescape from 'htmlescape';
 
 import { State } from '../types/state';
 import { view as appView } from '../views/app';
 
 const view = (state: State, helpers: any) => {
+  const { create: h } = helpers;
   const key = state.googleApiKey;
   const src = 'https://maps.googleapis.com/maps/api/js?key=' + key;
   return h('html', [

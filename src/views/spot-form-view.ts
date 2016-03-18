@@ -1,5 +1,3 @@
-import { create as h } from 'boajs-vdom';
-
 import { SpotForm } from '../types/spot-form';
 import {
   create as addSpot
@@ -9,7 +7,7 @@ import {
 } from '../actions/views/change-spot-form-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any) => {
-  const { e } = helpers;
+  const { create: h, e } = helpers;
   return h('label', [
     name,
     h('input.' + name, {
@@ -22,7 +20,7 @@ const labeledTextBox = (name: string, value: string, helpers: any) => {
 };
 
 const view = (state: SpotForm, helpers: any) => {
-  const { e } = helpers;
+  const { create: h, e } = helpers;
   return h('form.spot', [
     labeledTextBox('name', state.name, helpers),
     h('button.add-spot', {

@@ -1,5 +1,3 @@
-import { create as h } from 'boajs-vdom';
-
 import { StampRallyForm } from '../types/stamp-rally-form';
 import {
   create as addStampRally
@@ -9,7 +7,7 @@ import {
 } from '../actions/views/change-stamp-rally-form-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any) => {
-  const { e } = helpers;
+  const { create: h, e } = helpers;
   return h('label', [
     name,
     h('input.' + name, {
@@ -24,7 +22,7 @@ const labeledTextBox = (name: string, value: string, helpers: any) => {
 };
 
 const view = (state: StampRallyForm, helpers: any) => {
-  const { e } = helpers;
+  const { create: h, e } = helpers;
   return h('form.stamp-rally', [
     labeledTextBox('name', state.name, helpers),
     h('button.add-stamp-rally', {

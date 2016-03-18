@@ -1,11 +1,9 @@
-import { create as h } from 'boajs-vdom';
-
 import { State } from '../types/state';
 import { view as mapView } from '../views/map-view';
 import { view as spotFormView } from '../views/spot-form-view';
 
 const view = (state: State, helpers: any) => {
-  const { e } = helpers;
+  const { create: h, e } = helpers;
   const map = {
     markers: state.spots.map(spot => {
       const { lat, lng, id } = spot;

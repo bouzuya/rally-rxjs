@@ -1,11 +1,10 @@
-import { create as h } from 'boajs-vdom';
-
 import { State } from '../types/state';
 import {
   view as stampRallyFormView
 } from '../views/stamp-rally-form-view';
 
 const view = (state: State, helpers: any) => {
+  const { create: h } = helpers;
   return h('div.stamp-rally-list-page', [
     h('ul', state.stampRallies.map(stampRally => {
       const href = '/stamp_rallies/' + stampRally.name;

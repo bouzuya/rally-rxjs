@@ -1,5 +1,3 @@
-import { create as h } from 'boajs-vdom';
-
 import { State } from '../types/state';
 import {
   create as changeEmail
@@ -12,7 +10,7 @@ import {
 } from '../actions/views/sign-in';
 
 const view = (state: State, helpers: any) => {
-  const { e } = helpers;
+  const { create: h, e } = helpers;
   return h('div.sign-in-page', [
     h('label', [
       'email',

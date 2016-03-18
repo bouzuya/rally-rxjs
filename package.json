@@ -26,7 +26,6 @@
     "boajs-handler-request": "^0.1.0",
     "boajs-router": "^0.3.0",
     "boajs-vdom": "^0.1.1",
-    "express": "^4.13.4",
     "htmlescape": "^1.1.0",
     "node-fetch": "^1.3.3"
   },

@@ -3,7 +3,7 @@ import { run } from 'b-o-a';
 import { init as app } from './app';
 import { init as dom } from 'boajs-handler-dom';
 import { init as history } from 'boajs-handler-history';
-import { init as request } from '../handlers/request/';
+import { init as request } from 'boajs-handler-request';
 
 import { requests } from './request/';
 import { routes } from './route/';

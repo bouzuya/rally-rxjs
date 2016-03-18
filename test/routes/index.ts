@@ -1,5 +1,5 @@
 import test from 'ava';
-import { routes } from '../../src/route/';
+import { routes } from '../../src/routes/';
 import { init, Router } from 'boajs-router';
 import { Route } from '../../src/types/route';
 

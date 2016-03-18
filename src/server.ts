@@ -3,7 +3,7 @@ import { run } from 'b-o-a';
 import { init as app } from './app';
 import { init as http } from 'boajs-handler-init';
 
-import { routes } from './route/';
+import { routes } from './routes/';
 import { view } from './view/all';
 
 export default function main() {

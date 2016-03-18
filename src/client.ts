@@ -6,7 +6,7 @@ import { init as history } from 'boajs-handler-history';
 import { init as request } from 'boajs-handler-request';
 
 import { requests } from './requests/';
-import { routes } from './route/';
+import { routes } from './routes/';
 import { view } from './view/app';
 
 export default function main() {

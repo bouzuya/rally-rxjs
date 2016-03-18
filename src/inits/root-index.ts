@@ -1,4 +1,4 @@
-import { State } from '../property-type/state';
+import { State } from '../types/state';
 
 export default function initializer(_: any): Promise<State> {
   // `Promise.reject` is type error

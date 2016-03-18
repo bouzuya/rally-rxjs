@@ -1,6 +1,6 @@
 import { create as h } from 'boajs-vdom';
 
-import { StampRallyForm } from '../property-type/stamp-rally-form';
+import { StampRallyForm } from '../types/stamp-rally-form';
 import { create as addStampRally } from '../actions/view/add-stamp-rally';
 import {
   create as changeStampRallyFormName

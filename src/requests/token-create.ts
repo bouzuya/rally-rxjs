@@ -1,7 +1,7 @@
 import * as url from 'url';
 import * as fetch from 'node-fetch'
 
-import { Token } from '../property-type/token';
+import { Token } from '../types/token';
 
 export default function request({
   email, password

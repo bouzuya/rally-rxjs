@@ -1,6 +1,6 @@
 import { create as h } from 'boajs-vdom';
 
-import { SpotForm } from '../property-type/spot-form';
+import { SpotForm } from '../types/spot-form';
 import { create as addSpot } from '../actions/view/add-spot';
 import {
   create as changeSpotFormName

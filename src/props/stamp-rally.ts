@@ -1,8 +1,8 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../property-type/updater';
+import { Updater } from '../types/updater';
 
-import { StampRally } from '../property-type/stamp-rally';
+import { StampRally } from '../types/stamp-rally';
 import reset$ from './stamp-rally/reset';
 
 export default function stampRally$(

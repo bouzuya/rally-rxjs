@@ -1,8 +1,8 @@
 import { O, A } from 'b-o-a';
 import { from as route$ } from '../actions/route';
 
-import { State } from '../property-type/state';
-import { Token } from '../property-type/token';
+import { State } from '../types/state';
+import { Token } from '../types/token';
 import { from as addSpot$ } from '../actions/view/add-spot';
 import { from as addStampRally$ } from '../actions/view/add-stamp-rally';
 import { from as goToSignIn$ } from '../actions/view/sign-in';

@@ -1,8 +1,8 @@
 import { A, O } from 'b-o-a';
 import { from as route$ } from '../../actions/route';
 
-import { Updater } from '../../property-type/updater';
-import { SignIn } from '../../property-type/sign-in';
+import { Updater } from '../../types/updater';
+import { SignIn } from '../../types/sign-in';
 
 import { from as successSignIn$ } from '../../actions/success-sign-in';
 

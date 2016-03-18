@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { State } from '../property-type/state';
+import { State } from '../types/state';
 
 import currentPage$ from '../props/current-page';
 import signIn$ from '../props/sign-in';

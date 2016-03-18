@@ -1,7 +1,7 @@
 import { create as h } from 'boajs-vdom';
 import * as htmlescape from 'htmlescape';
 
-import { State } from '../property-type/state';
+import { State } from '../types/state';
 import { view as appView } from '../view/app';
 
 const view = (state: State, helpers: any) => {

@@ -1,6 +1,6 @@
 import { create as h } from 'boajs-vdom';
 
-import { State } from '../property-type/state';
+import { State } from '../types/state';
 import { view as mapView } from '../view/map-view';
 import { view as spotFormView } from '../view/spot-form-view';
 

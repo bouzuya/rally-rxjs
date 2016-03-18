@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { Token } from '../property-type/token';
+import { Token } from '../types/token';
 
 type P = Token;
 const type = 'token-create';

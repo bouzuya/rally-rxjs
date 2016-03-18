@@ -1,7 +1,7 @@
 import * as url from 'url';
 import * as fetch from 'node-fetch';
 
-import { Spot } from '../property-type/spot';
+import { Spot } from '../types/spot';
 
 export default function request({ token, stampRallyId }: any): Promise<Spot[]> {
   const urlObj = url.parse(

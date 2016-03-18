@@ -1,7 +1,7 @@
 import * as url from 'url';
 import * as fetch from 'node-fetch'
 
-import { StampRally } from '../property-type/stamp-rally';
+import { StampRally } from '../types/stamp-rally';
 
 export default function request({
   token, userId

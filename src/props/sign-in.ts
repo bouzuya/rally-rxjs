@@ -1,8 +1,8 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../property-type/updater';
+import { Updater } from '../types/updater';
 
-import { SignIn } from '../property-type/sign-in';
+import { SignIn } from '../types/sign-in';
 import changeEmail$ from './sign-in/change-email';
 import changePassword$ from './sign-in/change-password';
 import reset$ from './sign-in/reset';

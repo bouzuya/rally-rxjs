@@ -1,8 +1,8 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../property-type/updater';
+import { Updater } from '../types/updater';
 
-import { StampRallyForm } from '../property-type/stamp-rally-form';
+import { StampRallyForm } from '../types/stamp-rally-form';
 import changeName$ from './stamp-rally-form/change-name';
 
 export default function property(

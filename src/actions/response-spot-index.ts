@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { Spot } from '../property-type/spot';
+import { Spot } from '../types/spot';
 
 type P = Spot[];
 const type = 'spot-index';

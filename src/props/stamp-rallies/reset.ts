@@ -1,11 +1,11 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../../property-type/updater';
+import { Updater } from '../../types/updater';
 
 import {
   from as responseStampRallyIndex$
 } from '../../actions/response-stamp-rally-index';
-import { StampRally } from '../../property-type/stamp-rally';
+import { StampRally } from '../../types/stamp-rally';
 
 export default function updater$(
   action$: O<A<any>>

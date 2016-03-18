@@ -1,6 +1,6 @@
 import { create as h } from 'boajs-vdom';
 
-import { State } from '../property-type/state';
+import { State } from '../types/state';
 import { view as stampRallyFormView } from '../view/stamp-rally-form-view';
 
 const view = (state: State, helpers: any) => {

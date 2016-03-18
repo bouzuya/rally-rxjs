@@ -1,8 +1,8 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../property-type/updater';
+import { Updater } from '../types/updater';
 
-import { SpotForm } from '../property-type/spot-form';
+import { SpotForm } from '../types/spot-form';
 import changeName$ from './spot-form/change-name';
 
 export default function property(

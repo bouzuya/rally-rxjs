@@ -1,6 +1,6 @@
 import { A, O } from 'b-o-a';
 
-import { StampRally } from '../property-type/stamp-rally';
+import { StampRally } from '../types/stamp-rally';
 
 type P = StampRally[];
 const type = 'stamp-rally-index';

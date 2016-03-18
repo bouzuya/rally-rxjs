@@ -1,6 +1,6 @@
 import { create as h } from 'boajs-vdom';
 
-import { State } from '../property-type/state';
+import { State } from '../types/state';
 
 import { create as goTo } from '../actions/go-to';
 

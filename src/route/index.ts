@@ -1,4 +1,4 @@
-import { Route } from '../property-type/route';
+import { Route } from '../types/route';
 
 const routes: Route[] = [
   { path: '/', name: 'root#index' },

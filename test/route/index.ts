@@ -1,7 +1,7 @@
 import test from 'ava';
 import { routes } from '../../src/route/';
 import { init, Router } from 'boajs-router';
-import { Route } from '../../src/property-type/route';
+import { Route } from '../../src/types/route';
 
 test.beforeEach(t => {
   t.context.router = init(routes);

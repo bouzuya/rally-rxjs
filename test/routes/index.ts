@@ -1,6 +1,6 @@
 import test from 'ava';
 import { routes } from '../../src/routes/';
-import { init, Router } from 'boajs-router';
+import { init, Router } from 'boa-router';
 import { Route } from '../../src/types/route';
 
 test.beforeEach(t => {

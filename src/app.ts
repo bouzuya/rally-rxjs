@@ -2,6 +2,7 @@ import { A, O } from 'b-o-a';
 
 import { State } from './types/state';
 
+import { $ as map$ } from './maps/';
 import { $ as goTo$ } from './maps/go-to';
 import { $ as init$ } from './maps/init';
 import { $ as render$ } from './maps/render';
@@ -18,6 +19,7 @@ const handler = (
   const { state: initialState } = options;
   const state$ = properties(action$, initialState);
   return O.merge(
+    map$(action$, state$),
     goTo$(action$, state$),
     init$(action$, state$),
     // TODO: type is specified in client or server.

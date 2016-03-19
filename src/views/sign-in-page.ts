@@ -1,13 +1,13 @@
 import { State } from '../types/state';
 import {
   create as changeEmail
-} from '../actions/views/change-sign-in-form-email';
+} from '../actions/views/sign-in-page/change-email';
 import {
   create as changePassword
-} from '../actions/views/change-sign-in-form-password';
+} from '../actions/views/sign-in-page/change-password';
 import {
   create as signIn
-} from '../actions/views/sign-in';
+} from '../actions/views/sign-in-page/sign-in';
 
 const view = (state: State, helpers: any) => {
   const { create: h, e } = helpers;

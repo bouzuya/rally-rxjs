@@ -1,10 +1,10 @@
 import { A, O } from 'b-o-a';
 
-type P = { value: string; };
-const type = 'views/change-sign-in-form-email';
+type P = void;
+const type = 'props/sign-in/reset';
 
-const create = (value: string): A<P> => {
-  return { type, data: { value } };
+const create = (): A<P> => {
+  return { type };
 };
 
 const from = (action$: O<A<any>>): O<P> => {

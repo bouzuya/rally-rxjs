@@ -6,24 +6,19 @@ import {
   create as changeName
 } from '../actions/views/spot-form/change-name';
 
-const labeledTextBox = (name: string, value: string, helpers: any) => {
-  const { create: h, e } = helpers;
-  return h('label', [
-    name,
-    h('input.' + name, {
-      type: 'text',
-      name,
-      value,
-      onchange: ({ target: { value } }) => e(changeName(value))
-    }, []),
-  ]);
-};
-
 const view = (state: SpotForm, helpers: any) => {
   const { create: h, e } = helpers;
-  return h('form.spot', [
-    labeledTextBox('name', state.name, helpers),
-    h('button.add-spot', {
+  return h('form.spot-form', [
+    h('label.control.name', [
+      h('span.label', ['name']),
+      h('input.value', {
+        type: 'text',
+        name: 'name',
+        value: state.name,
+        onchange: ({ target: { value } }) => e(changeName(value))
+      }, []),
+    ]),
+    h('button.add-spot-button', {
       onclick: (event: Event) => {
         event.preventDefault();
         event.stopPropagation();

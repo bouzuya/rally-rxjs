@@ -1,7 +1,7 @@
 import { A, O } from 'b-o-a';
 
 type P = number;
-const type = 'views/click-spot-marker';
+const type = 'views/map/click-spot-marker';
 
 const create = (id: P): A<P> => {
   return { type, data: id };

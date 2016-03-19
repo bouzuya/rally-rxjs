@@ -1,5 +1,5 @@
 import { State } from '../types/state';
-import { view as mapView } from '../views/map-view';
+import { view as mapView } from '../views/map';
 import { view as spotFormView } from '../views/spot-form';
 
 const view = (state: State, helpers: any) => {

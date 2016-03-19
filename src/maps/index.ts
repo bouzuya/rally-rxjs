@@ -56,7 +56,7 @@ import {
 } from '../actions/views/stamp-rally-form/change-name';
 import {
   create as changeName2
-} from '../actions/views/change-stamp-rally-form-name';
+} from '../actions/props/stamp-rally-form/change-name';
 
 import {
   from as addStampRally$
@@ -64,6 +64,10 @@ import {
 import {
   create as addStampRally
 } from '../actions/views/add-stamp-rally';
+
+import {
+  from as responseStampRallyCreate$
+} from '../actions/response-stamp-rally-create';
 
 const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
   return O.merge(
@@ -74,11 +78,14 @@ const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
       .filter(({ route: { name } }) => name === 'sign_in#index')
       .map(() => reset()),
     successSignIn$(action$).map(() => reset()),
+
     changeName$(action$).map(({ value }) => changeName(value)),
     addSpot$(action$).map(() => addSpot()),
     responseSpotCreate$(action$).map(() => changeName(null)),
+
     changeName2$(action$).map(({ value }) => changeName2(value)),
-    addStampRally$(action$).map(() => addStampRally())
+    addStampRally$(action$).map(() => addStampRally()),
+    responseStampRallyCreate$(action$).map(() => changeName2(null))
   );
 };
 

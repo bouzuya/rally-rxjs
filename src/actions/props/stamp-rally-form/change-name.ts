@@ -1,7 +1,7 @@
 import { A, O } from 'b-o-a';
 
 type P = { value: string; };
-const type = 'views/change-stamp-rally-form-name';
+const type = 'props/stamp-rally-form/change-name';
 
 const create = (value: string): A<P> => {
   return { type, data: { value } };

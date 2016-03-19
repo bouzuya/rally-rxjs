@@ -1,9 +1,11 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../types/updater';
+import {
+  from as changeName$
+} from '../actions/props/stamp-rally-form/change-name';
 
 import { StampRallyForm } from '../types/stamp-rally-form';
-import changeName$ from './stamp-rally-form/change-name';
+import { Updater } from '../types/updater';
 
 export default function property(
   state: StampRallyForm,
@@ -12,7 +14,10 @@ export default function property(
   return O
     .of(state)
     .merge(
-      changeName$(action$)
+    changeName$(action$)
+      .map(({ value }) => (state: StampRallyForm) => {
+        return Object.assign({}, state, { name: value });
+      })
     )
     .scan((state: StampRallyForm, updater: Updater<StampRallyForm>) => {
       return updater(state);

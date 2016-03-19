@@ -1,7 +1,7 @@
 import { A, O } from 'b-o-a';
 
 type P = void;
-const type = 'views/sign-in';
+const type = 'sign-in';
 
 const create = (): A<P> => {
   return { type };

@@ -21,7 +21,7 @@ import {
 } from '../actions/views/sign-in-page/sign-in';
 import {
   create as signIn
-} from '../actions/views/sign-in';
+} from '../actions/sign-in';
 
 import {
   from as route$

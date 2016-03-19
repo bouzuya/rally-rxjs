@@ -63,7 +63,7 @@ import {
 } from '../actions/views/stamp-rally-form/add-stamp-rally';
 import {
   create as addStampRally
-} from '../actions/views/add-stamp-rally';
+} from '../actions/add-stamp-rally';
 
 import {
   from as responseStampRallyCreate$

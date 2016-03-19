@@ -83,6 +83,13 @@ import {
   create as resetStampRallies
 } from '../actions/props/stamp-rallies/reset';
 
+import {
+  from as responseStampRallyShow$
+} from '../actions/response-stamp-rally-show';
+import {
+  create as resetStampRally
+} from '../actions/props/stamp-rally/reset';
+
 const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
   return O.merge(
     changeEmail$(action$).map(({ value }) => changeEmail(value)),
@@ -103,7 +110,9 @@ const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
 
     responseSpotIndex$(action$).map(spots => resetSpots(spots)),
     responseStampRallyIndex$(action$)
-      .map(stampRallies => resetStampRallies(stampRallies))
+      .map(stampRallies => resetStampRallies(stampRallies)),
+    responseStampRallyShow$(action$)
+      .map(stampRally => resetStampRally(stampRally))
   );
 };
 

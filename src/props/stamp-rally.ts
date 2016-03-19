@@ -1,19 +1,19 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../types/updater';
+import {
+  from as reset$
+} from '../actions/props/stamp-rally/reset';
 
 import { StampRally } from '../types/stamp-rally';
-import reset$ from './stamp-rally/reset';
+import { Updater } from '../types/updater';
 
-export default function stampRally$(
+export default function property(
   state: StampRally,
   action$: O<A<any>>
 ): O<StampRally> {
   return O
     .of(state)
-    .merge(
-      reset$(action$)
-    )
+    .merge(reset$(action$).map(stampRally => () => stampRally))
     .scan((state: StampRally, updater: Updater<StampRally>) => {
       return updater(state);
     });

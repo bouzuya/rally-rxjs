@@ -1,10 +1,10 @@
 import { SpotForm } from '../types/spot-form';
 import {
   create as addSpot
-} from '../actions/views/add-spot';
+} from '../actions/views/spot-form/add-spot';
 import {
-  create as changeSpotFormName
-} from '../actions/views/change-spot-form-name';
+  create as changeName
+} from '../actions/views/spot-form/change-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any) => {
   const { create: h, e } = helpers;
@@ -14,7 +14,7 @@ const labeledTextBox = (name: string, value: string, helpers: any) => {
       type: 'text',
       name,
       value,
-      onchange: ({ target: { value } }) => e(changeSpotFormName(value))
+      onchange: ({ target: { value } }) => e(changeName(value))
     }, []),
   ]);
 };

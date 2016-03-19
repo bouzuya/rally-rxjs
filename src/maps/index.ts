@@ -33,6 +33,20 @@ import {
   create as reset
 } from '../actions/props/sign-in/reset';
 
+import {
+  from as changeName$
+} from '../actions/views/spot-form/change-name';
+import {
+  create as changeName
+} from '../actions/views/change-spot-form-name';
+
+import {
+  from as addSpot$
+} from '../actions/views/spot-form/add-spot';
+import {
+  create as addSpot
+} from '../actions/views/add-spot';
+
 const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
   return O.merge(
     changeEmail$(action$).map(({ value }) => changeEmail(value)),
@@ -41,7 +55,9 @@ const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
     route$(action$)
       .filter(({ route: { name } }) => name === 'sign_in#index')
       .map(() => reset()),
-    successSignIn$(action$).map(() => reset())
+    successSignIn$(action$).map(() => reset()),
+    changeName$(action$).map(({ value }) => changeName(value)),
+    addSpot$(action$).map(() => addSpot())
   );
 };
 

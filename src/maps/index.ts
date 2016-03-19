@@ -45,7 +45,7 @@ import {
 } from '../actions/views/spot-form/add-spot';
 import {
   create as addSpot
-} from '../actions/views/add-spot';
+} from '../actions/add-spot';
 
 import {
   from as responseSpotCreate$

@@ -1,9 +1,11 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../types/updater';
+import {
+  from as reset$
+} from '../actions/props/token/reset';
 
 import { Token } from '../types/token';
-import reset$ from './token/reset';
+import { Updater } from '../types/updater';
 
 export default function property(
   state: Token,
@@ -11,9 +13,7 @@ export default function property(
 ): O<Token> {
   return O
     .of(state)
-    .merge(
-      reset$(action$)
-    )
+    .merge(reset$(action$).map(token => () => token))
     .scan((state: Token, updater: Updater<Token>) => {
       return updater(state);
     });

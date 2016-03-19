@@ -1,10 +1,10 @@
 import { StampRallyForm } from '../types/stamp-rally-form';
 import {
   create as addStampRally
-} from '../actions/views/add-stamp-rally';
+} from '../actions/views/stamp-rally-form/add-stamp-rally';
 import {
-  create as changeStampRallyFormName
-} from '../actions/views/change-stamp-rally-form-name';
+  create as changeName
+} from '../actions/views/stamp-rally-form/change-name';
 
 const labeledTextBox = (name: string, value: string, helpers: any) => {
   const { create: h, e } = helpers;
@@ -15,7 +15,7 @@ const labeledTextBox = (name: string, value: string, helpers: any) => {
       name,
       value,
       onchange: ({ target: { value } }) => {
-        e(changeStampRallyFormName(value))
+        e(changeName(value))
       }
     }, []),
   ]);

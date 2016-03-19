@@ -38,7 +38,7 @@ import {
 } from '../actions/views/spot-form/change-name';
 import {
   create as changeName
-} from '../actions/views/change-spot-form-name';
+} from '../actions/props/spot-form/change-name';
 
 import {
   from as addSpot$
@@ -46,6 +46,10 @@ import {
 import {
   create as addSpot
 } from '../actions/views/add-spot';
+
+import {
+  from as responseSpotCreate$
+} from '../actions/response-spot-create';
 
 const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
   return O.merge(
@@ -57,7 +61,8 @@ const $ = (action$: O<A<any>>, _: O<State>): O<A<any>> => {
       .map(() => reset()),
     successSignIn$(action$).map(() => reset()),
     changeName$(action$).map(({ value }) => changeName(value)),
-    addSpot$(action$).map(() => addSpot())
+    addSpot$(action$).map(() => addSpot()),
+    responseSpotCreate$(action$).map(() => changeName(null))
   );
 };
 

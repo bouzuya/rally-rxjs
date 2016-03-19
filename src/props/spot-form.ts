@@ -1,9 +1,11 @@
 import { A, O } from 'b-o-a';
 
-import { Updater } from '../types/updater';
+import {
+  from as changeName$
+} from '../actions/props/spot-form/change-name';
 
 import { SpotForm } from '../types/spot-form';
-import changeName$ from './spot-form/change-name';
+import { Updater } from '../types/updater';
 
 export default function property(
   state: SpotForm,
@@ -12,7 +14,10 @@ export default function property(
   return O
     .of(state)
     .merge(
-      changeName$(action$)
+    changeName$(action$)
+      .map(({ value }) => (state: SpotForm) => {
+        return Object.assign({}, state, { name: value });
+      })
     )
     .scan((state: SpotForm, updater: Updater<SpotForm>) => {
       return updater(state);

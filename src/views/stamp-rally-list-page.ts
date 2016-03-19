@@ -1,7 +1,7 @@
 import { State } from '../types/state';
 import {
   view as stampRallyFormView
-} from '../views/stamp-rally-form-view';
+} from '../views/stamp-rally-form';
 
 const view = (state: State, helpers: any) => {
   const { create: h } = helpers;

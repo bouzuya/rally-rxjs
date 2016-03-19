@@ -3,8 +3,10 @@ import { O, A } from 'b-o-a';
 import { State } from '../types/state';
 import {
   from as responseStampRallyShow$
-} from '../actions/response-stamp-rally-show';
-import { from as responseTokenCreate$ } from '../actions/response-token-create';
+} from '../actions/requests/response/stamp-rally-show';
+import {
+  from as responseTokenCreate$
+} from '../actions/requests/response/token-create';
 import {
   create as successSignIn
 } from '../actions/success-sign-in';

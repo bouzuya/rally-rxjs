@@ -1,9 +1,9 @@
 import { A, O } from 'b-o-a';
 
-import { Spot } from '../types/spot';
+import { Spot } from '../../../types/spot';
 
 type P = Spot[];
-const type = 'spot-index';
+const type = 'requests/response/spot-index';
 
 const create = (spots: Spot[]): A<P> => {
   return { type, data: spots };
@@ -12,7 +12,7 @@ const create = (spots: Spot[]): A<P> => {
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === 'response')
-    .filter(action => action.data.request.name === type)
+    .filter(action => 'requests/response/' + action.data.request.name === type)
     .map(({ data }) => data.response);
 };
 

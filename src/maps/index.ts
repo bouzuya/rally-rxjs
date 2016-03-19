@@ -49,7 +49,7 @@ import {
 
 import {
   from as responseSpotCreate$
-} from '../actions/response-spot-create';
+} from '../actions/requests/response/spot-create';
 
 import {
   from as changeName2$
@@ -67,32 +67,32 @@ import {
 
 import {
   from as responseStampRallyCreate$
-} from '../actions/response-stamp-rally-create';
+} from '../actions/requests/response/stamp-rally-create';
 
 import {
   from as responseSpotIndex$
-} from '../actions/response-spot-index';
+} from '../actions/requests/response/spot-index';
 import {
   create as resetSpots
 } from '../actions/props/spots/reset';
 
 import {
   from as responseStampRallyIndex$
-} from '../actions/response-stamp-rally-index';
+} from '../actions/requests/response/stamp-rally-index';
 import {
   create as resetStampRallies
 } from '../actions/props/stamp-rallies/reset';
 
 import {
   from as responseStampRallyShow$
-} from '../actions/response-stamp-rally-show';
+} from '../actions/requests/response/stamp-rally-show';
 import {
   create as resetStampRally
 } from '../actions/props/stamp-rally/reset';
 
 import {
   from as responseTokenCreate$
-} from '../actions/response-token-create';
+} from '../actions/requests/response/token-create';
 import {
   create as resetToken
 } from '../actions/props/token/reset';

@@ -1,18 +1,18 @@
 import { A, O } from 'b-o-a';
 
-import { StampRally } from '../types/stamp-rally';
+import { Token } from '../../../types/token';
 
-type P = StampRally;
-const type = 'stamp-rally-create';
+type P = Token;
+const type = 'requests/response/token-create';
 
-const create = (response: StampRally): A<P> => {
+const create = (response: Token): A<P> => {
   return { type, data: response };
 };
 
 const from = (action$: O<A<any>>): O<P> => {
   return action$
     .filter(action => action.type === 'response')
-    .filter(action => action.data.request.name === type)
+    .filter(action => 'requests/response/' + action.data.request.name === type)
     .map(({ data }) => data.response);
 };
 

@@ -3,10 +3,18 @@ import { from as route$ } from '../actions/route';
 
 import { State } from '../types/state';
 import { Token } from '../types/token';
-import { from as addSpot$ } from '../actions/add-spot';
-import { from as addStampRally$ } from '../actions/add-stamp-rally';
-import { from as goToSignIn$ } from '../actions/sign-in';
-import { from as responseSpotCreate$ } from '../actions/response-spot-create';
+import {
+  from as addSpot$
+} from '../actions/add-spot';
+import {
+  from as addStampRally$
+} from '../actions/add-stamp-rally';
+import {
+  from as goToSignIn$
+} from '../actions/sign-in';
+import {
+  from as responseSpotCreate$
+} from '../actions/requests/response/spot-create';
 
 const $ = (action$: O<A<any>>, state$: O<State>, options: any): O<A<any>> => {
   const { type }: { type: string; } = options;

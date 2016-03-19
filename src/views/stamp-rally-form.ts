@@ -8,9 +8,9 @@ import {
 
 const labeledTextBox = (name: string, value: string, helpers: any) => {
   const { create: h, e } = helpers;
-  return h('label', [
-    name,
-    h('input.' + name, {
+  return h('label.control.' + name, [
+    h('span.label', [name]),
+    h('input.value', {
       type: 'text',
       name,
       value,
@@ -23,9 +23,9 @@ const labeledTextBox = (name: string, value: string, helpers: any) => {
 
 const view = (state: StampRallyForm, helpers: any) => {
   const { create: h, e } = helpers;
-  return h('form.stamp-rally', [
+  return h('form.stamp-rally-form', [
     labeledTextBox('name', state.name, helpers),
-    h('button.add-stamp-rally', {
+    h('button.add-stamp-rally-button', {
       onclick: (event: Event) => {
         event.preventDefault();
         event.stopPropagation();

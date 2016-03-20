@@ -4,7 +4,6 @@ import { State } from './types/state';
 
 import { $ as map$ } from './maps/';
 import { $ as goTo$ } from './maps/go-to';
-import { $ as init$ } from './maps/init';
 import { $ as render$ } from './maps/render';
 import { $ as request$ } from './maps/request';
 import { $ as success$ } from './maps/success';
@@ -21,7 +20,6 @@ const handler = (
   return O.merge(
     map$(action$, state$),
     goTo$(action$, state$),
-    init$(action$, state$),
     // TODO: type is specified in client or server.
     render$(action$, state$, { type: 'render' }),
     // TODO: type is specified in client or server.

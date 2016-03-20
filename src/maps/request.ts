@@ -16,6 +16,13 @@ import {
   from as responseSpotCreate$
 } from '../actions/requests/response/spot-create';
 
+// THIS FILE:
+// * action -> __HERE__ -> request action
+//
+// request handler:
+// ... -> request action -> requests/*
+// requests/* -> response action -> ...
+
 const $ = (action$: O<A<any>>, state$: O<State>, options: any): O<A<any>> => {
   const { type }: { type: string; } = options;
   const request = (name: string, params: any): A<any> => {

@@ -1,9 +1,9 @@
 import { run } from 'b-o-a';
 
 import { init as app } from './app';
-import { init as http } from 'b-o-a/handlers/init';
+import { init as http } from './handlers/init';
 
-import { routes } from './routes/';
+import { inits } from './inits/';
 import { view } from './views/all';
 
 export default function main() {
@@ -20,7 +20,7 @@ export default function main() {
         ],
         port: 3000,
         render: view,
-        routes
+        inits
       }).handler(<any>act$, options);
       return app().handler(<any>http$, options);
     }
